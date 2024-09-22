@@ -6,12 +6,12 @@
 @section('content')
 <div class="page-header">
     <h3 class="page-title">
-        Category List
+        Product List 
     </h3>
     <nav aria-label="breadcrumb">
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item d-lg-flex">
-                <a class="nav-link" href="{{ route('admin.category.create') }}">
+                <a class="nav-link" href="{{ route('admin.product.create') }}">
                     <span class="btn btn-primary">+ Create new</span>
                 </a>
             </li>
@@ -48,48 +48,56 @@
 <!-- For status change end -->
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">List of category</h4>
+        <h4 class="card-title">List of product</h4>
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
                     <table id="order-listing" class="table">
                         <thead>
                             <tr>
-                                <th>Sr. No.</th>
-                                <th>Title</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                            <th>Sr. No.</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Image</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($categories as $index => $category)
+                        @forelse($products as $index => $product)
                             <tr>
-                                <td>{{ $index + 1 }}</td> <!-- Display the serial number -->
-                                <td>{{ $category->name }}</td> <!-- Display the category title -->
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->category->name ?? 'No Category' }}</td>
+                                <td>
+                                    @if($product->image)
+                                        <img src="{{ asset('assets/images/products/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px;">
+                                    @else
+                                        No Image
+                                    @endif
+                                </td>
                                 <td>
                                     <label class="switch">
-                                        <input type="checkbox" class="toggle-status" data-id="{{ $category->id }}" {{ $category->status ? 'checked' : '' }}>
+                                        <input type="checkbox" class="toggle-status" data-id="{{ $product->id }}" {{ $product->status ? 'checked' : '' }}>
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-outline-secondary btn-rounded btn-icon" style="padding: 12px; margin-top:12px;">
-                                            <i class="fas fa-pencil-alt text-info"></i>
+                                    <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-outline-secondary btn-rounded btn-icon" style="padding: 12px; margin-top:12px;">
+                                        <i class="fas fa-pencil-alt text-info"></i>
                                     </a>
-                                    <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST"
-                                        style="display:inline-block;">
+                                    <form action="{{ route('admin.product.destroy', $product->id) }}" method="POST" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger btn-rounded btn-icon" onclick="return confirm('Are you sure you want to delete this category?')">
-                                            <i class="fas fa-trash text-danger"></i>                          
+                                        <button type="submit" class="btn btn-outline-danger btn-rounded btn-icon" onclick="return confirm('Are you sure you want to delete this product?')">
+                                            <i class="fas fa-trash text-danger"></i>
                                         </button>
-                                        
                                     </form>
                                 </td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="4">No categories found.</td>
+                                <td colspan="6">No products found.</td>
                             </tr>
                             @endforelse
                         </tbody>
@@ -103,14 +111,14 @@
     $(document).ready(function() {
         $('.toggle-status').change(function() {
             var status = $(this).prop('checked') ? 1 : 0;
-            var categoryId = $(this).data('id');
+            var productId = $(this).data('id');
 
             $.ajax({
                 type: 'PATCH',
-                url: '{{ route("admin.category.toggleStatus") }}', // Correct route name
+                url: '{{ route("admin.product.toggleStatus") }}', // Correct route name
                 data: {
                     _token: '{{ csrf_token() }}',
-                    id: categoryId,
+                    id: productId,
                     status: status
                 },
                 success: function(response) {

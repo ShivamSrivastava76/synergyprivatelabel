@@ -16,7 +16,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/">
+            <a class="nav-link" href="{{ route('admin.index') }}">
             <i class="fa fa-home menu-icon"></i>
             <span class="menu-title">Dashboard</span>
             </a>
@@ -24,7 +24,13 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.category.index') }}">
             <i class="fa fa-th-large menu-icon"></i>
-            <span class="menu-title">Category</span>
+            <span class="menu-title">Categories</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.product.index') }}">
+            <i class="fa fa-list-alt menu-icon"></i>
+            <span class="menu-title">Products</span>
             </a>
         </li>
     </ul>

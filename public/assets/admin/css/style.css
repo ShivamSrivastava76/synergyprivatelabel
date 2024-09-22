@@ -11525,7 +11525,7 @@ fieldset:disabled a {
 .btn-outline-danger:not(:disabled):not(.disabled):active, .btn-outline-danger:not(:disabled):not(.disabled).active,
 .show > .btn-outline-danger.dropdown-toggle {
   color: #fff;
-  background-color: #FF5E6D;
+  /* background-color: #FF5E6D; */
   border-color: #FF5E6D;
 }
 
@@ -20985,7 +20985,8 @@ code {
 
 /* Bootstrap Alerts */
 .alert {
-  font-size: 0.8125rem;
+  /* font-size: 0.8125rem; */
+  font-size: 1rem;
 }
 
 .alert i {
@@ -21921,7 +21922,7 @@ code {
 }
 
 .btn-outline-danger:hover, .btn-outline-danger:focus, .btn-outline-danger:active {
-  background: #FF5E6D;
+  background: #DEDEDE;
   color: #ffffff;
 }
 
@@ -23054,7 +23055,8 @@ select.border-dark.tt-hint {
 }
 
 .form-group label {
-  font-size: 0.8125rem;
+  /* font-size: 0.8125rem; */
+  font-size: 1rem;
   line-height: 1;
   vertical-align: top;
   margin-bottom: .5rem;
@@ -23870,7 +23872,8 @@ ul,
 ol,
 dl {
   padding-left: 1rem;
-  font-size: 0.8125rem;
+  /* font-size: 0.8125rem; */
+  font-size: 1rem;
 }
 
 ul li,
@@ -26788,7 +26791,7 @@ body.avgrund-active {
 }
 
 .dataTables_wrapper .dataTable .btn, .dataTables_wrapper .dataTable .fc button, .fc .dataTables_wrapper .dataTable button, .dataTables_wrapper .dataTable .ajax-upload-dragdrop .ajax-file-upload, .ajax-upload-dragdrop .dataTables_wrapper .dataTable .ajax-file-upload, .dataTables_wrapper .dataTable .swal2-modal .swal2-buttonswrapper .swal2-styled, .swal2-modal .swal2-buttonswrapper .dataTables_wrapper .dataTable .swal2-styled, .dataTables_wrapper .dataTable .wizard > .actions a, .wizard > .actions .dataTables_wrapper .dataTable a {
-  padding: 0.1rem 1rem;
+  /* padding: 0.1rem 1rem; */
   vertical-align: top;
 }
 
@@ -28184,7 +28187,8 @@ body.avgrund-active {
 }
 
 .select2-container--default .select2-selection--single {
-  height: auto;
+  /* height: auto; */
+  height: calc(2.875rem + 2px);
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -28192,7 +28196,8 @@ body.avgrund-active {
 }
 
 .select2-container--default .select2-dropdown {
-  font-size: .8125rem;
+  /* font-size: .8125rem; */
+  font-size: 1rem;
 }
 
 .select2-container--default.select2-container--focus .select2-selection--multiple {
@@ -29375,4 +29380,63 @@ div.tagsinput span.tag a {
   margin-right: 0;
 }
 
+/* For switch button */
+ /* The switch - the box around the slider */
+ .switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 25px; /* Full rounded corners */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 19px;
+  width: 19px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%; /* Make the toggle knob round */
+}
+
+/* Checked state of the switch */
+input:checked + .slider {
+  background-color: #28a745;
+}
+
+/* Position the slider knob when checked */
+input:checked + .slider:before {
+  transform: translateX(25px); /* Moves the knob to the right */
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 25px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
 /*# sourceMappingURL=maps/style.css.map */
