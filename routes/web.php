@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\EnquiryController;
+use App\Http\Controllers\RemarkController;
+use App\Http\Controllers\EnquiryMailController;
 use App\Http\Controllers\IndexController;
 
 // Route::get('/', function () {
@@ -54,7 +57,23 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/products/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-    Route::patch('/products/toggle-status', [ProductController::class, 'toggleStatus'])->name('product.toggleStatus'); // Optional for status toggle
+    Route::patch('/products/toggle-status', [ProductController::class, 'toggleStatus'])->name('product.toggleStatus');
+
+    // Enquiry routes
+    Route::get('enquiries', [EnquiryController::class, 'index'])->name('enquiries.index');
+    Route::get('enquiries/{id}', [EnquiryController::class, 'showEnquiryDetails'])->name('enquiries.details');
+
+    // Route::get('enquiries/create', [EnquiryController::class, 'create'])->name('enquiries.create');
+    // Route::post('enquiries', [EnquiryController::class, 'store'])->name('enquiries.store');
+    // Route::get('enquiries/{id}/edit', [EnquiryController::class, 'edit'])->name('enquiries.edit');
+    // Route::put('enquiries/{id}', [EnquiryController::class, 'update'])->name('enquiries.update');
+    // Route::delete('enquiries/{id}', [EnquiryController::class, 'destroy'])->name('enquiries.destroy');
+
+    // Remark routes
+    Route::post('/remarks/store', [RemarkController::class, 'store'])->name('remarks.store');
+    // Mail routes
+    Route::post('/mail/store', [EnquiryMailController::class, 'store'])->name('mail.store');
+
 });
 //  Admin routes end
 
@@ -76,4 +95,3 @@ Route::prefix('user')->name('user.')->group(function () {
 });
 //  User routes end
 require __DIR__.'/auth.php';
-

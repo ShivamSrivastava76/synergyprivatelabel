@@ -24,4 +24,5 @@
   <script src="{{asset('assets/admin/js/file-upload.js')}}"></script>
   <script src="{{asset('assets/admin/js/typeahead.js')}}"></script>
   <script src="{{asset('assets/admin/js/select2.js')}}"></script>
+  <script src="{{asset('assets/admin/js/modal-demo.js')}}"></script>
   

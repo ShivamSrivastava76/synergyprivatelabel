@@ -33,5 +33,11 @@
             <span class="menu-title">Products</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.enquiries.index') }}">
+            <i class="fa fa-list-alt menu-icon"></i>
+            <span class="menu-title">Enquries</span>
+            </a>
+        </li>
     </ul>
 </nav>

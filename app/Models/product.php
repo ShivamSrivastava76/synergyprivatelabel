@@ -34,6 +34,11 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'categories_id');
     }
+    // Define the relationship with the EnquiryProduct model
+    public function enquiryProducts()
+    {
+        return $this->hasMany(EnquiryProduct::class, 'products_id');
+    }
 
     // Soft delete date field
     protected $dates = ['deleted_at'];

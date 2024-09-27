@@ -11361,7 +11361,7 @@ fieldset:disabled a {
 }
 
 .btn-outline-secondary, .editable-container.editable-inline .editableform .control-group .editable-buttons .editable-cancel {
-  color: #DEDEDE;
+  /* color: #DEDEDE; */
   background-color: transparent;
   background-image: none;
   border-color: #DEDEDE;
@@ -19639,7 +19639,8 @@ h6,
 }
 
 p {
-  font-size: 0.8125rem;
+  /* font-size: 0.8125rem; */
+  font-size: 1rem;
 }
 
 h1,
@@ -26248,7 +26249,8 @@ dl li {
 
 .email-wrapper .mail-list-container .mail-list .content .sender-name {
   margin-bottom: 0;
-  font-size: 0.8125rem;
+  /* font-size: 0.8125rem; */
+  font-size: 1rem;
   font-weight: 400;
   max-width: 95%;
 }
@@ -26331,6 +26333,7 @@ dl li {
   margin-right: 20px;
   border: 1px solid #e0e0ef;
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .email-wrapper .message-body .attachments-sections ul li .thumb {
@@ -26357,7 +26360,7 @@ dl li {
 }
 
 .email-wrapper .message-body .attachments-sections ul li .details .buttons a {
-  font-size: 13px;
+  font-size: 15px;
   margin-right: 10px;
 }
 
