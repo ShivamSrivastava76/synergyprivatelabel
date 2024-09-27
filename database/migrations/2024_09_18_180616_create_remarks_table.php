@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('remarks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->longText('remark');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->tinyInteger('status')->command("0 => active, 1 => inactive");
