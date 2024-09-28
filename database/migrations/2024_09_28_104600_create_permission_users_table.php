@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('remarks', function (Blueprint $table) {
+        Schema::create('permission_users', function (Blueprint $table) {
             $table->id();
-            $table->longText('remark');
-            $table->unsignedBigInteger('enquiries_id');
-            $table->foreign('enquiries_id')->references('id')->on('enquiries');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('permissions_id');
+            $table->foreign('permissions_id')->references('id')->on('permissions');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users');
             $table->tinyInteger('status')->command("0 => active, 1 => inactive");
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('remarks');
+        Schema::dropIfExists('permission_users');
     }
 };
