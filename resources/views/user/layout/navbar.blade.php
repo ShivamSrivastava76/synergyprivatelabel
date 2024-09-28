@@ -7,10 +7,16 @@
             </div>
             <div class="profile-name">
                 <p class="name">
-                Welcome Jane
+                    {{Auth::user()->name}}
                 </p>
                 <p class="designation">
-                Admin
+                    @if(Auth::user()->role == 0)
+                        Admin
+                    @elseif(Auth::user()->role == 1)
+                        Staff
+                    @elseif(Auth::user()->role == 2)
+                        User
+                    @endif
                 </p>
             </div>
             </div>
@@ -24,7 +30,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.category.index') }}">
             <i class="fa fa-th-large menu-icon"></i>
-            <span class="menu-title">Category</span>
+            <span class="menu-title">Enquries</span>
             </a>
         </li>
     </ul>

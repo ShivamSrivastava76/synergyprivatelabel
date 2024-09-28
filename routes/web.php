@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
@@ -24,6 +25,7 @@ Route::get('/label_design_how_does_it_work', [IndexController::class, 'label_des
 Route::get('/privacy_policy', [IndexController::class, 'privacy_policy']);
 Route::get('/term_and_conditions', [IndexController::class, 'term_and_conditions']);
 Route::get('/product_details/{id}', [IndexController::class, 'product_details']);
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
