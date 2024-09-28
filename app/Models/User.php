@@ -50,4 +50,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Define the relationship with permissionUsers
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'permission_users', 'users_id', 'permissions_id')
+                    ->withPivot('status')
+                    ->withTimestamps();
+    }
 }

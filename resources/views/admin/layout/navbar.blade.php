@@ -3,7 +3,7 @@
         <li class="nav-item nav-profile">
             <div class="nav-link">
             <div class="profile-image">
-                <img src="{{asset('assets/admin/images/faces/face5.jpg')}}" alt="image"/>
+                <img src="{{asset('assets/admin/images/faces/user.jpg')}}" alt="image"/>
             </div>
             <div class="profile-name">
                 <p class="name">
@@ -35,7 +35,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.subcategory.index') }}">
-            <i class="fa fa-th-large menu-icon"></i>
+            <i class="fa fa-th menu-icon"></i>
             <span class="menu-title">Subcategories</span>
             </a>
         </li>
@@ -47,8 +47,20 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.enquiries.index') }}">
-            <i class="fa fa-list-alt menu-icon"></i>
+            <i class="fa fa-address-book menu-icon"></i>
             <span class="menu-title">Enquries</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.staff.index') }}">
+            <i class="fa fa-users menu-icon"></i>
+            <span class="menu-title">Staff Members</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.contact-enquiry.index') }}">
+            <i class="fas fa-clipboard-list menu-icon"></i>
+            <span class="menu-title">Contact Enquiries</span>
             </a>
         </li>
     </ul>

@@ -14,4 +14,14 @@ class Permission extends Model
         'name',
         'status',
     ];
+
+
+    // Define the relationship with users
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'permission_users', 'users_id', 'permissions_id')
+                    ->withPivot('status')
+                    ->withTimestamps();
+    }
+
 }

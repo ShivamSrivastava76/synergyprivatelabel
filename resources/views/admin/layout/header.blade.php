@@ -1,8 +1,15 @@
 <!-- partial:partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="/"><img src="{{asset('assets/admin/images/logo.svg')}}" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="/"><img src="{{asset('assets/admin/images/logo-mini.svg')}}" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="/">
+            <!-- <img src="{{asset('assets/admin/images/logo.svg')}}" alt="logo"/> -->
+             <h2>MOXXPHARMA
+             </h2>
+        </a>
+        <a class="navbar-brand brand-logo-mini" href="/">
+            <!-- <img src="{{asset('assets/admin/images/logo-mini.svg')}}" alt="logo"/> -->
+             <h1>M</h1>
+        </a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -15,7 +22,7 @@
             
             <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                <img src="{{asset('assets/admin/images/faces/face5.jpg')}}" alt="profile"/>
+                <img src="{{asset('assets/admin/images/faces/user.jpg')}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <div class="dropdown-divider"></div>

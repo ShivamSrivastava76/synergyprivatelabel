@@ -10,6 +10,8 @@ use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\RemarkController;
 use App\Http\Controllers\EnquiryMailController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\ContactUsController;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/about_us', [IndexController::class, 'about_us']);
@@ -88,6 +90,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/remarks/store', [RemarkController::class, 'store'])->name('remarks.store');
     // Mail routes
     Route::post('/mail/store', [EnquiryMailController::class, 'store'])->name('mail.store');
+
+    // Admin staff Routes
+    Route::get('/staffs', [StaffController::class, 'index'])->name('staff.index');
+    Route::get('/staffs/create', [StaffController::class, 'create'])->name('staff.create');
+    Route::post('/staffs', [StaffController::class, 'store'])->name('staff.store');
+    Route::get('/staffs/{id}/edit', [StaffController::class, 'edit'])->name('staff.edit');
+    Route::put('/staffs/{id}', [StaffController::class, 'update'])->name('staff.update');
+    Route::delete('/staffs/{id}', [StaffController::class, 'destroy'])->name('staff.destroy');
+
+    // Admin 
+    Route::get('/contact-enquiries', [ContactUsController::class, 'index'])->name('contact-enquiry.index');
+    Route::get('/contact-enquiries/{id}/view', [ContactUsController::class, 'view'])->name('contact-enquiry.view');
+    Route::delete('/contact-enquiries/{id}', [ContactUsController::class, 'destroy'])->name('contact-enquiry.destroy');
 
 });
 //  Admin routes end
