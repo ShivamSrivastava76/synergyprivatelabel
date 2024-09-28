@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\products_size;
 
 class Product extends Model
 {
@@ -15,7 +14,6 @@ class Product extends Model
     // Define the fields that can be mass-assigned
     protected $fillable = [
         'name',
-        'categories_id',
         'price',
         'image',
         'description',
@@ -34,11 +32,14 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'categories_id');
     }
 
-    public function sizes()
+    public function productsCategory()
     {
-        return $this->belongsToMany(Size::class, 'products_sizes', 'products_id', 'sizes_id');
+        return $this->belongsToMany(productsCategory::class, 'products_categories', 'products_id', 'categories_id');
     }
 
-    // Soft delete date field
-    protected $dates = ['deleted_at'];
+    public function productsSubcategory()
+    {
+        return $this->belongsToMany(productsSubcategory::class, 'products_subcategories', 'products_id', 'subcategories_id');
+    }
+
 }

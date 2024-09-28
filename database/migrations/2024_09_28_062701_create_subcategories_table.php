@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sizes', function (Blueprint $table) {
+        Schema::create('subcategories', function (Blueprint $table) {
             $table->id();
-            $table->integer('size');
+            $table->string('name');
+            $table->longText('description')->nullable();
+            $table->unsignedBigInteger('categories_id');
+            $table->foreign('categories_id')->references('id')->on('categories');
             $table->tinyInteger('status')->command("0 => active, 1 => inactive");
             $table->timestamps();
             $table->softDeletes();
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sizes');
+        Schema::dropIfExists('subcategories');
     }
 };

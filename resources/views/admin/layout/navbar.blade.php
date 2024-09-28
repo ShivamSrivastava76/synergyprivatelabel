@@ -34,6 +34,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.subcategory.index') }}">
+            <i class="fa fa-th-large menu-icon"></i>
+            <span class="menu-title">Subcategories</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.product.index') }}">
             <i class="fa fa-list-alt menu-icon"></i>
             <span class="menu-title">Products</span>

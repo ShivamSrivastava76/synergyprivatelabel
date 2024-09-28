@@ -17,8 +17,6 @@ return new class extends Migration
             $table->longText('description');
             $table->decimal('price', 10, 2);
             $table->string('image');
-            $table->unsignedBigInteger('categories_id');
-            $table->foreign('categories_id')->references('id')->on('categories');
             $table->tinyInteger('status')->command("0 => active, 1 => inactive");
             $table->timestamps();
             $table->softDeletes();

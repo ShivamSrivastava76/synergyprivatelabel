@@ -44,8 +44,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="category">Product Category</label>
-                                <select class="js-example-basic-single w-100" id="category" name="categories_id" required>
+                                <label for="categories_id">Product Category</label>
+                                <select class="js-example-basic-single w-100" id="categories_id" name="categories_id[]" required  multiple="multiple" onchange="subcategory()">
                                     <option value="">Select a Category</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}" {{ old('categories_id') == $category->id ? 'selected' : '' }}>
@@ -59,10 +59,21 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="subcategories_id">Product Subcategory</label>
+                                <select class="js-example-basic-single w-100" id="subcategories_id" name="subcategories_id[]" required  multiple="multiple">
+                                    <option value="">First Select a Category</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="productPrice">Product Price</label>
                                 <input type="number" class="form-control" id="productPrice" name="price" placeholder="Product Price" value="{{ old('price') }}">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Product Image</label>
@@ -73,22 +84,6 @@
                                         <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                     </span>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="category">Product Size</label>
-                                <select class="js-example-basic-single w-100" id="size" name="size[]" required multiple="multiple">
-                                    <option value="">Select Product Size</option>
-                                    @foreach($size as $size)
-                                        <option value="{{ $size->id }}" {{ old('size_id') == $size->id ? 'selected' : '' }}>
-                                            {{ $size->size }}
-                                        </option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                     </div>
@@ -118,5 +113,23 @@ $(document).ready(function() {
         $('#description').val(contents);
     });
 });
+
+function subcategory()
+{
+    id = $('#categories_id').val().join(',');
+    console.log(id)
+    $.ajax({
+        type: "Post",
+        url: 'sub_category',
+        data: {
+            'id': id,
+            '_token': '{{ csrf_token() }}',
+        },
+        success: function(data) {
+            $('#subcategories_id').html(data);
+        }
+    });
+    
+}
 </script>
 @endsection

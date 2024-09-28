@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\RemarkController;
@@ -26,6 +27,7 @@ Route::get('/privacy_policy', [IndexController::class, 'privacy_policy']);
 Route::get('/term_and_conditions', [IndexController::class, 'term_and_conditions']);
 Route::get('/product_details/{id}', [IndexController::class, 'product_details']);
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
+Route::get('/category/{id}', [IndexController::class, 'category']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -49,6 +51,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('/category/{id}/update', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
     Route::patch('/category/toggle-status', [CategoryController::class, 'toggleStatus'])->name('category.toggleStatus');
+    
+
+
+    // Admin Subategory Routes
+    Route::get('/subcategory', [SubategoryController::class, 'index'])->name('subcategory.index');
+    Route::get('/subcategory/create', [SubategoryController::class, 'create'])->name('subcategory.create');
+    Route::post('/subcategory', [SubategoryController::class, 'store'])->name('subcategory.store');
+    Route::get('/subcategory/{id}/edit', [SubategoryController::class, 'edit'])->name('subcategory.edit');
+    Route::put('/subcategory/{id}/update', [SubategoryController::class, 'update'])->name('subcategory.update');
+    Route::delete('/subcategory/{id}', [SubategoryController::class, 'destroy'])->name('subcategory.destroy');
+    Route::patch('/subcategory/toggle-status', [SubategoryController::class, 'toggleStatus'])->name('subcategory.toggleStatus');
 
     // Admin Product Routes
     Route::get('/products', [ProductController::class, 'index'])->name('product.index');
@@ -58,6 +71,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('/products/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::patch('/products/toggle-status', [ProductController::class, 'toggleStatus'])->name('product.toggleStatus');
+    Route::post('/products/sub_category', [ProductController::class, 'sub_category']);
 
     // Enquiry routes
     Route::get('enquiries', [EnquiryController::class, 'index'])->name('enquiries.index');

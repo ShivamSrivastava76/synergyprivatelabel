@@ -17,11 +17,17 @@
                                         </span>
                                     </h4>
                                     <ul class="footer-menu list-unstyled mb-0 d-md-block">
-                                        <li class="footer-menu-item"><a href="{{url('protein_powders')}}">Protein Powders</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('vegan_products')}}">Vegan Products</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('supplements')}}">Supplements</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('bulk_protein')}}">Bulk Protein</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('gym_supplements')}}">GYM Supplements</a></li>
+                                        @if(isset($category) != null && count($category) > 0)
+                                            @foreach($category as $val)
+                                                <li class="footer-menu-item"><a href="{{url('category').'/'.$val->id}}">{{$val->name}}</a></li>
+                                            @endforeach
+                                        @else
+                                            <li class="footer-menu-item"><a>Protein Powders</a></li>
+                                            <li class="footer-menu-item"><a>Vegan Products</a></li>
+                                            <li class="footer-menu-item"><a>Supplements</a></li>
+                                            <li class="footer-menu-item"><a>Bulk Protein</a></li>
+                                            <li class="footer-menu-item"><a>GYM Supplements</a></li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>

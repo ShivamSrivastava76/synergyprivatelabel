@@ -17,6 +17,7 @@ class CategoryController extends Controller
                       ->get();
         return view('admin.category.index', compact('categories'));        
     }
+    
     /**
      * Show the form for creating a new category.
      */

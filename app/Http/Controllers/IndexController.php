@@ -5,38 +5,52 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\View\View;
+use App\Models\category;
 
 class IndexController extends Controller
 {
+    public $category;
+
+    public function __construct() 
+    {
+        $this->category  = category::orderBy('id', 'asc')->where('status',0)->take(5)->get();
+    }
+
     public function index(): View
     {
-        $product = Product::orderBy('created_at', 'desc')->where('status',0)->take(10)->get();
-        return view('index', compact('product'));
+        $product = Product::orderBy('updated_at', 'desc')->where('status',0)->take(10)->get();
+        $category = $this->category;
+        return view('index', compact('product', 'category'));
     }
 
-    public function about_us()
+    public function about_us(): View
     {
-        return view('about_us');
+        $category = $this->category;
+        return view('about_us', compact('category'));
     }
 
-    public function what_we_do()
+    public function what_we_do(): View
     {
-        return view('what_we_do');
+        $category = $this->category;
+        return view('what_we_do', compact('category'));
     }
 
-    public function faq()
+    public function faq(): View
     {
-        return view('faq');
+        $category = $this->category;
+        return view('faq', compact('category'));
     }
 
-    public function our_team()
+    public function our_team(): View
     {
-        return view('our_team');
+        $category = $this->category;
+        return view('our_team', compact('category'));
     }
 
-    public function search()
+    public function search(): View
     {
-        return view('search');
+        $category = $this->category;
+        return view('search', compact('category'));
     }
 
     public function searchproductlist($key= null)
@@ -46,18 +60,20 @@ class IndexController extends Controller
         return view('product', compact('product'));
     }
 
-    public function contact()
+    public function contact(): View
     {
-        return view('contact');
+        $category = $this->category;
+        return view('contact', compact('category'));
     }
 
-    public function products()
+    public function products(): View
     {
+        $category = $this->category;
         $product = Product::orderBy('updated_at', 'desc')->where('status',0)->get();
-        return view('products', compact('product'));
+        return view('products', compact('product', 'category'));
     }
 
-    public function sortproduct($key)
+    public function sortproduct($key): View
     {
         $sortBy = 'updated_at';
         $sortDirection = 'asc';
@@ -94,33 +110,47 @@ class IndexController extends Controller
         return view('product', compact('product'));
     }
 
-    public function custom_formulations()
+    public function custom_formulations(): View
     {
-        return view('custom_formulations');
+        $category = $this->category;
+        return view('custom_formulations', compact('category'));
     }
 
-    public function label_design_how_does_it_work()
+    public function label_design_how_does_it_work(): View
     {
-        return view('label_design_how_does_it_work');
+        $category = $this->category;
+        return view('label_design_how_does_it_work', compact('category'));
     }
 
-    public function privacy_policy()
+    public function privacy_policy(): View
     {
-        return view('privacy_policy');
+        $category = $this->category;
+        return view('privacy_policy', compact('category'));
     }
 
-    public function term_and_conditions()
+    public function term_and_conditions(): View
     {
-        return view('term_and_conditions');
+        $category = $this->category;
+        return view('term_and_conditions', compact('category'));
     }
 
-    public function product_details($id)
+    public function product_details($id): View
     {
+        $category = $this->category;
 
         $products = Product::with('category','sizes')->where('status',0)->find($id);
 
         $product = Product::where('categories_id',$products->categories_id)->where('id', '!=',$id)->where('status',0)->orderBy('updated_at', 'desc')->take(5)->get();
 
-        return view('product_details', compact('products','product'));
+        return view('product_details', compact('products','product', 'category'));
+    }
+
+    public function category($id): View
+    {
+        $category = $this->category;
+
+        $products = Product::with('category','sizes')->where('status',0)->find($id);
+
+        return view('product_details', compact('products','product', 'category'));
     }
 }
