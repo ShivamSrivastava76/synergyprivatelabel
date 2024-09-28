@@ -16,8 +16,6 @@ return new class extends Migration
             $table->longText('email_content');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('enquiries_id');
-            $table->foreign('enquiries_id')->references('id')->on('enquiries');
             $table->tinyInteger('status')->command("0 => active, 1 => inactive");
             $table->timestamps();
             $table->softDeletes();
