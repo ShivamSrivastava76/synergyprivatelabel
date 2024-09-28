@@ -10,7 +10,7 @@ class EnquiryController extends Controller
     {
         // Retrieve all enquiries with the related user, product, ordered remark details, and emails
         $enquiries = Enquiry::with(['user', 'enquiryProducts.product', 'remarks.user', 'emails']) // Add 'emails' here
-                    ->where('status', 1)
+                    ->where('status', 0)
                     ->get();
 
         // Return the view with the enquiries data

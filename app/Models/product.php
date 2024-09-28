@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\products_size;
 
 class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
-    // Optional: Only needed if your table name is not 'products'
-    protected $table = 'products';
 
     // Define the fields that can be mass-assigned
     protected $fillable = [
@@ -25,7 +24,7 @@ class Product extends Model
 
     // Define the default values for attributes
     protected $attributes = [
-        'status' => 1, // Default status as active
+        'status' => 0, // Default status as active
         'price' => 0   // Default price as 0
     ];
 
@@ -34,10 +33,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'categories_id');
     }
-    // Define the relationship with the EnquiryProduct model
-    public function enquiryProducts()
+
+    public function sizes()
     {
-        return $this->hasMany(EnquiryProduct::class, 'products_id');
+        return $this->belongsToMany(Size::class, 'products_sizes', 'products_id', 'sizes_id');
     }
 
     // Soft delete date field

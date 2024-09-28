@@ -13,7 +13,7 @@
                     @csrf
                     <input type="hidden" name="enquiry_id" value="{{ $enquiry->id }}"> <!-- Enquiry ID -->
                     <input type="hidden" name="user_id" value="{{ $enquiry->user->id }}"> <!-- Logged-in user ID -->
-                    <input type="hidden" name="status" value="1">
+                    <input type="hidden" name="status" value="0">
                     <div class="form-group">
                         <label for="summernoteExample">Remark Description</label>
                         <div id="summernoteExample">
@@ -45,7 +45,7 @@
                     <input type="hidden" name="enquiry_id" value="{{ $enquiry->id }}"> <!-- Enquiry ID -->
                     <input type="hidden" name="user_email" value="{{ $enquiry->user->email }}">
                     <!-- Logged-in user ID -->
-                    <input type="hidden" name="status" value="1">
+                    <input type="hidden" name="status" value="0">
                     <div class="form-group">
                         <label for="summernoteExample1">Mail Description</label>
                         <div id="summernoteExample1">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Size;
+use App\Models\products_size;
 use App\Models\Category;
 use Illuminate\Support\Facades\Log;
 use DB;
@@ -14,16 +16,15 @@ class ProductController extends Controller
     // Display a listing of the products
     public function index()
     {
-        $products = Product::with('category')->whereNull('deleted_at')->get();
+        $products = Product::with('category')->get();
         return view('admin.product.index', compact('products'));
     }
     // Show the form for creating a new product
     public function create()
     {
-        $categories = Category::where('status',1)
-                    ->whereNull('deleted_at')
-                      ->get();
-        return view('admin.product.create', compact('categories'));
+        $categories = Category::where('status',0)->get();
+        $size = Size::all();
+        return view('admin.product.create', compact('categories','size'));
     }
     public function store(Request $request)
     {
@@ -31,6 +32,7 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'categories_id' => 'required|exists:categories,id',
+            'size' => 'required|exists:sizes,id|array',
             'price' => 'nullable|numeric|min:0',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|string',
@@ -54,17 +56,20 @@ class ProductController extends Controller
                 // Store the image name in the validated data array
                 $validatedData['image'] = $imageName;
             
-                $validatedData['status'] = 1;
+                $validatedData['status'] = 0;
                 $validatedData['price'] = $validatedData['price'] ?? 0;
     
                 // Create a new product with the validated data
-                Product::create($validatedData);    
+                $product = Product::create($validatedData);
+                $product->sizes()->attach($request->input('size'));
                 // Redirect back with a success message
                 return redirect()->route('admin.product.index')->with('success', 'Product added successfully!');
             }
         }catch(\Exception $e){
             // Redirect back with an error message
-             return redirect()->route('admin.product.create')->with('error', 'Failed to add product. Please try again.');
+            return  $e;
+
+            //  return redirect()->route('admin.product.create')->with('error', 'Failed to add product. Please try again.');
 
         }
     }
@@ -74,9 +79,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         // Retrieve all categories to populate the select dropdown
-        $categories = Category::where('status', 1)->whereNull('deleted_at')->get();
-        $product = Product::with('category')->findOrFail($id);
-        return view('admin.product.edit', compact('product', 'categories'));
+        $categories = Category::where('status', 0)->get();
+        $product = Product::with('category','sizes')->findOrFail($id);
+        $size = Size::all();
+        return view('admin.product.edit', compact('product', 'categories', 'size'));
     }
     /**
  * Update the specified product in storage.
@@ -87,6 +93,7 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'categories_id' => 'required|exists:categories,id',
+            'size' => 'required|exists:sizes,id|array',
             'price' => 'nullable|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|string',
@@ -103,6 +110,8 @@ class ProductController extends Controller
         try {
             // Find the product to update
             $product = Product::findOrFail($id);
+
+            products_size::where('products_id', $id)->delete();
 
             // Handle the image upload if a new image is provided
             if ($request->hasFile('image')) {
@@ -126,7 +135,7 @@ class ProductController extends Controller
 
             // Update the product with validated data
             $product->update($validatedData);
-
+            $product->sizes()->attach($request->input('size'));
             // Redirect back with a success message
             return redirect()->route('admin.product.index')->with('success', 'Product updated successfully!');
         } catch (\Exception $e) {

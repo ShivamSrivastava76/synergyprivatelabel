@@ -322,6 +322,38 @@
         <script src="{{url('asset/js/vendor.js')}}"></script>
         <script src="{{url('asset/js/main.js')}}"></script>
     </div>
+    <script>
+
+        function addtocart(id) 
+        {
+            let productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];
+
+            if (!productIds.includes(id)) 
+            {
+                productIds.push(id);
+                sessionStorage.setItem('productIds', JSON.stringify(productIds));
+            } 
+            else
+                alert('This Product is already added!');
+
+            displayProductIds()
+        }
+
+    // Function to display all stored product IDs
+    function displayProductIds() {
+        const productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];
+        
+        if (productIds.length > 0) 
+        {
+            // api call
+        } 
+        else 
+        {
+            // value is 0
+        }
+    }
+
+    </script>
 </body>
 
 </html>

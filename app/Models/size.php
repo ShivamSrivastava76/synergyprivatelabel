@@ -6,14 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class category extends Model
+class Size extends Model
 {
     use HasFactory, SoftDeletes;
 
-    // Specify the fields that can be mass-assigned
     protected $fillable = [
-        'name',
-        'description',
+        'size',
         'status'
     ];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'products_sizes', 'sizes_id', 'products_id');
+    }
 }

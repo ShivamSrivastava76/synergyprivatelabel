@@ -74,11 +74,30 @@
                                         <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                     </span>
                                 </div>
-                                @if($product->image)
-                                    <img src="{{ asset('assets/images/products/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px; margin-top: 10px;">
-                                @endif
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="category">Product Size</label>
+                                <select class="js-example-basic-single w-100" id="size" name="size[]" required multiple="multiple">
+                                    <option value="">Select Product Size</option>
+                                    @foreach($size as $size)
+                                        <option value="{{ $size->id }}" @if($product->sizes->contains($size->id)) selected @endif>
+                                            {{ $size->size }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            @if($product->image)
+                                <img src="{{ asset('assets/images/products/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px; margin-top: 10px;">
+                            @endif
+                        </div>
+                        
                     </div>
 
                     <div class="form-group">

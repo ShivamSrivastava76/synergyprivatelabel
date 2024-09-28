@@ -9,23 +9,21 @@ use App\Http\Controllers\RemarkController;
 use App\Http\Controllers\EnquiryMailController;
 use App\Http\Controllers\IndexController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/about_us', [IndexController::class, 'about_us']);
 Route::get('/what_we_do', [IndexController::class, 'what_we_do']);
 Route::get('/faq', [IndexController::class, 'faq']);
 Route::get('/our_team', [IndexController::class, 'our_team']);
 Route::get('/search', [IndexController::class, 'search']);
+Route::get('/searchproductlist/{key?}', [IndexController::class, 'searchproductlist']);
 Route::get('/contact', [IndexController::class, 'contact']);
 Route::get('/products', [IndexController::class, 'products']);
+Route::get('/sortproduct/{key}', [IndexController::class, 'sortproduct']);
 Route::get('/custom_formulations', [IndexController::class, 'custom_formulations']);
 Route::get('/label_design_how_does_it_work', [IndexController::class, 'label_design_how_does_it_work']);
 Route::get('/privacy_policy', [IndexController::class, 'privacy_policy']);
 Route::get('/term_and_conditions', [IndexController::class, 'term_and_conditions']);
-Route::get('/product_details', [IndexController::class, 'product_details']);
+Route::get('/product_details/{id}', [IndexController::class, 'product_details']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -94,4 +92,5 @@ Route::prefix('user')->name('user.')->group(function () {
     
 });
 //  User routes end
+
 require __DIR__.'/auth.php';

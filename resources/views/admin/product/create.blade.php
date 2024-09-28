@@ -77,6 +77,22 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="category">Product Size</label>
+                                <select class="js-example-basic-single w-100" id="size" name="size[]" required multiple="multiple">
+                                    <option value="">Select Product Size</option>
+                                    @foreach($size as $size)
+                                        <option value="{{ $size->id }}" {{ old('size_id') == $size->id ? 'selected' : '' }}>
+                                            {{ $size->size }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="summernoteExample">Product Description</label>
                         <div id="summernoteExample">

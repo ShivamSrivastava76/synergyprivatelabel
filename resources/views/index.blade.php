@@ -281,181 +281,166 @@
                     <div class="section-header text-center">
                         <h2 class="section-heading primary-color">Our Products</h2>
                     </div>
-                    <!-- Grid view -->
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                            <div class="product-card">
-                                <div class="product-card-img">
-                                    <a class="hover-switch" href="{{url('product_details')}}">
-                                        <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}" alt="product">
-                                    </a>
-                                    <div class="product-card-action product-card-action-2">
-                                        <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                            data-bs-toggle="modal">QUICKVIEW</a>
-                                        <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
+                    @if(isset($product) != null && count($product) > 0)
+                        <div class="row">
+                            @include('product')
+                        </div>
+                        <div class="view-all text-center" data-aos="fade-up" data-aos-duration="700">
+                            <a class="btn-primary" href="{{url('products')}}">VIEW ALL</a>
+                        </div>
+                    @else
+                        <!-- Grid view -->
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        <a class="hover-switch" href="{{url('product_details')}}">
+                                            <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}" alt="product">
+                                        </a>
+                                        <div class="product-card-action product-card-action-2">
+                                            <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
+                                                data-bs-toggle="modal">QUICKVIEW</a>
+                                            <a class="addtocart-btn btn-primary">ADD TO CART</a>
                                         </div>
-                                    <div class="product-badge">
-                                        <span class="badge-label badge-percentage rounded">-44%</span>
+                                    </div>
+                                    <div class="product-card-details">
+                                        <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
                                     </div>
                                 </div>
-                                <div class="product-card-details">
-                                    <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        <a class="hover-switch" href="{{url('product_details')}}">
+                                            <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                alt="product">
+                                        </a>
+                                        <div class="product-card-action product-card-action-2">
+                                            <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
+                                                data-bs-toggle="modal">QUICKVIEW</a>
+                                            <a class="addtocart-btn btn-primary">ADD TO CART</a>
+                                        </div>
+                                    </div>
+                                    <div class="product-card-details">
+                                        <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        <a class="hover-switch" href="{{url('product_details')}}">
+                                            <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                alt="product">
+                                        </a>
+                                        <div class="product-card-action product-card-action-2">
+                                            <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
+                                                data-bs-toggle="modal">QUICKVIEW</a>
+                                            <a class="addtocart-btn btn-primary">ADD TO CART</a>
+                                        </div>
+                                    </div>
+                                    <div class="product-card-details">
+                                        <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        <a class="hover-switch" href="{{url('product_details')}}">
+                                            <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                alt="product">
+                                        </a>
+                                        <div class="product-card-action product-card-action-2">
+                                            <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
+                                                data-bs-toggle="modal">QUICKVIEW</a>
+                                            <a class="addtocart-btn btn-primary">ADD TO CART</a>
+                                        </div>
+                                    </div>
+                                    <div class="product-card-details">
+                                        <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        <a class="hover-switch" href="{{url('product_details')}}">
+                                            <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                alt="product">
+                                        </a>
+                                        <div class="product-card-action product-card-action-2">
+                                            <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
+                                                data-bs-toggle="modal">QUICKVIEW</a>
+                                            <a class="addtocart-btn btn-primary">ADD TO CART</a>
+                                        </div>
+                                    </div>
+                                    <div class="product-card-details">
+                                        <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        <a class="hover-switch" href="{{url('product_details')}}">
+                                            <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                alt="product">
+                                        </a>
+                                        <div class="product-card-action product-card-action-2">
+                                            <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
+                                                data-bs-toggle="modal">QUICKVIEW</a>
+                                            <a class="addtocart-btn btn-primary">ADD TO CART</a>
+                                        </div>
+                                    </div>
+                                    <div class="product-card-details">
+                                        <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        <a class="hover-switch" href="{{url('product_details')}}">
+                                            <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                alt="product">
+                                        </a>
+                                        <div class="product-card-action product-card-action-2">
+                                            <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
+                                                data-bs-toggle="modal">QUICKVIEW</a>
+                                            <a class="addtocart-btn btn-primary">ADD TO CART</a>
+                                        </div>
+                                    </div>
+                                    <div class="product-card-details">
+                                        <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        <a class="hover-switch" href="{{url('product_details')}}">
+                                            <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                alt="product">
+                                        </a>
+                                        <div class="product-card-action product-card-action-2">
+                                            <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
+                                                data-bs-toggle="modal">QUICKVIEW</a>
+                                            <a class="addtocart-btn btn-primary">ADD TO CART</a>
+                                        </div>
+                                    </div>
+                                    <div class="product-card-details">
+                                        <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                            <div class="product-card">
-                                <div class="product-card-img">
-                                    <a class="hover-switch" href="{{url('product_details')}}">
-                                        <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                            alt="product">
-                                    </a>
-                                    <div class="product-card-action product-card-action-2">
-                                        <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                            data-bs-toggle="modal">QUICKVIEW</a>
-                                        <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                        </div>
-                                    <div class="product-badge">
-                                        <span class="badge-label badge-percentage rounded">-44%</span>
-                                    </div>
-                                </div>
-                                <div class="product-card-details">
-                                    <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                            <div class="product-card">
-                                <div class="product-card-img">
-                                    <a class="hover-switch" href="{{url('product_details')}}">
-                                        <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                            alt="product">
-                                    </a>
-                                    <div class="product-card-action product-card-action-2">
-                                        <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                            data-bs-toggle="modal">QUICKVIEW</a>
-                                        <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                        </div>
-                                    <div class="product-badge">
-                                        <span class="badge-label badge-percentage rounded">-44%</span>
-                                    </div>
-                                </div>
-                                <div class="product-card-details">
-                                    <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                            <div class="product-card">
-                                <div class="product-card-img">
-                                    <a class="hover-switch" href="{{url('product_details')}}">
-                                        <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                            alt="product">
-                                    </a>
-                                    <div class="product-card-action product-card-action-2">
-                                        <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                            data-bs-toggle="modal">QUICKVIEW</a>
-                                        <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                        </div>
-                                    <div class="product-badge">
-                                        <span class="badge-label badge-percentage rounded">-44%</span>
-                                    </div>
-                                </div>
-                                <div class="product-card-details">
-                                    <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                            <div class="product-card">
-                                <div class="product-card-img">
-                                    <a class="hover-switch" href="{{url('product_details')}}">
-                                        <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                            alt="product">
-                                    </a>
-                                    <div class="product-card-action product-card-action-2">
-                                        <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                            data-bs-toggle="modal">QUICKVIEW</a>
-                                        <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                        </div>
-                                    <div class="product-badge">
-                                        <span class="badge-label badge-percentage rounded">-44%</span>
-                                    </div>
-                                </div>
-                                <div class="product-card-details">
-                                    <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                            <div class="product-card">
-                                <div class="product-card-img">
-                                    <a class="hover-switch" href="{{url('product_details')}}">
-                                        <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                            alt="product">
-                                    </a>
-                                    <div class="product-card-action product-card-action-2">
-                                        <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                            data-bs-toggle="modal">QUICKVIEW</a>
-                                        <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                        </div>
-                                    <div class="product-badge">
-                                        <span class="badge-label badge-percentage rounded">-44%</span>
-                                    </div>
-                                </div>
-                                <div class="product-card-details">
-                                    <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                            <div class="product-card">
-                                <div class="product-card-img">
-                                    <a class="hover-switch" href="{{url('product_details')}}">
-                                        <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                            alt="product">
-                                    </a>
-                                    <div class="product-card-action product-card-action-2">
-                                        <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                            data-bs-toggle="modal">QUICKVIEW</a>
-                                        <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                        </div>
-                                    <div class="product-badge">
-                                        <span class="badge-label badge-percentage rounded">-44%</span>
-                                    </div>
-                                </div>
-                                <div class="product-card-details">
-                                    <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                            <div class="product-card">
-                                <div class="product-card-img">
-                                    <a class="hover-switch" href="{{url('product_details')}}">
-                                        <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                            alt="product">
-                                    </a>
-                                    <div class="product-card-action product-card-action-2">
-                                        <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                            data-bs-toggle="modal">QUICKVIEW</a>
-                                        <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                        </div>
-                                    <div class="product-badge">
-                                        <span class="badge-label badge-percentage rounded">-44%</span>
-                                    </div>
-                                </div>
-                                <div class="product-card-details">
-                                    <h3 class="product-card-title"><a href="{{url('product_details')}}">best wood furniture</a></h3>
-                                </div>
-                            </div>
+                        <!--End off Grid view -->
+                        <div class="view-all text-center" data-aos="fade-up" data-aos-duration="700">
+                            <a class="btn-primary" href="{{url('products')}}">VIEW ALL</a>
                         </div>
                     </div>
-                    <!--End off Grid view -->
-                    <div class="view-all text-center" data-aos="fade-up" data-aos-duration="700">
-                        <a class="btn-primary" href="{{url('products')}}">VIEW ALL</a>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
         <!-- collection end -->

@@ -27,32 +27,33 @@
         <div class="login-page mt-100">
             <div class="container">
                 <form method="POST" action="{{ route('login') }}" class="login-form common-form mx-auto">
+                    <x-auth-session-status class="mb-4" :status="session('status')" />
                     @csrf
-                    <div class="section-header mb-3">
-                        <h2 class="section-heading text-center">Login</h2>
+                    <div>
+                        <x-input-label for="email" :value="__('Email')" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <fieldset>
-                                <label class="label">Email address</label>
-                                <input type="email" id="email" name="email" :value="old('email')" required autofocus autocomplete="email"/>
-                            </fieldset>
-                        </div>
-                        <div class="col-12">
-                            <fieldset>
-                                <label class="label">Password</label>
-                                <input type="password" name="password" required autocomplete="current-password" />
-                            </fieldset>
-                        </div>
-                        <div class="col-12 mt-3">
-                            @if (Route::has('password.request'))
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                                    {{ __('Forgot your password?') }}
-                                </a>
-                            @endif
-                            <button type="submit" class="btn-primary d-block mt-4 btn-signin">SIGN IN</button>
-                            <a href="{{url('register')}}" class="btn-secondary mt-2 btn-signin">CREATE AN ACCOUNT</a>
-                        </div>
+
+                    <!-- Password -->
+                    <div class="mt-4">
+                        <x-input-label for="password" :value="__('Password')" />
+
+                        <x-text-input id="password" class="block mt-1 w-full"
+                                        type="password"
+                                        name="password"
+                                        required autocomplete="current-password" />
+
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
+                    <div class="col-12 mt-3">
+                        @if (Route::has('password.request'))
+                            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                                {{ __('Forgot your password?') }}
+                            </a>
+                        @endif
+                        <button type="submit" class="btn-primary d-block mt-4 btn-signin">SIGN IN</button>
+                        <a href="{{url('register')}}" class="btn-secondary mt-2 btn-signin">CREATE AN ACCOUNT</a>
                     </div>
                 </form>
             </div>

@@ -43,7 +43,7 @@ class CategoryController extends Controller
             $category = new Category();
             $category->name = $validatedData['categoryName'];
             $category->description = $request['description'];
-            $category->status = 1;
+            $category->status = 0;
             $category->save();
         
             return redirect()->route('admin.category.index')->with('success', 'Category added successfully!');
