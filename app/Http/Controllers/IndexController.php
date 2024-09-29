@@ -227,9 +227,5 @@ class IndexController extends Controller
         }
         else
             return redirect()->back()->with('error', 'You have reached the daily limit of 10  products enquiry!');
-
-
-
-
     }
 }
