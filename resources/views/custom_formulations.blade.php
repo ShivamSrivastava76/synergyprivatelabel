@@ -29,27 +29,20 @@
                     <div class="col-md-12">
                         <div class="detailsCont">
                             <h3 class="text-center">Custom Formulations</h3>
-                            <h4>FAQs - Custom Formulations</h4>
-                            <h5>How does it work?</h5>
-                            <p>We can create (almost) any product you would like to make. To begin, contact us, and include "Custom Formulation" in the Subject. Include in the email a complete formula that you would like to have produced.</p>
+                            <p>We at Moxxpharma creates a unique tailored product formulas especially designed to meet your specific needs and requirements. We formulate a product from scratch or modify the existing one to fulfill the specific requirements, objectives and preferences of the brand or clients. We are a team of experts in custom formulations which ensures the best-quality product that reflects your brand’s unique identity.</p>
+                            <h4>FAQs </h4>
+                            <h5>Q1: How to order?</h5>
+                            <p>It is very simple to order, you can simply reach out to us via our contact or email. Our team works closely with you to understand your specific requirements and ensure the timely delivery by providing you with a track of delivery and packaging. </p>
 
-                            <h5>How much does it cost?</h5>
-                            <p>We quote your formula based on the raw ingredient prices per container, plus the cost of the container, scoop, silica pack, label design, label printing, labour, and shipping. In other words, we provide you with a cost per unit all-in.</p>
+                            <h5>Q2: How much does it cost? </h5>
+                            <p>The cost of custom formulations depends upon the type of product i.e. supplement, capsules or more you order, the ingredients used and quantities required. </p>
 
-                            <h5>What are the minimum order quantities (MOQs)? Minimum order size?</h5>
-                            <p>MOQs are 200 units per SKU (per product, per flavour, per size). Minimum order size is $10,000.00 CAD per order before taxes, shipping, or any other fees.</p>
+                            <h5>Q3: Do you provide worldwide? </h5>
+                            <p>Yes, we ship our products worldwide and we are well-known for our quality and safe delivery wherever you are, we can also deliver your custom formulations at your doorstep. We deliver products that are shelf ready and best quality ingredients used.  </p>
 
-                            <h5>How does the R&D work? How much does R&D cost?</h5>
-                            <p>We have a fully-staffed in-house lab that will meet all your R&D needs, including formulation, testing, flavouring, etc. Our R&D lab charges $500.00 CAD plus tax per 5 hour block of time. Payments are charged prior to any R&D being completed. </p>
+                            <h5>Q4: Do you provide product licensing?</h5>
+                            <p>Yes, we offer product licensing options for all our clients, we help you throughout your business process, by getting the permissions on business, by teaching you more about sales and handling the customers. </p>
 
-                            <h5>What is the turnaround time?</h5>
-                            <p>Turnaround time on custom formulations is an average of six months from first contact to final production. Delays are largely dependant on communication delays. If you are applying for product licensing, we are at they mercy of Health Canada's timelines. </p>
-
-                            <h5>Do you provided product licensing services? How much does it cost?</h5>
-
-                            <p>Yes, we can help you with product licensing (NPNs). We do not perform the services ourself but we can put you in contact with some of the best in the country that work on product licensing. You will pay them directly and we take no profit or "finder's fee".</p>
-
-                            <p>If you have any other questions, contact us.</p>
                         </div>
                     </div>
                     </div>

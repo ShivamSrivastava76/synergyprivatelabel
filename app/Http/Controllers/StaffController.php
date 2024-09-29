@@ -7,8 +7,18 @@ use App\Models\User;
 use App\Models\Permission;
 use App\Models\permissionUsers; 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 class StaffController extends Controller
 {
+
+    public function dashboard()
+    {
+        $staff = User::with('permissions')->find(Auth::user()->id);
+        Auth::login($staff);
+        return view('staff.index');
+    }
+
     public function index()
     {
         $staffs = User::where('role', 1)

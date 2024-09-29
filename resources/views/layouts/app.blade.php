@@ -50,9 +50,9 @@
                                                 </svg>
                                                 <span>Login</span>
                                             </a>
-                                            @elseif(Auth::user()->id == 0)
+                                            @elseif(Auth::user()->role == 0)
                                                 <a class="announcement-login announcement-text text-white" href="{{url('admin')}}"> Dashboard </a>
-                                            @elseif(Auth::user()->id == 1)
+                                            @elseif(Auth::user()->role == 1)
                                                 <a class="announcement-login announcement-text text-white" href="{{url('staff')}}"> Dashboard
                                             @else 
                                                 <a class="announcement-login announcement-text text-white" href="{{url('user')}}"> Dashboard </a>

@@ -111,9 +111,69 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 //  Staff routes 
 Route::prefix('staff')->name('staff.')->group(function () {
-    Route::get('/', function () {
-        return view('staff.index');
-    })->name('index');
+    // Route::get('/', function () {
+    //     return view('staff.index');
+    // })->name('index');
+    Route::get('/', [StaffController::class, 'dashboard'])->name('index');
+
+     // Admin Category Routes
+     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+     Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+     Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+     Route::put('/category/{id}/update', [CategoryController::class, 'update'])->name('category.update');
+     Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+     Route::patch('/category/toggle-status', [CategoryController::class, 'toggleStatus'])->name('category.toggleStatus');
+     
+ 
+ 
+     // Admin Subategory Routes
+     Route::get('/subcategory', [SubategoryController::class, 'index'])->name('subcategory.index');
+     Route::get('/subcategory/create', [SubategoryController::class, 'create'])->name('subcategory.create');
+     Route::post('/subcategory', [SubategoryController::class, 'store'])->name('subcategory.store');
+     Route::get('/subcategory/{id}/edit', [SubategoryController::class, 'edit'])->name('subcategory.edit');
+     Route::put('/subcategory/{id}/update', [SubategoryController::class, 'update'])->name('subcategory.update');
+     Route::delete('/subcategory/{id}', [SubategoryController::class, 'destroy'])->name('subcategory.destroy');
+     Route::patch('/subcategory/toggle-status', [SubategoryController::class, 'toggleStatus'])->name('subcategory.toggleStatus');
+ 
+     // Admin Product Routes
+     Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+     Route::get('/products/create', [ProductController::class, 'create'])->name('product.create');
+     Route::post('/products', [ProductController::class, 'store'])->name('product.store');
+     Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+     Route::put('/products/{id}', [ProductController::class, 'update'])->name('product.update');
+     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+     Route::patch('/products/toggle-status', [ProductController::class, 'toggleStatus'])->name('product.toggleStatus');
+     Route::post('/products/sub_category', [ProductController::class, 'sub_category']);
+     Route::post('/products/subcategory', [ProductController::class, 'subcategory']);
+ 
+     // Enquiry routes
+     Route::get('enquiries', [EnquiryController::class, 'index'])->name('enquiries.index');
+     Route::get('enquiries/{id}', [EnquiryController::class, 'showEnquiryDetails'])->name('enquiries.details');
+ 
+     // Route::get('enquiries/create', [EnquiryController::class, 'create'])->name('enquiries.create');
+     // Route::post('enquiries', [EnquiryController::class, 'store'])->name('enquiries.store');
+     // Route::get('enquiries/{id}/edit', [EnquiryController::class, 'edit'])->name('enquiries.edit');
+     // Route::put('enquiries/{id}', [EnquiryController::class, 'update'])->name('enquiries.update');
+     // Route::delete('enquiries/{id}', [EnquiryController::class, 'destroy'])->name('enquiries.destroy');
+ 
+     // Remark routes
+     Route::post('/remarks/store', [RemarkController::class, 'store'])->name('remarks.store');
+     // Mail routes
+     Route::post('/mail/store', [EnquiryMailController::class, 'store'])->name('mail.store');
+ 
+     // Admin staff Routes
+     Route::get('/staffs', [StaffController::class, 'index'])->name('staff.index');
+     Route::get('/staffs/create', [StaffController::class, 'create'])->name('staff.create');
+     Route::post('/staffs', [StaffController::class, 'store'])->name('staff.store');
+     Route::get('/staffs/{id}/edit', [StaffController::class, 'edit'])->name('staff.edit');
+     Route::put('/staffs/{id}', [StaffController::class, 'update'])->name('staff.update');
+     Route::delete('/staffs/{id}', [StaffController::class, 'destroy'])->name('staff.destroy');
+ 
+     // Admin 
+     Route::get('/contact-enquiries', [ContactUsController::class, 'index'])->name('contact-enquiry.index');
+     Route::get('/contact-enquiries/{id}/view', [ContactUsController::class, 'view'])->name('contact-enquiry.view');
+     Route::delete('/contact-enquiries/{id}', [ContactUsController::class, 'destroy'])->name('contact-enquiry.destroy');
     
 });
 //  Staff routes end

@@ -17,8 +17,8 @@
                         <div class="detailsCont">
                             <h3 class="text-center">Terms and Conditions</h3>
 
-                            <h5>Returns & Refunds </h5>
-                            <p>Due to the nature of the contract manufacturing industry in which each order is procured on a custom basis, we are not able to offer returns or refunds on any orders under any circumstances. In accordance to GMP compliance, we cannot accept product back into our facility. Additionally, deposits cover any costs incurred by us to begin your order. </p>
+                            <!--<h5>Returns & Refunds </h5>-->
+                            <p>We provide the best products using high-quality materials and due to the nature of the contract ,manufacturing industry under which all orders are created and procured on a custom basis. The custom formulation does not allow us to offer the refund and return service under any circumstances. Under the GMP compliance, we do not accept the product back in our faculty.  </p>
                         </div>
                     </div>
                     </div>

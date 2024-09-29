@@ -29,10 +29,9 @@
                     <div class="col-md-12">
                         <div class="detailsCont">
                             <h3 class="text-center">Our Team</h3>
-                            <h4>Dan Crosby</h4>
-                            <h5>CEO </h5>
-                            <p>Dan is a highly motivated entrepreneur in the sports nutrition industry with decades of experience. His goal with Synergy Private Label is to bring trust and manufacturing integrity back to the industry by producing products and brands for clients that exceed their expectations. When you choose to partner with Synergy Private Label for your product and/or brand needs, you will be choosing a world-class manufacturer with years of experience and knowledge that you can rely on for the highest quality and best tasting products with shorter lead times. Dan’s mission is to become your manufacturing brand partner to make you and your products as successful as possible in this tough market.</p>
-                            <p>“When you choose us you’re choosing a partner.”</p>
+                            <h4>Our Team</h4>
+                            <h5>Mannet (CEO, Moxxpahrma) </h5>
+                            <p>Moxxpharma is a team of highly experienced people in the nutrition and pharmaceutical industry. The company is led by Mr. Mannet, the visionary CEO of Moxxpharma. His extensive experience in the pharmaceutical innovation and nutrition industry combined with dedication makes us the best in the field, and makes us stand above all the competitors. When you choose to partner with Moxxpharma for your products or brand needs, you choose a world-class manufacturing brand partner to make you and your products as successful as possible by helping you out from scratch with license, govt approvals to boost sales and create a brand identity. </p>
                         </div>
                     </div>
                 </div>
