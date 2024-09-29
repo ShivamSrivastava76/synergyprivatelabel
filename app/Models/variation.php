@@ -4,16 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Product;
 
-class productsSubcategory extends Model
+class variation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'subcategories_id',
         'products_id',
+        'name',
+        'value'
     ];
-
-    
 }

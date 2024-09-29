@@ -32,6 +32,11 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'categories_id');
     }
 
+    public function subcategories()
+    {
+        return $this->belongsToMany(Subcategory::class, 'products_subcategories', 'products_id', 'subcategories_id');
+    }
+
     public function productsCategory()
     {
         return $this->belongsToMany(productsCategory::class, 'products_categories', 'products_id', 'categories_id');
@@ -42,4 +47,8 @@ class Product extends Model
         return $this->belongsToMany(productsSubcategory::class, 'products_subcategories', 'products_id', 'subcategories_id');
     }
 
+    public function productsvariation()
+    {
+        return $this->belongsToMany(variation::class, 'variations', 'products_id', 'id');
+    }
 }

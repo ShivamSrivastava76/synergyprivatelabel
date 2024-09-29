@@ -1,7 +1,6 @@
 @if(count($subcategory) >  0)
-    <option value="">Select a SubCategory</option>
     @foreach($subcategory as $val)
-        <option value="{{ $val->id }}">
+        <option value="{{ $val->id }}" {{ in_array($val->id, $productsSubcategory->pluck('subcategories_id')->toArray()) ? 'selected' : '' }} >
             {{ $val->name }}
         </option>
     @endforeach

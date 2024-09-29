@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->tinyInteger('role')->comment("0 => Admin, 1 => Staff,  2 => User");
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone')->nullable();
             $table->string('password')->nullable();
             $table->string('company')->nullable();
             $table->string('company_website')->nullable();

@@ -46,10 +46,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="category">Product Category</label>
-                                <select class="js-example-basic-single w-100" id="category" name="categories_id" required>
+                                <select class="js-example-basic-single w-100" id="categories_id" name="categories_id[]" required onchange="subcategory()" multiple="multiple">
                                     <option value="">Select a Category</option>
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ old('categories_id', $product->categories_id) == $category->id ? 'selected' : '' }}>
+                                        <option value="{{ $category->id }}" 
+                                            {{ in_array($category->id, $productsCategory->pluck('categories_id')->toArray()) ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                     @endforeach
@@ -60,10 +61,21 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="subcategories_id">Product Subcategory</label>
+                                <select class="js-example-basic-single w-100" id="subcategories_id" name="subcategories_id[]" required  multiple="multiple">
+                                    <option value="">First Select a Category</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="productPrice">Product Price</label>
                                 <input type="number" class="form-control" id="productPrice" name="price" placeholder="Product Price" value="{{ old('price', $product->price) }}">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Product Image</label>
@@ -76,30 +88,39 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group mt-4">
+                                <button type="button" class="btn btn-primary btn-rounded btn-fw" onclick="variation1()">Add new Variation</button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="category">Product Size</label>
-                                <select class="js-example-basic-single w-100" id="size" name="size[]" required multiple="multiple">
-                                    <option value="">Select Product Size</option>
-                                    @foreach($size as $size)
-                                        <option value="{{ $size->id }}" @if($product->sizes->contains($size->id)) selected @endif>
-                                            {{ $size->size }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
                         <div class="col-md-6">
                             @if($product->image)
                                 <img src="{{ asset('assets/images/products/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px; margin-top: 10px;">
                             @endif
                         </div>
-                        
                     </div>
-
+                    <div id="variation">
+                        <div class="row">
+                            @foreach($variation as $key => $val)
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Variation Name: {{ $key + 1 }}</label>
+                                        <input type="text" name="variation_name_{{ $key + 1 }}" id="variation_name_{{ $key + 1 }}" class="form-control" placeholder="Variation Name" value="{{ $val->name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Variation Value: {{ $key + 1 }}</label>
+                                        <input type="text" name="variation_value_{{ $key + 1 }}" id="variation_value_{{ $key + 1 }}" class="form-control" placeholder="Variation Value" value="{{ $val->value }}">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="count" id="count" class="form-control" value="{{ $key+1 }}">
+                            @endforeach
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="summernoteExample">Product Description</label>
                         <div id="summernoteExample">
@@ -123,5 +144,72 @@ $(document).ready(function() {
         $('#description').val(contents);
     });
 });
+
+
+var count = {{ count($variation) }};
+
+function variation1() 
+{
+    console.log(count)
+    count++;
+    var html = `<div class="row">`;
+
+    for (let i = 0; i < count; i++) {
+        let currentName = $(`#variation_name_${i + 1}`).val() || ''; 
+        let currentValue = $(`#variation_value_${i + 1}`).val() || ''; 
+
+        html += `<div class="col-md-6">`;
+        html += `<div class="form-group">`;
+        html += `<label>Variation Name: ${i + 1}</label>`;
+        html += `<input type="text" name="variation_name_${i + 1}[]" id="variation_name_${i + 1}" class="form-control" placeholder="Variation Name" value="${currentName}">`;
+        html += `</div>`;
+        html += `</div>`;
+        html += `<div class="col-md-6">`;
+        html += `<div class="form-group">`;
+        html += `<label>Variation Value ${i + 1}</label>`;
+        html += `<input type="text" name="variation_value_${i + 1}[]" id="variation_value_${i + 1}" class="form-control" placeholder="Variation Value" value="${currentValue}">`;
+        html += `<input type="hidden" name="count" value="${i + 1}">`
+        html += `</div>`;
+        html += `</div>`;
+    }
+
+    $('#variation').html(html);
+}
+
+function subcategory()
+{
+    id = $('#categories_id').val().join(',');
+    console.log(id)
+    $.ajax({
+        type: "Post",
+        url: "{{url('/admin/products/subcategory')}}",
+        data: {
+            'id': id,
+            '_token': '{{ csrf_token() }}',
+        },
+        success: function(data) {
+            $('#subcategories_id').html(data);
+        }
+    });
+    
+}
+
+$(document).ready(function() {
+    id = $('#categories_id').val().join(',');
+    console.log(id)
+    $.ajax({
+        type: "Post",
+        url: "{{url('/admin/products/subcategory')}}",
+        data: {
+            'id': id,
+            'product_id': {{$product->id}},
+            '_token': '{{ csrf_token() }}',
+        },
+        success: function(data) {
+            $('#subcategories_id').html(data);
+        }
+    });
+});
+
 </script>
 @endsection

@@ -30,6 +30,7 @@ Route::get('/term_and_conditions', [IndexController::class, 'term_and_conditions
 Route::get('/product_details/{id}', [IndexController::class, 'product_details']);
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 Route::get('/category/{id}', [IndexController::class, 'category']);
+Route::get('/enquiry', [IndexController::class, 'enquiry']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -75,6 +76,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::patch('/products/toggle-status', [ProductController::class, 'toggleStatus'])->name('product.toggleStatus');
     Route::post('/products/sub_category', [ProductController::class, 'sub_category']);
+    Route::post('/products/subcategory', [ProductController::class, 'subcategory']);
 
     // Enquiry routes
     Route::get('enquiries', [EnquiryController::class, 'index'])->name('enquiries.index');

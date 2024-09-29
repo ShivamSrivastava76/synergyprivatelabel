@@ -57,7 +57,6 @@
                             <tr>
                             <th>Sr. No.</th>
                             <th>Product Name</th>
-                            <th>Category</th>
                             <th>Image</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -68,7 +67,6 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->category->name ?? 'No Category' }}</td>
                                 <td>
                                     @if($product->image)
                                         <img src="{{ asset('assets/images/products/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px;">

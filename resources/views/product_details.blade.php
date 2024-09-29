@@ -23,24 +23,29 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-details ps-lg-4">
                             <h2 class="product-title mb-3">{{$products->name}}</h2>
-                            <div class="product-variant-wrapper">
-                                <div class="product-variant product-variant-other">
-                                    @if(isset($products->sizes) != null && count($products->sizes) > 0)
-                                        <strong class="label mb-1 d-block">Size:</strong>
-                                        <ul class="variant-list list-unstyled d-flex align-items-center flex-wrap">
-                                            @foreach($products->sizes  as $size)
-                                                <li class="variant-item">
-                                                    <input type="radio" value="34" >
-                                                    <label class="variant-label">{{$size->size}}kg</label>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
+                            @if(isset($variation) != null && count($variation) > 0) 
+                                <div class="product-variant-wrapper">
+                                    <div class="product-variant product-variant-other">
+                                        @foreach($variation  as $val)
+                                            <strong class="label mb-1 d-block">{{$val->name}}:</strong>
+                                            @php  $value = explode(",", $val->value); @endphp
+                                            <ul class="variant-list list-unstyled d-flex align-items-center flex-wrap">
+                                                @foreach($value as $item)
+                                                    <li class="variant-item">
+                                                        <input type="radio" value="34" >
+                                                        <label class="variant-label">{{$item}}</label>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
+                            @endif 
                             <div class="product-form-buttons d-flex align-items-center justify-content-between mt-4">
                                 <button class="position-relative btn-atc loader" onclick="addtocart({{$products->id}})">ADD TO CART</button>
                             </div>
@@ -71,7 +76,7 @@
             </div>
         </div>
         <!-- product tab end -->
-        @if(isset($product) != null && count($product) > 0)
+        @if(isset($subcategories) != null && count($subcategories) > 0)
             <!-- you may also like start -->
             <div class="featured-collection-section mt-100 home-section overflow-hidden">
                 <div class="container">
@@ -99,22 +104,24 @@
                         }
                         ]
                     }'>
-                        @foreach($product as $item)
-                            <div class="new-item" data-aos="fade-up" data-aos-duration="300">
-                                <div class="product-card">
-                                    <div class="product-card-img">
-                                        <a class="hover-switch" href="{{url('product_details/'.$item->id)}}">
-                                            <img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}"
-                                                alt="product-img">
-                                        </a>
+                        @foreach($subcategories as $val)
+                            @foreach($val->products as $item)
+                                <div class="new-item" data-aos="fade-up" data-aos-duration="300">
+                                    <div class="product-card">
+                                        <div class="product-card-img">
+                                            <a class="hover-switch" href="{{url('product_details/'.$item->id)}}">
+                                                <img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}"
+                                                    alt="product-img">
+                                            </a>
 
-                                        <div class="product-card-action product-card-action-2">
-                                            <a href="{{url('product_details/'.$item->id)}}" class="quickview-btn btn-primary">QUICKVIEW</a>
-                                            <a class="addtocart-btn btn-primary" onclick="addtocart({{$item->id}})">ADD TO CART</a>
+                                            <div class="product-card-action product-card-action-2">
+                                                <a href="{{url('product_details/'.$item->id)}}" class="quickview-btn btn-primary">QUICKVIEW</a>
+                                                <a class="addtocart-btn btn-primary" onclick="addtocart({{$item->id}})">ADD TO CART</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         @endforeach
                     </div>
                     <div class="activate-arrows show-arrows-always article-arrows arrows-white"></div>

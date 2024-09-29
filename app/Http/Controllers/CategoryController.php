@@ -7,6 +7,7 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    
     /**
      * Display a listing of the categories.
      */

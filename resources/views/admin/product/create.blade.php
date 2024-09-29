@@ -86,8 +86,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group mt-4">
+                                <button type="button" class="btn btn-primary btn-rounded btn-fw" onclick="variation()">Add new Variation</button>
+                            </div>
+                        </div>
                     </div>
-
+                    <div id="variation" > </div>
                     <div class="form-group">
                         <label for="summernoteExample">Product Description</label>
                         <div id="summernoteExample">
@@ -130,6 +135,35 @@ function subcategory()
         }
     });
     
+}
+
+var count = 0;
+
+function variation() {
+    count++;
+    var html = `<div class="row">`;
+
+    for (let i = 0; i < count; i++) {
+        let currentName = $(`#variation_name_${i + 1}`).val() || ''; 
+        let currentValue = $(`#variation_value_${i + 1}`).val() || ''; 
+
+        html += `<div class="col-md-6">`;
+        html += `<div class="form-group">`;
+        html += `<label>Variation Name: ${i + 1}</label>`;
+        html += `<input type="text" name="variation_name_${i + 1}[]" id="variation_name_${i + 1}" class="form-control" placeholder="Variation Name" value="${currentName}">`;
+        html += `</div>`;
+        html += `</div>`;
+        html += `<div class="col-md-6">`;
+        html += `<div class="form-group">`;
+        html += `<label>Variation Value ${i + 1}</label>`;
+        html += `<input type="text" name="variation_value_${i + 1}[]" id="variation_value_${i + 1}" class="form-control" placeholder="Variation Value" value="${currentValue}">`;
+        html += `<input type="hidden" name="count" id="count" value="${i + 1}">`
+        html += `</div>`;
+        html += `</div>`;
+    }
+    html += `</div>`;
+
+    $('#variation').html(html);
 }
 </script>
 @endsection

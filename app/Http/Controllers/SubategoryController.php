@@ -8,6 +8,7 @@ use App\Models\Category;
 
 class SubategoryController extends Controller
 {
+  
     public function index()
     {
         $subcategory = Subcategory::all();

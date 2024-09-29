@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class EnquiryProduct extends Model
 {
     protected $fillable = [
-        'enquiries_id', 'products_id', 'status'
+        'enquiries_id', 'products_id', 'status', 'customiable'
     ];
 
     // Relationship to the Enquiry model

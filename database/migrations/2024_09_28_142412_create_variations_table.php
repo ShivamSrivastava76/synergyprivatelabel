@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('enquiry_products', function (Blueprint $table) {
+        Schema::create('variations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('enquiries_id');
-            $table->foreign('enquiries_id')->references('id')->on('enquiries');
             $table->unsignedBigInteger('products_id');
             $table->foreign('products_id')->references('id')->on('products');
-            $table->tinyInteger('customiable')->command("0 => Yes, 1 => No");
-            $table->string('formula')->nullable();
-            $table->tinyInteger('status')->command("0 => active, 1 => inactive");
+            $table->longText('name');
+            $table->longText('value');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('variations');
     }
 };

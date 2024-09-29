@@ -6,16 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\productsCategory;
+use App\Models\productsSubcategory;
+use App\Models\variation;
 use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $products = Product::with('category')->get();
-        return view('admin.product.index', compact('products'));
-    }
-    
+
     public function create()
     {
         $categories = Category::where('status',0)->get();
@@ -60,10 +58,21 @@ class ProductController extends Controller
                 $product->productsCategory()->attach($request->input('categories_id'));
                 $product->productsSubcategory()->attach($request->input('subcategories_id'));
 
+                $count = $request->input('count');
+                $productsData = [];
+
+                for ($i=1; $i<= $count; $i++) 
+                {
+                    variation::create([
+                        'name' => implode(",", $request->input('variation_name_' . $i)),
+                        'value' => implode(",", $request->input('variation_value_' . $i)),
+                        'products_id' => $product->id,
+                    ]); 
+                }
+                
                 return redirect()->route('admin.product.index')->with('success', 'Product added successfully!');
             }
         }catch(\Exception $e){
-            return $e;
             return redirect()->route('admin.product.create')->with('error', 'Failed to add product. Please try again.');
         }
     }
@@ -71,13 +80,19 @@ class ProductController extends Controller
     public function edit($id)
     {
         
+        $variation = variation::where('products_id', $id)->get();
         $categories = Category::where('status', 0)->get();
+        $productsCategory = productsCategory::where('products_id', $id)->get();
+        $productsSubcategory = productsSubcategory::where('products_id', $id)->get();
         $product = Product::with('category')->findOrFail($id);
-        return view('admin.product.edit', compact('product', 'categories'));
+        return view('admin.product.edit', compact('product', 'categories', 'variation', 'productsCategory', 'productsSubcategory'));
     }
     
     public function update(Request $request, $id)
     {
+        productsSubcategory::where('products_id', $id)->forceDelete();
+        productsCategory::where('products_id', $id)->forceDelete();
+        variation::where('products_id', $id)->forceDelete();
         
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -117,9 +132,23 @@ class ProductController extends Controller
             }
 
             $product->update($validatedData);
+            $product->productsCategory()->attach($request->input('categories_id'));
+            $product->productsSubcategory()->attach($request->input('subcategories_id'));
+
+            $count = $request->input('count');
+            $productsData = [];
+
+            for ($i = 1; $i <= $count; $i++) {
+                variation::create([
+                    'name' => $request->input('variation_name_' . $i), 
+                    'value' => $request->input('variation_value_' . $i), 
+                    'products_id' => $product->id,
+                ]);
+            }
             
             return redirect()->route('admin.product.index')->with('success', 'Product updated successfully!');
         } catch (\Exception $e) {
+            return $e->getMessage();
             Log::error('Error updating product: ' . $e->getMessage());
             return redirect()->route('admin.product.edit', $id)->with('error', 'Failed to update product. Please try again.');
         }
@@ -158,5 +187,14 @@ class ProductController extends Controller
         $subcategory = Subcategory::whereIn('categories_id',$id)->get();
        
         return view('admin.product.subcategory', compact('subcategory'));  
+    }
+
+    public function subcategory(Request $request)
+    {
+        $id = explode(',', $request->id);
+        $subcategory = Subcategory::whereIn('categories_id',$id)->get();
+        $productsSubcategory = productsSubcategory::where('products_id',$request->product_id)->get();
+       
+        return view('admin.product.subcategorywithcategory', compact('subcategory', 'productsSubcategory'));  
     }
 }

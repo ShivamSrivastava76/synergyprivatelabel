@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\contactUs;
+
 class ContactUsController extends Controller
 {
+    
     public function index()
     {
         $contacts = contactUs::get();

@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\View\View;
 use App\Models\category;
+use App\Models\variation;
+use App\Models\Subcategory;
+use App\Models\User;
+use App\Models\Enquiry;
+use App\Models\EnquiryProduct;
+use Carbon\Carbon; 
+
 
 class IndexController extends Controller
 {
@@ -138,19 +145,95 @@ class IndexController extends Controller
     {
         $category = $this->category;
 
-        $products = Product::with('category','sizes')->where('status',0)->find($id);
+         $products = Product::where('status',0)->find($id);
 
-        $product = Product::where('categories_id',$products->categories_id)->where('id', '!=',$id)->where('status',0)->orderBy('updated_at', 'desc')->take(5)->get();
+         $subcategories = Subcategory::with('products')->get();
 
-        return view('product_details', compact('products','product', 'category'));
+        $variation = variation::where('products_id', $id)->get();
+
+
+        return view('product_details', compact('products', 'variation' , 'category', 'subcategories'));
     }
 
     public function category($id): View
     {
         $category = $this->category;
 
-        $products = Product::with('category','sizes')->where('status',0)->find($id);
+        $products = Product::with('category')->where('status',0)->find($id);
 
         return view('product_details', compact('products','product', 'category'));
+    }
+
+    public function enquiry(Request $request)
+    {
+        // $request->validate([
+        //     'first_name' => ['required', 'string', 'max:255'],
+        //     'last_name' => ['required', 'string', 'max:255'],
+        //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+        //     'phone' => ['required'],
+        // ]);
+            
+        $count = User::where('email', $request->email);
+
+        if($count->count() === 0)
+        {
+            $user = new User();
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->role = 2;
+            $user->save();
+        }
+        else
+            $user = $count->first();
+       
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            // Check if the IP is from shared internet
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            // Check if the IP is passed from a proxy
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            // Default to REMOTE_ADDR
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        
+        $count = Enquiry::where('ip_address', $ip)->where('created_at', '>=', Carbon::today()->subDay())->where('created_at', '<', Carbon::now())->count();
+
+        // if($count <= 10)
+        // {
+            $enquiry = new Enquiry();
+            $enquiry->user_id = $user->id;
+            $enquiry->ip_address =  $ip;
+            $enquiry->status = 0;
+            $enquiry->save();
+
+            $productIds = $request->product_id;
+            if (is_string($productIds)) {
+                $productIds = explode(',', $productIds);
+            }
+            
+            // Loop through each product ID and create the enquiry products
+            foreach ($productIds as $productId) {
+                $enquiryproduct = new EnquiryProduct();
+                $enquiryproduct->enquiries_id = $enquiry->id;
+                $enquiryproduct->products_id = $productId; // Use each product ID in the loop
+                $enquiryproduct->customiable = $request->customiable;
+            
+                if ($request->customiable == 0 || $request->customiable == "true" || $request->customiable == true) {
+                    $enquiryproduct->formula = $request->formula;
+                }
+            
+                $enquiryproduct->status = 0;
+                $enquiryproduct->save();
+            }
+            
+
+        // }
+
+        return $enquiryproduct;
+
+
     }
 }
