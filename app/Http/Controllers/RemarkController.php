@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Remark;
 class RemarkController extends Controller
@@ -22,6 +22,8 @@ class RemarkController extends Controller
             $remark->enquiry_id = $request->input('enquiry_id');
             $remark->remark = $request->input('remark');
             $remark->user_id = $request->input('user_id');
+            $remark->user_type = Auth::user()->role;
+            $remark->remark_type = 'remark';
             $remark->status = $request->input('status');
             $remark->save();
 

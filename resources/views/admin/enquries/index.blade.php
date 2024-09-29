@@ -35,7 +35,7 @@
                 <div class="mail-list {{ $index == 0 ? 'active' : '' }}" data-id="{{ $enquiry->id }}">
                     <div class="form-check"> </div>
                     <div class="content">
-                        <p class="sender-name">{{ $enquiry->user->first_name }} {{ $enquiry->user->last_name }}</p>
+                        <p class="sender-name"><strong>{{ $enquiry->user->first_name }} {{ $enquiry->user->last_name }}</strong></p>
                         <p class="message_text">{{ $enquiry->user->company }}</p>
                     </div>
                     <div class="details">

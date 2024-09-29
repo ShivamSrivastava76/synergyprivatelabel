@@ -12,7 +12,7 @@
                 <form action="{{ route('admin.remarks.store') }}" method="POST" id="remarkForm">
                     @csrf
                     <input type="hidden" name="enquiry_id" value="{{ $enquiry->id }}"> <!-- Enquiry ID -->
-                    <input type="hidden" name="user_id" value="{{ $enquiry->user->id }}"> <!-- Logged-in user ID -->
+                    <input type="hidden" name="user_id" value="{{ Auth::id() }}"> <!-- Logged-in user ID -->
                     <input type="hidden" name="status" value="0">
                     <div class="form-group">
                         <label for="summernoteExample">Remark Description</label>
@@ -44,6 +44,7 @@
                     @csrf
                     <input type="hidden" name="enquiry_id" value="{{ $enquiry->id }}"> <!-- Enquiry ID -->
                     <input type="hidden" name="user_email" value="{{ $enquiry->user->email }}">
+                    <input type="hidden" name="user_id" value="{{ Auth::id() }}"> 
                     <!-- Logged-in user ID -->
                     <input type="hidden" name="status" value="0">
                     <div class="form-group">
@@ -105,43 +106,117 @@
 
 
     </div>
-
     <div class="sender-details">
         <div class="details">
             <p><strong>Remarks:</strong></p>
         </div>
+    </div>
+    <div class="sender-details">
         <div class="sender-details" style="display:block;">
             @forelse($enquiry->remarks as $remark)
-            <p style="padding: 20px 15px 0;
-        border-bottom: 1px solid #e0e0ef;">{!! $remark->remark !!} (Created on:
-                {{ $remark->created_at->format('Y-m-d') }},
-                by {{ $remark->user->first_name ?? 'Unknown User' }} {{ $remark->user->last_name ?? 'Unknown User' }})
-            </p>
+            @if(Auth::user()->role == $remark->user_type )
+                @if($remark->remark_type == "remark")
+                    <div class="col-md-9 grid-margin stretch-card" style="float:inline-end;">
+                        <div class="card" style=" background:#c1ecc763;">
+                            <div class="card-body" style="padding: 0.5rem 0.5rem;">
+                                <div class="d-flex flex-row">
+                                    <div class="ml-3">
+                                        <h6>{!! $remark->remark !!}</h6>
+                                        <p class="text-muted" style="margin-bottom:0px; font-size: 0.8125rem;">{{ $remark->created_at->format('Y-m-d') }}</p>
+                                        <p class="mt-1 text-primary font-weight-bold" style="margin-bottom:0px; font-size: 0.8125rem;">{{ $remark->user->first_name ?? 'Unknown User' }} {{ $remark->user->last_name ?? 'Unknown User' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+
+                    <div class="col-md-9 grid-margin stretch-card offset-md-7">
+                        <div class="attachments-sections" style=" background:#c1ecc763;">
+                            <ul style="margin-bottom:0; padding-left:0px;">
+                                <li>
+                                    <div class="thumb"><i class="fa fa-file-pdf"></i></div>
+                                    <div class="details">
+                                        <p class="file-name">{{$remark->remark}}</p>
+                                        <div class="buttons">
+                                            <!-- <p class="file-size">678Kb</p> -->
+                                            <a href="{{ asset('assets/pdf/'.$remark->remark) }}" target="_blank" class="view">View</a>
+                                            <a href="{{ asset('assets/pdf/'.$remark->remark) }}" download  class="download">Download</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+
+                
+                @endif
+            @else
+                @if($remark->remark_type == "remark")
+                    <div class="col-md-9 grid-margin stretch-card" style="float:inline-start">
+                        <div class="card" style="background:#f2f2f2;">
+                            <div class="card-body" style="padding: 0.5rem 0.5rem;">
+                                <div class="d-flex flex-row">
+                                    <div class="ml-3">
+                                        <h6>{!! $remark->remark !!}</h6>
+                                        <p class="text-muted" style="margin-bottom:0px; font-size: 0.8125rem;">{{ $remark->created_at->format('Y-m-d') }}</p>
+                                        <p class="mt-1 text-primary font-weight-bold" style="margin-bottom:0px; font-size: 0.8125rem;">{{ $remark->user->first_name ?? 'Unknown User' }} {{ $remark->user->last_name ?? 'Unknown User' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="col-md-9 grid-margin stretch-card">
+                        <div class="attachments-sections" style="background:#f2f2f2;">
+                            <ul style="margin-bottom:0; padding-left:0px;">
+                                <li>
+                                    <div class="thumb"><i class="fa fa-file-pdf"></i></div>
+                                    <div class="details">
+                                        <p class="file-name">{{$remark->remark}}</p>
+                                        <div class="buttons">
+                                            <!-- <p class="file-size">678Kb</p> -->
+                                            <a href="{{ asset('assets/pdf/'.$remark->remark) }}" target="_blank" class="view">View</a>
+                                            <a href="{{ asset('assets/pdf/'.$remark->remark) }}" download  class="download">Download</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+            @endif
             @empty
             <p>No remarks found.</p>
             @endforelse
             <!-- <p><strong>Customizable:</strong> {{ $enquiry->customiable ? 'Yes' : 'No' }}</p> -->
         </div>
     </div>
-
-    <div class="attachments-sections">
+    <!-- <div class="attachments-sections">
         <ul>
-            @foreach($enquiry->emails  as $email)
+            @forelse($enquiry->emails  as $email) -->
                 <!-- <li>{{ $email->email_content }} - Status: {{ $email->status }}</li> -->
-                <li>
+                <!-- <li>
                     <div class="thumb"><i class="fa fa-file-pdf"></i></div>
                     <div class="details">
                         <p class="file-name">{{$email->email_content}}</p>
-                        <div class="buttons">
+                        <div class="buttons"> -->
                             <!-- <p class="file-size">678Kb</p> -->
-                            <a href="{{ asset('assets/pdf/'.$email->email_content) }}" target="_blank" class="view">View</a>
+                            <!-- <a href="{{ asset('assets/pdf/'.$email->email_content) }}" target="_blank" class="view">View</a>
                             <a href="{{ asset('assets/pdf/'.$email->email_content) }}" download  class="download">Download</a>
                         </div>
                     </div>
                 </li>
-            @endforeach
+            @empty
+            <p>No Email Found.</p>
+            @endforelse
         </ul>
-    </div>
+    </div> -->
 
  
 

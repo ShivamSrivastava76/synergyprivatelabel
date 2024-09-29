@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Email;
+use App\Models\Remark;
 use PDF; // Import the PDF facade
 use Exception; // Import the Exception class
 
@@ -32,11 +34,17 @@ class EnquiryMailController extends Controller
 
         try {
             // Create the remark
-            $email = new Email();
-            $email->enquiry_id = $request->input('enquiry_id');
+            // $email = new Email();
+            // $email->enquiry_id = $request->input('enquiry_id');
             // $email->user_id = auth()->id(); // Assuming you're using Laravel's auth
-            $email->user_id = 2; 
-            $email->status = $request->input('status');
+            // $email->status = $request->input('status');
+            $remark = new Remark();
+            $remark->enquiry_id = $request->input('enquiry_id');
+            $remark->user_id = $request->input('user_id');
+            $remark->user_type = Auth::user()->role;
+            $remark->remark_type = 'email';
+            $remark->status = $request->input('status');
+
 
             // Prepare email content for the template
             $content = $request->input('email_content');
@@ -50,8 +58,10 @@ class EnquiryMailController extends Controller
             $pdf->save($pdfPath); // Save the PDF file
 
             // Store the PDF path in the database
-            $email->email_content = $pdfName; // Save the file path
-            $email->save();
+            // $email->email_content = $pdfName; // Save the file path
+            // $email->save();
+            $remark->remark =  $pdfName;
+            $remark->save();
             // $html = view('emails.template', ['content' => $content])->render();
             // // echo "<pre>"; print_r($html); die;
             // // // Optionally, send the email with the PDF attached
