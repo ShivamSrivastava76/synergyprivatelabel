@@ -166,13 +166,6 @@ class IndexController extends Controller
 
     public function enquiry(Request $request)
     {
-        // $request->validate([
-        //     'first_name' => ['required', 'string', 'max:255'],
-        //     'last_name' => ['required', 'string', 'max:255'],
-        //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-        //     'phone' => ['required'],
-        // ]);
-            
         $count = User::where('email', $request->email);
 
         if($count->count() === 0)
@@ -201,8 +194,8 @@ class IndexController extends Controller
         
         $count = Enquiry::where('ip_address', $ip)->where('created_at', '>=', Carbon::today()->subDay())->where('created_at', '<', Carbon::now())->count();
 
-        // if($count <= 10)
-        // {
+        if($count <= 10)
+        {
             $enquiry = new Enquiry();
             $enquiry->user_id = $user->id;
             $enquiry->ip_address =  $ip;
@@ -210,29 +203,32 @@ class IndexController extends Controller
             $enquiry->save();
 
             $productIds = $request->product_id;
-            if (is_string($productIds)) {
+            if (is_string($productIds))
                 $productIds = explode(',', $productIds);
-            }
             
-            // Loop through each product ID and create the enquiry products
-            foreach ($productIds as $productId) {
+           
+            foreach ($productIds as $productId) 
+            {
                 $enquiryproduct = new EnquiryProduct();
                 $enquiryproduct->enquiries_id = $enquiry->id;
-                $enquiryproduct->products_id = $productId; // Use each product ID in the loop
-                $enquiryproduct->customiable = $request->customiable;
-            
-                if ($request->customiable == 0 || $request->customiable == "true" || $request->customiable == true) {
+                $enquiryproduct->products_id = $productId; 
+                if(isset($request->customiable) != null)
+                {
+                    $enquiryproduct->customiable = 0;
                     $enquiryproduct->formula = $request->formula;
                 }
-            
+                else
+                    $enquiryproduct->customiable = 1;
                 $enquiryproduct->status = 0;
                 $enquiryproduct->save();
             }
-            
 
-        // }
+            return redirect()->back()->with('success', 'Product added successfully!');
+        }
+        else
+            return redirect()->back()->with('error', 'You have reached the daily limit of 10  products enquiry!');
 
-        return $enquiryproduct;
+
 
 
     }

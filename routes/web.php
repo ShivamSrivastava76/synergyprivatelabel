@@ -30,7 +30,7 @@ Route::get('/term_and_conditions', [IndexController::class, 'term_and_conditions
 Route::get('/product_details/{id}', [IndexController::class, 'product_details']);
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 Route::get('/category/{id}', [IndexController::class, 'category']);
-Route::get('/enquiry', [IndexController::class, 'enquiry']);
+Route::post('/enquiry', [IndexController::class, 'enquiry']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

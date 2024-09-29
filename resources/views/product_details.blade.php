@@ -5,6 +5,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-12">
+                   
                         <div class="product-gallery product-gallery-vertical d-flex">
                             <div class="product-img-large">
                                 <div class="img-large-slider common-slider" data-slick='{
@@ -26,6 +27,16 @@
 
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-details ps-lg-4">
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <h2 class="product-title mb-3">{{$products->name}}</h2>
                             @if(isset($variation) != null && count($variation) > 0) 
                                 <div class="product-variant-wrapper">
@@ -50,13 +61,71 @@
                                 <button class="position-relative btn-atc loader" onclick="addtocart({{$products->id}})">ADD TO CART</button>
                             </div>
                             <div class="buy-it-now-btn mt-2">
-                                <button class="position-relative btn-atc btn-buyit-now">SEND ENQUIRY NOW</button>
+                                <button class="position-relative btn-atc btn-buyit-now" data-bs-toggle="modal" data-bs-target="#exampleModal" >SEND ENQUIRY NOW</button>
                             </div>                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enquiry Form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{url('enquiry')}}" method="post">
+            @csrf
+            <input type="hidden" name="product_id" value="{{$products->id}}">
+            <div class="form-group mb-4">
+                <label for="first_name" class="mb-2">First Name:</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your First Name">
+            </div>
+            <div class="form-group mb-4">
+                <label for="last_name" class="mb-2">Last Name:</label>
+                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter your Last Name">
+            </div>
+            <div class="form-group mb-4">
+                <label for="email" class="mb-2">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email">
+            </div>
+            <div class="form-group mb-4">
+                <label for="phone" class="mb-2">Phone:</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group mb-4">
+                <input class="form-check-input" type="checkbox" id="customiable" name="customiable"  onclick="customiable_formula()">
+                <label class="form-check-label" for="customiable">Customiable</label>
+            </div>
+            <div class="form-group mb-4" id="formula" style="display:none">
+                <label for="formula_customiable" class="mb-2">Formula:</label>
+                <input type="text" class="form-control" id="formula_customiable" name="formula" placeholder="Enter your Formula">
+            </div>
+            <button type="submit" class="btn btn-primary">Send Enquiry</button>
+        </form>
+                        
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button> 
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
         <!-- product tab start -->
         <div class="product-tab-section mt-100" data-aos="fade-up" data-aos-duration="700">
@@ -130,4 +199,22 @@
             <!-- you may also lik end -->
         @endif
     </main>
+    <script>
+        counts = 0
+        function customiable_formula()
+        {
+            if(counts == 0)
+            {
+                counts = 1;
+                $('#formula').show();
+            }
+            else
+            {
+                counts = 0;
+                $('#formula').hide();
+            }
+        }
+    </script>
+
+                            
 @include('layouts.footer')     
