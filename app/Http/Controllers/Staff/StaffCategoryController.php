@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Staff;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
-class CategoryController extends Controller
+class StaffCategoryController extends Controller
 {
     
     /**
@@ -16,7 +17,7 @@ class CategoryController extends Controller
         // Fetch all categories from the database
         $categories = Category::whereNull('deleted_at')
                       ->get();
-        return view('admin.category.index', compact('categories'));        
+        return view('staff.category.index', compact('categories'));        
     }
     
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('staff.category.create');
     }
 
     /**
@@ -48,7 +49,7 @@ class CategoryController extends Controller
             $category->status = 0;
             $category->save();
         
-            return redirect()->route('admin.category.index')->with('success', 'Category added successfully!');
+            return redirect()->route('staff.category.index')->with('success', 'Category added successfully!');
         } catch (QueryException $e) {
             // Return a user-friendly message for database errors
             return redirect()->back()->withErrors(['error' => 'There was a problem saving the category. Please check your input and try again.']);
@@ -64,7 +65,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.category.edit', compact('category'));
+        return view('staff.category.edit', compact('category'));
     }
 
     /**
@@ -87,10 +88,10 @@ class CategoryController extends Controller
             $category->update($validatedData);
     
             // Redirect to the index page with a success message
-            return redirect()->route('admin.category.index')->with('success', 'Category updated successfully!');
+            return redirect()->route('staff.category.index')->with('success', 'Category updated successfully!');
         } catch (\Exception $e) {
             // Redirect back with an error message
-            return redirect()->route('admin.category.index')->with('error', 'Failed to update the category. Please try again.');
+            return redirect()->route('staff.category.index')->with('error', 'Failed to update the category. Please try again.');
         }
     }
 
@@ -107,10 +108,10 @@ class CategoryController extends Controller
             $category->delete();
     
             // Redirect to the index page with a success message
-            return redirect()->route('admin.category.index')->with('success', 'Category deleted successfully!');
+            return redirect()->route('staff.category.index')->with('success', 'Category deleted successfully!');
         } catch (\Exception $e) {
             // Redirect back with an error message in case of failure
-            return redirect()->route('admin.category.index')->with('error', 'Failed to delete the category. Please try again.');
+            return redirect()->route('staff.category.index')->with('error', 'Failed to delete the category. Please try again.');
         }
     }
     public function toggleStatus(Request $request)

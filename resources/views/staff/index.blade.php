@@ -19,7 +19,7 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                        staff Dashboard
+                        Staff Dashboard
                         </h3>
                     </div>
                 

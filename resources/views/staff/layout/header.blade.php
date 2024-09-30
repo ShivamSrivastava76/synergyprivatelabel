@@ -1,15 +1,14 @@
 <!-- partial:partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="/">
+        <a class="navbar-brand brand-logo" href="{{ route('staff.index') }}">
             <!-- <img src="{{asset('assets/admin/images/logo.svg')}}" alt="logo"/> -->
-            <h2>MOXXPHARMA
-            </h2>
+             <h2>MOXXPHARMA
+             </h2>
         </a>
-        <a class="navbar-brand brand-logo-mini" href="/">
+        <a class="navbar-brand brand-logo-mini" href="{{ route('staff.index') }}">
             <!-- <img src="{{asset('assets/admin/images/logo-mini.svg')}}" alt="logo"/> -->
-            <h2>M
-            </h2>
+             <h1>M</h1>
         </a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-stretch">
@@ -29,12 +28,14 @@
                 <div class="dropdown-divider"></div>
                 <a href="{{url('logout')}}" class="dropdown-item">
                 <i class="fas fa-power-off text-primary"></i>
-                Logout
+                 Logout
                 </a>
             </div>
             </li>
         
         </ul>
-    
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="fas fa-bars"></span>
+        </button>
     </div>
 </nav>

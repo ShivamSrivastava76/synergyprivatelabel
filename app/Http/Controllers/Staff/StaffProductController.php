@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Staff;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
@@ -11,14 +12,20 @@ use App\Models\productsSubcategory;
 use App\Models\variation;
 use Illuminate\Support\Facades\Log;
 
-class ProductController extends Controller
+class StaffProductController extends Controller
 {
+
+    public function index()
+    {
+        $products = Product::with('category')->whereNull('deleted_at')->get();
+        return view('staff.product.index', compact('products'));
+    }
 
     public function create()
     {
         $categories = Category::where('status',0)->get();
         
-        return view('admin.product.create', compact('categories'));
+        return view('staff.product.create', compact('categories'));
     }
     public function store(Request $request)
     {
@@ -70,10 +77,10 @@ class ProductController extends Controller
                     ]); 
                 }
                 
-                return redirect()->route('admin.product.index')->with('success', 'Product added successfully!');
+                return redirect()->route('staff.product.index')->with('success', 'Product added successfully!');
             }
         }catch(\Exception $e){
-            return redirect()->route('admin.product.create')->with('error', 'Failed to add product. Please try again.');
+            return redirect()->route('staff.product.create')->with('error', 'Failed to add product. Please try again.');
         }
     }
    
@@ -85,7 +92,7 @@ class ProductController extends Controller
         $productsCategory = productsCategory::where('products_id', $id)->get();
         $productsSubcategory = productsSubcategory::where('products_id', $id)->get();
         $product = Product::with('category')->findOrFail($id);
-        return view('admin.product.edit', compact('product', 'categories', 'variation', 'productsCategory', 'productsSubcategory'));
+        return view('staff.product.edit', compact('product', 'categories', 'variation', 'productsCategory', 'productsSubcategory'));
     }
     
     public function update(Request $request, $id)
@@ -146,11 +153,11 @@ class ProductController extends Controller
                 ]);
             }
             
-            return redirect()->route('admin.product.index')->with('success', 'Product updated successfully!');
+            return redirect()->route('staff.product.index')->with('success', 'Product updated successfully!');
         } catch (\Exception $e) {
             return $e->getMessage();
             Log::error('Error updating product: ' . $e->getMessage());
-            return redirect()->route('admin.product.edit', $id)->with('error', 'Failed to update product. Please try again.');
+            return redirect()->route('staff.product.edit', $id)->with('error', 'Failed to update product. Please try again.');
         }
     }
     
@@ -162,9 +169,9 @@ class ProductController extends Controller
     
             $product->delete();
     
-            return redirect()->route('admin.product.index')->with('success', 'Product deleted successfully!');
+            return redirect()->route('staff.product.index')->with('success', 'Product deleted successfully!');
         } catch (\Exception $e) {
-            return redirect()->route('admin.product.index')->with('error', 'Failed to delete the product. Please try again.');
+            return redirect()->route('staff.product.index')->with('error', 'Failed to delete the product. Please try again.');
         }
     }
     
@@ -186,7 +193,7 @@ class ProductController extends Controller
         $id = explode(',', $request->id);
         $subcategory = Subcategory::whereIn('categories_id',$id)->get();
        
-        return view('admin.product.subcategory', compact('subcategory'));  
+        return view('staff.product.subcategory', compact('subcategory'));  
     }
 
     public function subcategory(Request $request)
@@ -195,6 +202,6 @@ class ProductController extends Controller
         $subcategory = Subcategory::whereIn('categories_id',$id)->get();
         $productsSubcategory = productsSubcategory::where('products_id',$request->product_id)->get();
        
-        return view('admin.product.subcategorywithcategory', compact('subcategory', 'productsSubcategory'));  
+        return view('staff.product.subcategorywithcategory', compact('subcategory', 'productsSubcategory'));  
     }
 }

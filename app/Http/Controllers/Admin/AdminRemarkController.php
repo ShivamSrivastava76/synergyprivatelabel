@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Remark;
-class RemarkController extends Controller
+
+class AdminRemarkController extends Controller
 {
     public function store(Request $request)
     {

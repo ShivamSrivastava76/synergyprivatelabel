@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Staff;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Permission;
@@ -9,7 +10,7 @@ use App\Models\permissionUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-class StaffController extends Controller
+class StaffStaffController extends Controller
 {
 
     public function dashboard()
@@ -23,13 +24,13 @@ class StaffController extends Controller
     {
         $staffs = User::where('role', 1)
                 ->get();
-        return view('admin.staff.index', compact('staffs'));
+        return view('staff.staff.index', compact('staffs'));
     }
     
     public function create()
     {
         $permissions = Permission::all();
-        return view('admin.staff.create',compact('permissions'));
+        return view('staff.staff.create',compact('permissions'));
     }
     public function store(Request $request)
     {
@@ -70,7 +71,7 @@ class StaffController extends Controller
             
 
             // Redirect with a success message
-            return redirect()->route('admin.staff.index')->with('success', 'Staff member added successfully.');
+            return redirect()->route('staff.staff.index')->with('success', 'Staff member added successfully.');
 
         } catch (\Exception $e) {
             // Catch and handle any errors
@@ -82,7 +83,7 @@ class StaffController extends Controller
         $user = User::findOrFail($id);
         $permissions = Permission::all();
 
-        return view('admin.staff.edit', compact('user', 'permissions'));
+        return view('staff.staff.edit', compact('user', 'permissions'));
     }
     public function update(Request $request, $id)
     {
@@ -134,7 +135,7 @@ class StaffController extends Controller
             $user->permissions()->sync($permissionsWithStatus);
 
             // Redirect with a success message
-            return redirect()->route('admin.staff.index')->with('success', 'Staff member updated successfully.');
+            return redirect()->route('staff.staff.index')->with('success', 'Staff member updated successfully.');
 
         } catch (\Exception $e) {
             
@@ -148,9 +149,9 @@ class StaffController extends Controller
     
             $user->delete();
     
-            return redirect()->route('admin.staff.index')->with('success', 'Staff deleted successfully!');
+            return redirect()->route('staff.staff.index')->with('success', 'Staff deleted successfully!');
         } catch (\Exception $e) {
-            return redirect()->route('admin.staff.index')->with('error', 'Failed to delete the staff. Please try again.');
+            return redirect()->route('staff.staff.index')->with('error', 'Failed to delete the staff. Please try again.');
         }
     }
 
