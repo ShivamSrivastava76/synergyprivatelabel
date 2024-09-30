@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subcategory;
-use App\Models\Category;
+use App\Models\category;
 
 class AdminSubategoryController extends Controller
 {
@@ -18,7 +18,7 @@ class AdminSubategoryController extends Controller
     
     public function create()
     {
-        $category = Category::where('status', 0)->get();
+        $category = category::where('status', 0)->get();
         return view('admin.subcategory.create',compact('category'));
     }
     
@@ -51,7 +51,7 @@ class AdminSubategoryController extends Controller
     public function edit($id)
     {
         $subcategory = Subcategory::findOrFail($id);
-        $category = Category::where('status', 0)->get();
+        $category = category::where('status', 0)->get();
         return view('admin.subcategory.edit', compact('subcategory', 'category'));
     }
 

@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Enquiry;
+use App\Models\enquiry;
 
 class StaffEnquiryController extends Controller
 {
     public function index()
     {
         // Retrieve all enquiries with the related user, product, ordered remark details, and emails
-        // $enquiries = Enquiry::with(['user', 'enquiryProducts.product', 'remarks.user', 'emails']) // Add 'emails' here
+        // $enquiries = enquiry::with(['user', 'enquiryProducts.product', 'remarks.user', 'emails']) // Add 'emails' here
         //             ->where('status', 0)
         //             ->get();
 
-        $enquiries = Enquiry::with(['user']) // Add 'emails' here
+        $enquiries = enquiry::with(['user']) // Add 'emails' here
                     ->where('status', 0)
                     ->get();
 
@@ -27,7 +27,7 @@ class StaffEnquiryController extends Controller
     {
         // $enquiry = Enquiry::with(['user', 'enquiryProducts.product', 'emails']) // Include emails here if needed
         //                   ->findOrFail($id);
-        $enquiry = Enquiry::with(['user', 'enquiryProducts.product']) // Include emails here if needed
+        $enquiry = enquiry::with(['user', 'enquiryProducts.product']) // Include emails here if needed
         ->findOrFail($id);
         // $enquiry = Enquiry::with('remarks.user')->findOrFail($id);
         // echo "<pre>"; print_r($enquiry); die;

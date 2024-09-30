@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Staff;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subcategory;
-use App\Models\Category;
+use App\Models\category;
 
 class StaffSubategoryController extends Controller
 {
@@ -18,7 +18,7 @@ class StaffSubategoryController extends Controller
     
     public function create()
     {
-        $category = Category::where('status', 0)->get();
+        $category = category::where('status', 0)->get();
         return view('staff.subcategory.create',compact('category'));
     }
     
@@ -51,7 +51,7 @@ class StaffSubategoryController extends Controller
     public function edit($id)
     {
         $subcategory = Subcategory::findOrFail($id);
-        $category = Category::where('status', 0)->get();
+        $category = category::where('status', 0)->get();
         return view('staff.subcategory.edit', compact('subcategory', 'category'));
     }
 

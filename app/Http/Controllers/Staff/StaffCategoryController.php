@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\category;
 
 class StaffCategoryController extends Controller
 {
@@ -15,7 +15,7 @@ class StaffCategoryController extends Controller
     public function index()
     {
         // Fetch all categories from the database
-        $categories = Category::whereNull('deleted_at')
+        $categories = category::whereNull('deleted_at')
                       ->get();
         return view('staff.category.index', compact('categories'));        
     }
@@ -64,7 +64,7 @@ class StaffCategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
+        $category = category::findOrFail($id);
         return view('staff.category.edit', compact('category'));
     }
 
@@ -84,7 +84,7 @@ class StaffCategoryController extends Controller
 
         try {
             // Find the category and update it
-            $category = Category::findOrFail($id);
+            $category = category::findOrFail($id);
             $category->update($validatedData);
     
             // Redirect to the index page with a success message
@@ -102,7 +102,7 @@ class StaffCategoryController extends Controller
     {
         try {
             // Find the category or fail
-            $category = Category::findOrFail($id);
+            $category = category::findOrFail($id);
     
             // Perform soft delete
             $category->delete();
@@ -117,7 +117,7 @@ class StaffCategoryController extends Controller
     public function toggleStatus(Request $request)
     {
         try {
-            $category = Category::findOrFail($request->id);
+            $category = category::findOrFail($request->id);
             $category->status = $request->status;
             $category->save();
 

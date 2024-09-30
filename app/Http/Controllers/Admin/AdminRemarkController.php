@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Remark;
+use App\Models\remark;
 
 class AdminRemarkController extends Controller
 {
@@ -21,7 +21,7 @@ class AdminRemarkController extends Controller
             ]);
 
             // Create the remark
-            $remark = new Remark();
+            $remark = new remark();
             $remark->enquiry_id = $request->input('enquiry_id');
             $remark->remark = $request->input('remark');
             $remark->user_id = $request->input('user_id');

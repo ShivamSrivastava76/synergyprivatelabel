@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Email;
-use App\Models\Remark;
+use App\Models\email;
+use App\Models\remark;
 use PDF; // Import the PDF facade
 use Exception; // Import the Exception class
 
@@ -39,7 +39,7 @@ class UserEnquiryMailController extends Controller
             // $email->enquiry_id = $request->input('enquiry_id');
             // $email->user_id = auth()->id(); // Assuming you're using Laravel's auth
             // $email->status = $request->input('status');
-            $remark = new Remark();
+            $remark = new remark();
             $remark->enquiry_id = $request->input('enquiry_id');
             $remark->user_id = $request->input('user_id');
             $remark->user_type = Auth::user()->role;

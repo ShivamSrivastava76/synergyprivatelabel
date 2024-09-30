@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Category;
+use App\Models\product;
+use App\Models\category;
 use App\Models\Subcategory;
 use App\Models\productsCategory;
 use App\Models\productsSubcategory;
@@ -17,13 +17,13 @@ class StaffProductController extends Controller
 
     public function index()
     {
-        $products = Product::with('category')->whereNull('deleted_at')->get();
+        $products = product::with('category')->whereNull('deleted_at')->get();
         return view('staff.product.index', compact('products'));
     }
 
     public function create()
     {
-        $categories = Category::where('status',0)->get();
+        $categories = category::where('status',0)->get();
         
         return view('staff.product.create', compact('categories'));
     }
@@ -60,7 +60,7 @@ class StaffProductController extends Controller
                 $validatedData['status'] = 0;
                 $validatedData['price'] = $validatedData['price'] ?? 0;
     
-                $product = Product::create($validatedData);
+                $product = product::create($validatedData);
 
                 $product->productsCategory()->attach($request->input('categories_id'));
                 $product->productsSubcategory()->attach($request->input('subcategories_id'));
@@ -88,7 +88,7 @@ class StaffProductController extends Controller
     {
         
         $variation = variation::where('products_id', $id)->get();
-        $categories = Category::where('status', 0)->get();
+        $categories = category::where('status', 0)->get();
         $productsCategory = productsCategory::where('products_id', $id)->get();
         $productsSubcategory = productsSubcategory::where('products_id', $id)->get();
         $product = Product::with('category')->findOrFail($id);
@@ -119,7 +119,7 @@ class StaffProductController extends Controller
 
         try {
             
-            $product = Product::findOrFail($id);
+            $product = product::findOrFail($id);
 
             if ($request->hasFile('image')) {
                 
@@ -165,7 +165,7 @@ class StaffProductController extends Controller
     public function destroy($id)
     {
         try {
-            $product = Product::findOrFail($id);
+            $product = product::findOrFail($id);
     
             $product->delete();
     
@@ -178,7 +178,7 @@ class StaffProductController extends Controller
     public function toggleStatus(Request $request)
     {
         try {
-            $product = Product::findOrFail($request->id);
+            $product = product::findOrFail($request->id);
             $product->status = $request->status;
             $product->save();
 
