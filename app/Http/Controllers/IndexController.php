@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\product;
 use Illuminate\View\View;
 use App\Models\category;
 use App\Models\variation;
@@ -26,7 +26,7 @@ class IndexController extends Controller
 
     public function index(): View
     {
-        $product = Product::orderBy('updated_at', 'desc')->where('status',0)->take(10)->get();
+        $product = product::orderBy('updated_at', 'desc')->where('status',0)->take(10)->get();
         $category = $this->category;
         return view('index', compact('product', 'category'));
     }
