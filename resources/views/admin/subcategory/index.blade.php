@@ -68,7 +68,7 @@
                                     <td>{{ $val->name }}</td> <!-- Display the category title -->
                                     <td>
                                         <label class="switch">
-                                            <input type="checkbox" class="toggle-status" data-id="{{ $val->id }}" {{ !$val->status ? 'checked' : '' }}>
+                                            <input type="checkbox" class="toggle-status" data-id="{{ $val->id }}" {{ $val->status ? 'checked' : '' }}>
                                             <span class="slider round"></span>
                                         </label>
                                     </td>

@@ -338,6 +338,7 @@
             {
                 productIds.push(id);
                 sessionStorage.setItem('productIds', JSON.stringify(productIds));
+                alert('This Product is added!');
             } 
             else
                 alert('This Product is already added!');

@@ -11,6 +11,7 @@ use App\Models\Subcategory;
 use App\Models\User;
 use App\Models\Enquiry;
 use App\Models\EnquiryProduct;
+use App\Models\contactUs;
 use Carbon\Carbon; 
 
 
@@ -116,6 +117,42 @@ class IndexController extends Controller
         
         return view('product', compact('product'));
     }
+    public function categorysortproduct($key, $id)
+    {
+        $sortBy = 'updated_at';
+        $sortDirection = 'asc';
+
+        switch ($key) {
+            case 'asc':
+                $sortBy = 'name';
+                $sortDirection = 'asc';
+                break;
+            case 'desc':
+                $sortBy = 'name';
+                $sortDirection = 'desc';
+                break;
+            case 'low':
+                $sortBy = 'price';
+                $sortDirection = 'asc';
+                break;
+            case 'high':
+                $sortBy = 'price';
+                $sortDirection = 'desc';
+                break;
+            case 'old':
+                $sortBy = 'updated_at';
+                $sortDirection = 'asc';
+                break;
+            case 'new':
+                $sortBy = 'updated_at';
+                $sortDirection = 'desc';
+                break;
+        }
+        
+        $products = category::with('products')->where('status',0)->find($id);
+        
+        return view('categorysortproduct', compact('products'));
+    }
 
     public function custom_formulations(): View
     {
@@ -155,13 +192,13 @@ class IndexController extends Controller
         return view('product_details', compact('products', 'variation' , 'category', 'subcategories'));
     }
 
-    public function category($id): View
+    public function category($id)
     {
         $category = $this->category;
 
-        $products = Product::with('category')->where('status',0)->find($id);
+        $products = category::with('products')->where('status',0)->find($id);
 
-        return view('product_details', compact('products','product', 'category'));
+        return view('categoryproducts', compact('products', 'category'));
     }
 
     public function enquiry(Request $request)
@@ -223,9 +260,25 @@ class IndexController extends Controller
                 $enquiryproduct->save();
             }
 
-            return redirect()->back()->with('success', 'Product added successfully!');
+            return redirect()->back()->with('success', 'Enquiry created successfully');
         }
         else
             return redirect()->back()->with('error', 'You have reached the daily limit of 10  products enquiry!');
+    }
+
+    public function contact_us(Request $request)
+    {
+        $contactus = new contactUs();
+        $contactus->name = $request->name;
+        $contactus->email = $request->email;
+        $contactus->subject = $request->subject;
+        $contactus->phone = $request->phone;
+        $contactus->description = $request->description;
+        $contactus->status = 0;
+        $contactus->save();
+    
+        return redirect()->back()->with('success', 'Your message has been sent successfully!');
+
+       
     }
 }

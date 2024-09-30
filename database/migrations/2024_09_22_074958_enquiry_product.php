@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreign('enquiries_id')->references('id')->on('enquiries');
             $table->unsignedBigInteger('products_id');
             $table->foreign('products_id')->references('id')->on('products');
-            $table->tinyInteger('customiable')->command("0 => Yes, 1 => No");
+            $table->tinyInteger('customiable')->comment("0 => Yes, 1 => No");
             $table->string('formula')->nullable();
-            $table->tinyInteger('status')->command("0 => active, 1 => inactive");
+            $table->tinyInteger('status')->comment("0 => active, 1 => inactive");
             $table->timestamps();
             $table->softDeletes();
         });

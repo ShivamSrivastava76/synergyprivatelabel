@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('enquiries_id')->references('id')->on('enquiries');
             $table->unsignedBigInteger('emails_id');
             $table->foreign('emails_id')->references('id')->on('emails');
-            $table->tinyInteger('status')->command("0 => active, 1 => inactive");
+            $table->tinyInteger('status')->comment("0 => active, 1 => inactive");
             $table->timestamps();
         });
     }

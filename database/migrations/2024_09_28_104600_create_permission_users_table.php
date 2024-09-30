@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('permissions_id')->references('id')->on('permissions');
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users');
-            $table->tinyInteger('status')->command("0 => active, 1 => inactive");
+            $table->tinyInteger('status')->comment("0 => active, 1 => inactive");
             $table->timestamps();
         });
     }

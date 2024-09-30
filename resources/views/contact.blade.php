@@ -86,6 +86,7 @@
             <!-- contact box end -->
 
             <!-- about banner start -->
+           
             <div class="contact-form-section mt-100">
                 <div class="container">
                     <div class="contact-form-area">
@@ -94,33 +95,37 @@
                             <p class="section-subheading">We would like to hear from you.</p>
                         </div>
                         <div class="contact-form--wrapper">
-                            <form action="#" class="contact-form">
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            <form action="{{url('contact_us')}}"  method="post" class="contact-form">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <fieldset>
-                                            <input type="text" placeholder="Full name" />
+                                            <input type="text" placeholder="Full name" name="name" />
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <fieldset>
-                                            <input type="email" placeholder="Email Address*" />
+                                            <input type="email" placeholder="Email Address" name="email" />
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <fieldset>
-                                            <input type="text" placeholder="Type a subject" />
+                                            <input type="text" placeholder="Type a subject" name="subject" />
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <fieldset>
-                                            <input type="text" placeholder="Phone Number" />
+                                            <input type="text" placeholder="Phone Number" name="phone" />
                                         </fieldset>
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <fieldset>
-                                            <textarea cols="20" rows="6"
-                                                placeholder="Write your message here*">
-                                            </textarea>
+                                            <textarea cols="20" rows="6" placeholder="Write your message here" name="description"></textarea>
                                         </fieldset>
                                         <button type="submit" class="position-relative review-submit-btn contact-submit-btn">SEND MESSAGE</button>
                                     </div>

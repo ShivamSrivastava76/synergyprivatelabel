@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Staff\StaffCategoryController;
 
@@ -14,9 +15,11 @@ use App\Http\Controllers\Staff\StaffProductController;
 
 use App\Http\Controllers\Admin\AdminEnquiryController;
 use App\Http\Controllers\Staff\StaffEnquiryController;
+use App\Http\Controllers\User\UserEnquiryController;
 
 use App\Http\Controllers\Admin\AdminRemarkController;
 use App\Http\Controllers\Staff\StaffRemarkController;
+use App\Http\Controllers\User\UserRemarkController;
 
 use App\Http\Controllers\Admin\AdminEnquiryMailController;
 use App\Http\Controllers\Staff\StaffEnquiryMailController;
@@ -39,6 +42,7 @@ Route::get('/searchproductlist/{key?}', [IndexController::class, 'searchproductl
 Route::get('/contact', [IndexController::class, 'contact']);
 Route::get('/products', [IndexController::class, 'products']);
 Route::get('/sortproduct/{key}', [IndexController::class, 'sortproduct']);
+Route::get('/category/sortproduct/{key}/{id}', [IndexController::class, 'categorysortproduct']);
 Route::get('/custom_formulations', [IndexController::class, 'custom_formulations']);
 Route::get('/label_design_how_does_it_work', [IndexController::class, 'label_design_how_does_it_work']);
 Route::get('/privacy_policy', [IndexController::class, 'privacy_policy']);
@@ -47,6 +51,7 @@ Route::get('/product_details/{id}', [IndexController::class, 'product_details'])
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 Route::get('/category/{id}', [IndexController::class, 'category']);
 Route::post('/enquiry', [IndexController::class, 'enquiry']);
+Route::post('/contact_us', [IndexController::class, 'contact_us']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -111,11 +116,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Admin staff Routes
     Route::get('/staffs', [AdminStaffController::class, 'index'])->name('staff.index');
-    Route::get('/staffs/create', [AdminStaffControllertest::class, 'create'])->name('staff.create');
-    Route::post('/staffs', [AdminStaffControllertest::class, 'store'])->name('staff.store');
-    Route::get('/staffs/{id}/edit', [AdminStaffControllertest::class, 'edit'])->name('staff.edit');
-    Route::put('/staffs/{id}', [AdminStaffControllertest::class, 'update'])->name('staff.update');
-    Route::delete('/staffs/{id}', [AdminStaffControllertest::class, 'destroy'])->name('staff.destroy');
+    Route::get('/staffs/create', [AdminStaffController::class, 'create'])->name('staff.create');
+    Route::post('/staffs', [AdminStaffController::class, 'store'])->name('staff.store');
+    Route::get('/staffs/{id}/edit', [AdminStaffController::class, 'edit'])->name('staff.edit');
+    Route::put('/staffs/{id}', [AdminStaffController::class, 'update'])->name('staff.update');
+    Route::delete('/staffs/{id}', [AdminStaffController::class, 'destroy'])->name('staff.destroy');
 
     // Admin 
     Route::get('/contact-enquiries', [AdminContactUsController::class, 'index'])->name('contact-enquiry.index');
@@ -196,7 +201,20 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/', function () {
         return view('user.index');
     })->name('index');
+
+    Route::get('enquiries', [UserEnquiryController::class, 'index'])->name('enquiries.index');
+     Route::get('enquiries/{id}', [UserEnquiryController::class, 'showEnquiryDetails'])->name('enquiries.details');
+ 
+     // Route::get('enquiries/create', [UserEnquiryController::class, 'create'])->name('enquiries.create');
+     // Route::post('enquiries', [UserEnquiryController::class, 'store'])->name('enquiries.store');
+     // Route::get('enquiries/{id}/edit', [UserEnquiryController::class, 'edit'])->name('enquiries.edit');
+     // Route::put('enquiries/{id}', [UserEnquiryController::class, 'update'])->name('enquiries.update');
+     // Route::delete('enquiries/{id}', [UserEnquiryController::class, 'destroy'])->name('enquiries.destroy');
+
+     Route::post('/remarks/store', [UserRemarkController::class, 'store'])->name('remarks.store');
     
+
+     Route::post('/mail/store', [UserEnquiryMailController::class, 'store'])->name('mail.store');
 });
 //  User routes end
 

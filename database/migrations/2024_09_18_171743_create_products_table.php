@@ -17,7 +17,7 @@ return new class extends Migration
             $table->longText('description');
             $table->decimal('price', 10, 2);
             $table->string('image');
-            $table->tinyInteger('status')->command("0 => active, 1 => inactive");
+            $table->tinyInteger('status')->comment("0 => active, 1 => inactive");
             $table->timestamps();
             $table->softDeletes();
         });

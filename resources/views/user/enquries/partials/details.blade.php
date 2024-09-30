@@ -9,7 +9,7 @@
                 </button> -->
             </div>
             <div class="modal-body">
-                <form action="{{ route('staff.remarks.store') }}" method="POST" id="remarkForm">
+                <form action="{{ route('user.remarks.store') }}" method="POST" id="remarkForm">
                     @csrf
                     <input type="hidden" name="enquiry_id" value="{{ $enquiry->id }}"> <!-- Enquiry ID -->
                     <input type="hidden" name="user_id" value="{{ Auth::id() }}"> <!-- Logged-in user ID -->
@@ -40,7 +40,7 @@
                 </button> -->
             </div>
             <div class="modal-body">
-                <form action="{{ route('staff.mail.store') }}" method="POST" id="emailForm">
+                <form action="{{ route('user.mail.store') }}" method="POST" id="emailForm">
                     @csrf
                     <input type="hidden" name="enquiry_id" value="{{ $enquiry->id }}"> <!-- Enquiry ID -->
                     <input type="hidden" name="user_email" value="{{ $enquiry->user->email }}">

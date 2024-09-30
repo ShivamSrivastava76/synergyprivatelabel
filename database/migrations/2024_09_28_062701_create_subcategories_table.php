@@ -17,7 +17,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->unsignedBigInteger('categories_id');
             $table->foreign('categories_id')->references('id')->on('categories');
-            $table->tinyInteger('status')->command("0 => active, 1 => inactive");
+            $table->tinyInteger('status')->comment("0 => active, 1 => inactive");
             $table->timestamps();
             $table->softDeletes();
         });

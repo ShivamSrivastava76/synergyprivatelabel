@@ -14,9 +14,14 @@ return new class extends Migration
         Schema::create('remarks', function (Blueprint $table) {
             $table->id();
             $table->longText('remark');
+            $table->unsignedBigInteger('enquiry_id');
+            $table->foreign('enquiry_id')->references('id')->on('enquiries');// remove
+            $table->unsignedBigInteger('user_type');// remove
+            $table->foreign('user_type')->references('id')->on('users');
+            $table->string('remark_type');// remove
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->tinyInteger('status')->command("0 => active, 1 => inactive");
+            $table->tinyInteger('status')->comment("0 => active, 1 => inactive");
             $table->timestamps();
             $table->softDeletes();
         });

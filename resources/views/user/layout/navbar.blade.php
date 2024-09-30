@@ -30,11 +30,11 @@
         </li>
         
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('staff.enquiries.index') }}">
+            <a class="nav-link" href="{{ route('user.enquiries.index') }}">
                 <i class="fa fa-address-book menu-icon"></i>
                 <span class="menu-title">Enquiries</span>
             </a>
         </li>
-        
+
     </ul>
 </nav>

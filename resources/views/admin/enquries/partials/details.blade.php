@@ -96,12 +96,14 @@
     <div class="sender-details">
         <div class="details">
             <p><strong>Company:</strong> {{ $enquiry->user->company }}</p>
-            <p><strong>Customizable:</strong> {{ $enquiry->customiable ? 'Yes' : 'No' }}</p>
-            <p><strong>Products:</strong>
-                @foreach($enquiry->enquiryProducts as $product)
-                {{ $product->product->name }}, &nbsp;
-                @endforeach
-            </p>
+            <!-- <p><strong>Customizable:</strong> {{ $enquiry->customiable == 0 ? 'Yes' : 'No' }}</p> -->
+            @foreach($enquiry->enquiryProducts as $product)
+                <p><strong>Product Name:</strong> {{ $product->product->name }}</p>
+                <p><strong>Customizable:</strong> {{ $product->customiable == 0 ? 'Yes' : 'No' }}
+                @if($product->customiable == 0)
+                    <p><strong>formula:</strong> {{ $product->formula }}</p>
+                @endif
+            @endforeach
         </div>
 
 
