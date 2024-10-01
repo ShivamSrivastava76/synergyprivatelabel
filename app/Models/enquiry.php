@@ -28,10 +28,10 @@ class Enquiry extends Model
     }
     public function remarks()
     {
-        return $this->hasMany(Remark::class)->orderBy('created_at', 'asc');
+        return $this->hasMany(remark::class)->orderBy('created_at', 'asc');
     }
     public function emails()
     {
-        return $this->hasMany(Email::class);
+        return $this->hasMany(email::class);
     }
 }

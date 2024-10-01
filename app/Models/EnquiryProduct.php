@@ -12,12 +12,12 @@ class EnquiryProduct extends Model
     // Relationship to the Enquiry model
     public function enquiry()
     {
-        return $this->belongsTo(Enquiry::class, 'enquiries_id');
+        return $this->belongsTo(enquiry::class, 'enquiries_id');
     }
 
     // Relationship to the Product model
     public function product()
     {
-        return $this->belongsTo(Product::class, 'products_id');
+        return $this->belongsTo(product::class, 'products_id');
     }
 }

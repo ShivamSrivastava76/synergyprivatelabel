@@ -22,46 +22,56 @@ class IndexController extends Controller
     public function __construct() 
     {
         $this->category  = category::orderBy('id', 'asc')->where('status',0)->take(5)->get();
+
+        $this->categories = category::with('subcategories')->get();
+        
     }
 
-    public function index(): View
+    public function index()
     {
         $product = product::orderBy('updated_at', 'desc')->where('features',0)->where('status',0)->take(10)->get();
         $category = $this->category;
-        return view('index', compact('product', 'category'));
+        $categories = $this->categories;
+        
+        return view('index', compact('product', 'category', 'categories'));
     }
 
     public function about_us(): View
     {
         $category = $this->category;
-        return view('about_us', compact('category'));
+        $categories = $this->categories;
+        return view('about_us', compact('category', 'categories'));
     }
 
     public function what_we_do(): View
     {
         $category = $this->category;
-        return view('what_we_do', compact('category'));
+        $categories = $this->categories;
+        return view('what_we_do', compact('category', 'categories'));
     }
 
     public function faq(): View
     {
         $category = $this->category;
-        return view('faq', compact('category'));
+        $categories = $this->categories;
+        return view('faq', compact('category', 'categories'));
     }
 
     public function our_team(): View
     {
         $category = $this->category;
-        return view('our_team', compact('category'));
+        $categories = $this->categories;
+        return view('our_team', compact('category', 'categories'));
     }
 
     public function search(): View
     {
         $category = $this->category;
-        return view('search', compact('category'));
+        $categories = $this->categories;
+        return view('search', compact('category', 'categories'));
     }
 
-    public function searchproductlist($key= null)
+    public function searchproductlist($key= null): View
     {
         $product = Product::orderBy('updated_at', 'desc')->where('status',0)->where('name', 'like', '%'.$key.'%')->get();
 
@@ -71,14 +81,16 @@ class IndexController extends Controller
     public function contact(): View
     {
         $category = $this->category;
-        return view('contact', compact('category'));
+        $categories = $this->categories;
+        return view('contact', compact('category', 'categories'));
     }
 
     public function products(): View
     {
         $category = $this->category;
+        $categories = $this->categories;
         $product = Product::orderBy('updated_at', 'desc')->where('status',0)->get();
-        return view('products', compact('product', 'category'));
+        return view('products', compact('product', 'category', 'categories'));
     }
 
     public function sortproduct($key): View
@@ -157,31 +169,35 @@ class IndexController extends Controller
     public function custom_formulations(): View
     {
         $category = $this->category;
-        return view('custom_formulations', compact('category'));
+        $categories = $this->categories;
+        return view('custom_formulations', compact('category', 'categories'));
     }
 
     public function label_design_how_does_it_work(): View
     {
         $category = $this->category;
-        return view('label_design_how_does_it_work', compact('category'));
+        $categories = $this->categories;
+        return view('label_design_how_does_it_work', compact('category', 'categories'));
     }
 
     public function privacy_policy(): View
     {
         $category = $this->category;
-        return view('privacy_policy', compact('category'));
+        $categories = $this->categories;
+        return view('privacy_policy', compact('category', 'categories'));
     }
 
     public function term_and_conditions(): View
     {
         $category = $this->category;
-        return view('term_and_conditions', compact('category'));
+        $categories = $this->categories;
+        return view('term_and_conditions', compact('category', 'categories'));
     }
 
     public function product_details($id): View
     {
         $category = $this->category;
-
+        $categories = $this->categories;
          $products = Product::where('status',0)->find($id);
 
          $subcategories = Subcategory::with('products')->get();
@@ -189,16 +205,25 @@ class IndexController extends Controller
         $variation = variation::where('products_id', $id)->get();
 
 
-        return view('product_details', compact('products', 'variation' , 'category', 'subcategories'));
+        return view('product_details', compact('products', 'variation' , 'category', 'subcategories', 'categories'));
     }
 
-    public function category($id)
+    public function category($id): View
     {
         $category = $this->category;
-
+        $categories = $this->categories;
         $products = category::with('products')->where('status',0)->find($id);
 
-        return view('categoryproducts', compact('products', 'category'));
+        return view('categoryproducts', compact('products', 'category', 'categories'));
+    }
+
+    public function subcategory($id): View
+    {
+        $category = $this->category;
+        $categories = $this->categories;
+        $products = Subcategory::with('products')->where('status',0)->find($id);
+
+        return view('subcategoryproducts', compact('products', 'category', 'categories'));
     }
 
     public function enquiry(Request $request)

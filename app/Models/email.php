@@ -19,6 +19,6 @@ class email extends Model
     // / Define the relationship back to Enquiry
     public function enquiry()
     {
-        return $this->belongsTo(Enquiry::class);
+        return $this->belongsTo(enquiry::class);
     }
 }

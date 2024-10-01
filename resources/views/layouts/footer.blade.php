@@ -327,7 +327,6 @@
        <!-- all js -->
         <script src="{{url('asset/js/vendor.js')}}"></script>
         <script src="{{url('asset/js/main.js')}}"></script>
-        <script src="sweetalert2.all.min.js"></script>
     </div>
     <script>
 
@@ -340,30 +339,22 @@
             {
                 productIds.push(id);
                 sessionStorage.setItem('productIds', JSON.stringify(productIds));
-                
-                Swal.fire({
-                    title: 'Product Added',
-                    text: 'This product is added to your cart',
-                    icon: 'success',
-                    confirmButtonColor: 'black'
-                })
+                swal("Product Added", "This product is added to your cart", "success");
                 
             } 
             else
-            {
-                Swal.fire({
-                    title: 'Product Already Added',
-                    text: 'This product is already in your cart',
-                    icon: 'warning',
-                    confirmButtonColor: 'black'
-                })
-                
-            }
+                swal("Product Already Added", "This product is already in your cart", "success");
+
             if(productIds.length === 0)
                 $('.cartNumber').hide();
             else
             {
-                $('.cartNumber').html(productIds.length);
+                if(productIds.length > 0 && productIds.length < 10)
+                    productId = "0"+productIds.length
+                else
+                    productId = productIds.length
+                
+                $('.cartNumber').html(productId);
                 $('.cartNumber').show();
             }
 

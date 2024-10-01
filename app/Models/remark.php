@@ -19,7 +19,7 @@ class remark extends Model
     // You can add relationships if necessary, like:
     public function enquiry()
     {
-        return $this->belongsTo(Enquiry::class);
+        return $this->belongsTo(enquiry::class);
     }
 
     public function user()
