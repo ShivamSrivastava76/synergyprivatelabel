@@ -161,7 +161,7 @@ class IndexController extends Controller
                 break;
         }
         
-        return $products = category::with('products')->where('status',0)->where('name',$name)->get();
+        $products = category::with('products')->where('status',0)->where('name',$name)->first();
         
         return view('categorysortproduct', compact('products'));
     }
@@ -198,7 +198,7 @@ class IndexController extends Controller
                 break;
         }
         
-        $products = Subcategory::with('products')->where('status',0)->where('name',$name)->get();
+        $products = Subcategory::with('products')->where('status',0)->where('name',$name)->first();
         
         return view('categorysortproduct', compact('products'));
     }
@@ -245,11 +245,12 @@ class IndexController extends Controller
         return view('product_details', compact('products', 'variation' , 'category', 'subcategories', 'categories'));
     }
 
-    public function category($name): View
+    public function category($name)
     {
         $category = $this->category;
         $categories = $this->categories;
-        $products = category::with('products')->where('status',0)->where('name',$name)->get();
+        $products = category::with('products')->where('status',0)->where('name',$name)->first();
+        
 
         return view('categoryproducts', compact('products', 'category', 'categories', 'name'));
     }
@@ -258,7 +259,7 @@ class IndexController extends Controller
     {
         $category = $this->category;
         $categories = $this->categories;
-        $products = Subcategory::with('products')->where('status',0)->where('name',$name)->get();
+        $products = Subcategory::with('products')->where('status',0)->where('name',$name)->first();
 
         return view('subcategoryproducts', compact('products', 'category', 'categories', 'name'));
     }

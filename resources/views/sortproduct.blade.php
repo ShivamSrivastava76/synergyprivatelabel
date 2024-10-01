@@ -1,6 +1,6 @@
-@if(count($products->products) > 0)
+@if(count($products) > 0)
     <div class="row mb-5">
-        @foreach($products->products as $item)
+        @foreach($products as $item)
                 <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
                     <div class="product-card">
                         <div class="product-card-img">

@@ -19,7 +19,7 @@ class Subcategory extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'products_subcategories', 'subcategories_id', 'products_id');
+        return $this->belongsToMany(product::class, 'products_subcategories', 'subcategories_id', 'products_id');
     }
 
     public function category()

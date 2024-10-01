@@ -77,7 +77,7 @@
                                                     <h5> 
                                                         <strong class="text-center">
                                                             <li class="menu-list-item nav-item-sub">
-                                                                <a class="nav-link-sub nav-text-sub" href="{{url('category').'/'.$val->name}}"> {{$val->name}}</a>
+                                                                <a class="nav-link-sub nav-text-sub" href="{{url('category').'/'.$val->name}}"> <strong> {{$val->name}} </strong></a>
                                                             </li>   
                                                         </strong> 
                                                     </h5>
