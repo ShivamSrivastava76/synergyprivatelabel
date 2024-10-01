@@ -2671,17 +2671,17 @@ blockquote {
     list-style: none;
     position: relative;
   }
-  ul.about-hero-action:before {
+  /* ul.about-hero-action:before {
     content: "";
     width: 2px;
     height: 100%;
-    /* background: #000; */
+    background: #000; 
     border: 1px dashed #8d8d8d;
     position: absolute;
     left: 31px;
     top: 0;
     z-index: -9;
-}
+} */
 .action-item {
     margin-bottom: 60px;
 }
@@ -4220,3 +4220,52 @@ blockquote {
     font-size: 0.9em;
   }
 }
+
+.header-cart{
+
+  position: relative;
+
+}
+
+
+
+.cartNumber{
+
+  background: #f11919;
+
+  color: #fff;
+
+  font-size: 9px;
+
+  border-radius: 50%;
+
+  padding: 4px 3px;
+
+  position: absolute;
+
+  top: -4px;
+
+  right: -7px;
+
+}
+
+.sorting-lists .text_14 img{
+
+  width: 18px;
+
+  margin-right: 10px;
+
+}
+
+/* .grid_view_product{
+
+  display: none;
+
+} */
+
+.list_view_product{
+
+  display: none;
+
+}
+

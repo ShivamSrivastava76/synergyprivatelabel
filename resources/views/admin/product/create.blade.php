@@ -45,12 +45,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="categories_id">Product Category</label>
-                                <select class="js-example-basic-single w-100" id="categories_id" name="categories_id[]" required  multiple="multiple" onchange="subcategory()">
+                                <select class="js-example-basic-single w-100" id="categories_id" name="categories_id[]" required multiple="multiple" onchange="subcategory()">
                                     <option value="">Select a Category</option>
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ old('categories_id') == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name }}
-                                        </option>
+                                    <option value="{{ $category->id }}" {{ old('categories_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -60,9 +60,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="subcategories_id">Product Subcategory</label>
-                                <select class="js-example-basic-single w-100" id="subcategories_id" name="subcategories_id[]" required  multiple="multiple">
+                                <select class="js-example-basic-single w-100" id="subcategories_id" name="subcategories_id[]" required multiple="multiple">
                                     <option value="">First Select a Category</option>
-                                    
+                                    @if(old('subcategories_id'))
+                                        @foreach(old('subcategories_id') as $subcategory)
+                                            <option value="{{ $subcategory }}" selected>{{ $subcategory }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -79,7 +83,7 @@
                                 <label>Product Image</label>
                                 <input type="file" name="image" class="file-upload-default">
                                 <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Product Image" value="{{ old('image') }}">
+                                    <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Product Image">
                                     <span class="input-group-append">
                                         <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                     </span>
@@ -92,6 +96,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-check form-check-success">
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="features" value=1 {{ old('features') ? 'checked' : '' }}>
+                                    Features Product
+                                <i class="input-helper"></i></label>
+                            </div>
+                        </div>
+                    </div>
                     <div id="variation" > </div>
                     <div class="form-group">
                         <label for="summernoteExample">Product Description</label>
@@ -99,7 +113,7 @@
                             {!! old('description') !!}
                         </div>
                     </div>
-                    <input type="hidden" id="description" name="description" value="{{ old('description') }}">
+                    <input type="hidden" id="description" name="description" value=" {!! old('description') !!}">
 
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button type="reset" class="btn btn-light">Cancel</button>

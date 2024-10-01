@@ -14,7 +14,7 @@
                     <div class="col-lg-8 d-lg-block d-none">
                         <nav class="site-navigation">
                             <ul class="main-menu list-unstyled justify-content-center">
-                                <li class="menu-list-item nav-item has-megamenu active">
+                                <li class="menu-list-item nav-item has-megamenu">
                                     <div class="mega-menu-header">
                                         <a class="nav-link" href="{{url('label_design_how_does_it_work')}}">How does it work</a>
                                     </div>
@@ -92,14 +92,14 @@
                                         fill="black" />
                                 </svg>
                             </a> -->
-                            <a class="header-action-item header-cart ms-4" href="#drawer-cart"
-                                data-bs-toggle="offcanvas">
+                            <a class="header-action-item header-cart ms-4" href="#drawer-cart" data-bs-toggle="offcanvas">
                                 <svg class="icon icon-cart" width="24" height="26" viewBox="0 0 24 26" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M12 0.000183105C9.25391 0.000183105 7 2.25409 7 5.00018V6.00018H2.0625L2 6.93768L1 24.9377L0.9375 26.0002H23.0625L23 24.9377L22 6.93768L21.9375 6.00018H17V5.00018C17 2.25409 14.7461 0.000183105 12 0.000183105ZM12 2.00018C13.6562 2.00018 15 3.34393 15 5.00018V6.00018H9V5.00018C9 3.34393 10.3438 2.00018 12 2.00018ZM3.9375 8.00018H7V11.0002H9V8.00018H15V11.0002H17V8.00018H20.0625L20.9375 24.0002H3.0625L3.9375 8.00018Z"
                                         fill="black" />
                                 </svg>
+                                <span class="cartNumber">01</span>
                             </a>
                             <a class="header-action-item header-hamburger ms-4 d-lg-none" href="#drawer-menu"
                                 data-bs-toggle="offcanvas">

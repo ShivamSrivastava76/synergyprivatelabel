@@ -327,25 +327,59 @@
        <!-- all js -->
         <script src="{{url('asset/js/vendor.js')}}"></script>
         <script src="{{url('asset/js/main.js')}}"></script>
+        <script src="sweetalert2.all.min.js"></script>
     </div>
     <script>
 
         function addtocart(id) 
         {
             let productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];
+            $('.cartNumber').html('02');
 
             if (!productIds.includes(id)) 
             {
                 productIds.push(id);
                 sessionStorage.setItem('productIds', JSON.stringify(productIds));
-                alert('This Product is added!');
+                
+                Swal.fire({
+                    title: 'Product Added',
+                    text: 'This product is added to your cart',
+                    icon: 'success',
+                    confirmButtonColor: 'black'
+                })
+                
             } 
             else
-                alert('This Product is already added!');
+            {
+                Swal.fire({
+                    title: 'Product Already Added',
+                    text: 'This product is already in your cart',
+                    icon: 'warning',
+                    confirmButtonColor: 'black'
+                })
+                
+            }
+            if(productIds.length === 0)
+                $('.cartNumber').hide();
+            else
+            {
+                $('.cartNumber').html(productIds.length);
+                $('.cartNumber').show();
+            }
 
             displayProductIds()
         }
-
+        $(document).ready(function() {
+            let productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];
+            if(productIds.length === 0)
+                $('.cartNumber').hide();
+            else
+            {
+                $('.cartNumber').html(productIds.length);
+                $('.cartNumber').show();
+            }
+           
+        });
     // Function to display all stored product IDs
     function displayProductIds() {
         const productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];

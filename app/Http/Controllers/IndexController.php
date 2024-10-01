@@ -9,7 +9,7 @@ use App\Models\category;
 use App\Models\variation;
 use App\Models\Subcategory;
 use App\Models\User;
-use App\Models\Enquiry;
+use App\Models\enquiry;
 use App\Models\EnquiryProduct;
 use App\Models\contactUs;
 use Carbon\Carbon; 
@@ -26,7 +26,7 @@ class IndexController extends Controller
 
     public function index(): View
     {
-        $product = product::orderBy('updated_at', 'desc')->where('status',0)->take(10)->get();
+        $product = product::orderBy('updated_at', 'desc')->where('features',0)->where('status',0)->take(10)->get();
         $category = $this->category;
         return view('index', compact('product', 'category'));
     }
@@ -228,12 +228,16 @@ class IndexController extends Controller
             // Default to REMOTE_ADDR
             $ip = $_SERVER['REMOTE_ADDR'];
         }
+
+        $ipCount = enquiry::where('ip_address', $ip)->where('status', 1)->count();
+        if($ipCount > 0)
+            return redirect()->back()->with('error', 'You IP Address Blocked By Admin Please contact to Admin!');
         
-        $count = Enquiry::where('ip_address', $ip)->where('created_at', '>=', Carbon::today()->subDay())->where('created_at', '<', Carbon::now())->count();
+        $count = enquiry::where('ip_address', $ip)->where('created_at', '>=', Carbon::today()->subDay())->where('created_at', '<', Carbon::now())->count();
 
         if($count <= 10)
         {
-            $enquiry = new Enquiry();
+            $enquiry = new enquiry();
             $enquiry->user_id = $user->id;
             $enquiry->ip_address =  $ip;
             $enquiry->status = 0;

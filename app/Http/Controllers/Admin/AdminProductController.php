@@ -29,37 +29,42 @@ class AdminProductController extends Controller
     }
     public function store(Request $request)
     {
+        
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'categories_id' => 'required|exists:categories,id',
             'subcategories_id' => 'required|exists:subcategories,id',
             'price' => 'nullable|numeric|min:0',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|string',
+            'features' => 'nullable',
         ], [
             'name.required' => 'The product name is required.',
             'categories_id.required' => 'Please select a category.',
             'categories_id.exists' => 'The selected category does not exist.',
             'subcategories_id.required' => 'Please select a subcategory.',
             'subcategories_id.exists' => 'The selected subcategory does not exist.',
-            'image.required' => 'The product image is required.',
-            'image.image' => 'The uploaded file must be an image.',
-            'image.mimes' => 'Allowed image types are jpeg, png, jpg, gif, svg.',
-            'image.max' => 'The image size should not be greater than 2MB.',
             'description.required' => 'The product description is required.',
         ]);
         try{
+
+
             
-            if ($request->hasFile('image')) {
+            if ($request->hasFile('image')) 
+            {
                 $image = $request->file('image');
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
                 $imagePath = public_path('assets/images/products/' . $imageName);
                 $image->move(public_path('assets/images/products/'), $imageName);
                 $validatedData['image'] = $imageName;
-            
+            }
                 $validatedData['status'] = 0;
                 $validatedData['price'] = $validatedData['price'] ?? 0;
+                if( $request->features  == 'on')
+                    $validatedData['features'] = 0;
+                else
+                    $validatedData['features'] = 1;
     
+                // return $validatedData;
                 $product = product::create($validatedData);
 
                 $product->productsCategory()->attach($request->input('categories_id'));
@@ -78,8 +83,9 @@ class AdminProductController extends Controller
                 }
                 
                 return redirect()->route('admin.product.index')->with('success', 'Product added successfully!');
-            }
+            
         }catch(\Exception $e){
+            return $e;
             return redirect()->route('admin.product.create')->with('error', 'Failed to add product. Please try again.');
         }
     }

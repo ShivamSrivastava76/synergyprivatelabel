@@ -105,15 +105,11 @@ class StaffProductController extends Controller
             'name' => 'required|string|max:255',
             'categories_id' => 'required|exists:categories,id',
             'price' => 'nullable|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|string',
         ], [
             'name.required' => 'The product name is required.',
             'categories_id.required' => 'Please select a category.',
             'categories_id.exists' => 'The selected category does not exist.',
-            'image.image' => 'The uploaded file must be an image.',
-            'image.mimes' => 'Allowed image types are jpeg, png, jpg, gif, svg.',
-            'image.max' => 'The image size should not be greater than 2MB.',
             'description.required' => 'The product description is required.',
         ]);
 
@@ -121,20 +117,20 @@ class StaffProductController extends Controller
             
             $product = product::findOrFail($id);
 
-            if ($request->hasFile('image')) {
-                
-                if ($product->image) {
+            if ($request->hasFile('image')) 
+            {
+                if ($product->image) 
+                {
                     $oldImagePath = public_path('assets/images/products/' . $product->image);
-                    if (file_exists($oldImagePath)) {
+                    if (file_exists($oldImagePath)) 
+                    {
                         unlink($oldImagePath);
                     }
                 }
-
                 $image = $request->file('image');
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
                 $imagePath = public_path('assets/images/products/' . $imageName);
                 $image->move(public_path('assets/images/products/'), $imageName);
-
                 $validatedData['image'] = $imageName;
             }
 

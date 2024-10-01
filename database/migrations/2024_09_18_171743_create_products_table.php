@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->longText('description');
             $table->decimal('price', 10, 2);
-            $table->string('image');
+            $table->string('image')->nullable();
+            $table->tinyInteger('features')->comment("0 => Yes, 1 => No");
             $table->tinyInteger('status')->comment("0 => active, 1 => inactive");
             $table->timestamps();
             $table->softDeletes();

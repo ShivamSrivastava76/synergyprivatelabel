@@ -15,9 +15,7 @@ class UserEnquiryController extends Controller
         //             ->where('status', 0)
         //             ->get();
 
-        $enquiries = enquiry::with(['user']) // Add 'emails' here
-                    ->where('status', 0)
-                    ->get();
+        $enquiries = enquiry::with(['user'])->get();
 
         // Return the view with the enquiries data
         return view('user.enquries.index', compact('enquiries'));

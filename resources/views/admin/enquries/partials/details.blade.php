@@ -105,7 +105,7 @@
                 @endif
             @endforeach
         </div>
-
+        
 
     </div>
     <div class="sender-details">
@@ -125,7 +125,15 @@
                                     <div class="ml-3">
                                         <h6>{!! $remark->remark !!}</h6>
                                         <p class="text-muted" style="margin-bottom:0px; font-size: 0.8125rem;">{{ $remark->created_at->format('Y-m-d') }}</p>
-                                        <p class="mt-1 text-primary font-weight-bold" style="margin-bottom:0px; font-size: 0.8125rem;">{{ $remark->user->first_name ?? 'Unknown User' }} {{ $remark->user->last_name ?? 'Unknown User' }}</p>
+                                        <p class="mt-1 text-primary font-weight-bold" style="margin-bottom:0px; font-size: 0.8125rem;">{{ $remark->user->first_name ?? 'Unknown User' }} {{ $remark->user->last_name ?? 'Unknown User' }} 
+                                            @if($remark->user->role == 0)
+                                                (Admin)
+                                            @elseif($remark->user->role == 1)
+                                                (Staff)
+                                            @elseif($remark->user->role == 2)
+                                                (User)
+                                            @endif
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +174,16 @@
                                     <div class="ml-3">
                                         <h6>{!! $remark->remark !!}</h6>
                                         <p class="text-muted" style="margin-bottom:0px; font-size: 0.8125rem;">{{ $remark->created_at->format('Y-m-d') }}</p>
-                                        <p class="mt-1 text-primary font-weight-bold" style="margin-bottom:0px; font-size: 0.8125rem;">{{ $remark->user->first_name ?? 'Unknown User' }} {{ $remark->user->last_name ?? 'Unknown User' }}</p>
+                                        <p class="mt-1 text-primary font-weight-bold" style="margin-bottom:0px; font-size: 0.8125rem;">{{ $remark->user->first_name ?? 'Unknown User' }} {{ $remark->user->last_name ?? 'Unknown User' }}
+                                            @if($remark->user->role == 0)
+                                                (Admin)
+                                            @elseif($remark->user->role == 1)
+                                                (Staff)
+                                            @elseif($remark->user->role == 2)
+                                                (User)
+                                            @endif
+
+                                        </p>
                                     </div>
                                 </div>
                             </div>

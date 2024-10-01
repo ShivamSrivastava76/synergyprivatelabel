@@ -16,9 +16,15 @@
                                     "asNavFor": ".img-thumb-slider"
                                 }'>
                                     <div class="img-large-wrapper">
-                                        <a href="{{url('assets/images/products'.'/'.$products->image)}}" data-fancybox="gallery">
-                                            <img src="{{url('assets/images/products'.'/'.$products->image)}}" alt="img">
-                                        </a>
+                                        @if($products->image != null ||  $products->image != "")
+                                            <a href="{{url('assets/images/products'.'/'.$products->image)}}" data-fancybox="gallery">
+                                                <img src="{{url('assets/images/products'.'/'.$products->image)}}" alt="img">
+                                            </a>
+                                        @else
+                                            <a href="{{url('asset/img/products/product1.jpg')}}" data-fancybox="gallery">
+                                                <img src="{{url('asset/img/products/product1.jpg')}}" alt="img">
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -179,8 +185,11 @@
                                     <div class="product-card">
                                         <div class="product-card-img">
                                             <a class="hover-switch" href="{{url('product_details/'.$item->id)}}">
-                                                <img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}"
-                                                    alt="product-img">
+                                                @if($item->image != null ||  $item->image != "")
+                                                    <img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}" alt="product-img">
+                                                @else
+                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}" alt="product">
+                                                @endif
                                             </a>
 
                                             <div class="product-card-action product-card-action-2">

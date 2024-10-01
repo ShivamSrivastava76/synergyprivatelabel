@@ -34,12 +34,23 @@
             @forelse($enquiries as $index => $enquiry)
                 <div class="mail-list {{ $index == 0 ? 'active' : '' }}" data-id="{{ $enquiry->id }}">
                     <div class="form-check"> </div>
-                    <div class="content">
-                        <p class="sender-name"><strong>{{ $enquiry->user->first_name }} {{ $enquiry->user->last_name }}</strong></p>
-                        <p class="message_text">{{ $enquiry->user->company }}</p>
+                    <div class="content flex">
+                    <p class="message_text"> <strong> Id: </strong> {{ $enquiry->id }}  </p>
+                    <p class="message_text"> <strong> Name: </strong> {{ $enquiry->user->first_name }} {{ $enquiry->user->last_name }}</p>
+                    <p class="message_text"> <strong> Date & Time:  </strong>   {{ $enquiry->created_at }}   </p>  
+                        <p class="message_text">{{ $enquiry->user->company }}  </p>      
+                        
                     </div>
                     <div class="details">
                         <i class="fa fa-star-o"></i>
+                    </div>
+                    <div class="text-rigth">
+                        <!-- <i class="fa fa-lock"></i> -->
+                        @if($enquiry->status == 0)
+                            <i class="fa fa-unlock" onclick="ipaddresslock('{{$enquiry->ip_address}}')" ></i>
+                        @else
+                            <i class="fa fa-lock" onclick="ipaddressunlock('{{$enquiry->ip_address}}')"></i>
+                        @endif
                     </div>
                 </div>
                 @empty
@@ -115,5 +126,37 @@ $(document).ready(function () {
         });
     });
 });
+function ipaddresslock(ip)
+    {
+        $.ajax({
+            type: 'POST',
+            url: '{{ url("/admin/iplock/") }}',
+            data: {
+                    _token: '{{ csrf_token() }}',
+                    ip: ip,
+                    status: 1
+                },
+            success: function(data) {
+                window.location.reload();
+                }
+            });
+    }
+
+    function ipaddressunlock(ip)
+    {
+        $.ajax({
+            type: 'POST',
+            url: '{{ url("/admin/iplock/") }}',
+            data: {
+                    _token: '{{ csrf_token() }}',
+                    ip: ip,
+                    status: 0
+                },
+            success: function(data) {
+                window.location.reload();
+                }
+            });
+
+    }
 </script>
 @endsection

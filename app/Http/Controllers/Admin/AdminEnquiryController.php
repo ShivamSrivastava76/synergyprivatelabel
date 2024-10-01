@@ -15,9 +15,7 @@ class AdminEnquiryController extends Controller
         //             ->where('status', 0)
         //             ->get();
 
-        $enquiries = enquiry::with(['user']) // Add 'emails' here
-                    ->where('status', 0)
-                    ->get();
+        $enquiries = enquiry::with(['user'])->get();
 
         // Return the view with the enquiries data
         return view('admin.enquries.index', compact('enquiries'));
@@ -34,4 +32,9 @@ class AdminEnquiryController extends Controller
         return view('admin.enquries.partials.details', compact('enquiry'));
     }
 
+    public  function iplock(Request $request)
+    {
+        enquiry::where('ip_address', $request->ip)->update(['status'=> $request->status]);
+
+    }
 }

@@ -102,6 +102,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Enquiry routes
     Route::get('enquiries', [AdminEnquiryController::class, 'index'])->name('enquiries.index');
     Route::get('enquiries/{id}', [AdminEnquiryController::class, 'showEnquiryDetails'])->name('enquiries.details');
+    Route::post('iplock', [AdminEnquiryController::class, 'iplock'])->name('enquiries.iplock');
 
     // Route::get('enquiries/create', [AdminEnquiryController::class, 'create'])->name('enquiries.create');
     // Route::post('enquiries', [AdminEnquiryController::class, 'store'])->name('enquiries.store');
@@ -134,7 +135,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('staff')->name('staff.')->group(function () {
     Route::get('/', [StaffStaffController::class, 'dashboard'])->name('index');
 
-     // Admin Category Routes
+     // Staff Category Routes
      Route::get('/category', [StaffCategoryController::class, 'index'])->name('category.index');
      Route::get('/category/create', [StaffCategoryController::class, 'create'])->name('category.create');
      Route::post('/category', [StaffCategoryController::class, 'store'])->name('category.store');
@@ -145,7 +146,7 @@ Route::prefix('staff')->name('staff.')->group(function () {
      
  
  
-     // Admin Subategory Routes
+     // Staff Subategory Routes
      Route::get('/subcategory', [StaffSubategoryController::class, 'index'])->name('subcategory.index');
      Route::get('/subcategory/create', [StaffSubategoryController::class, 'create'])->name('subcategory.create');
      Route::post('/subcategory', [StaffSubategoryController::class, 'store'])->name('subcategory.store');
@@ -154,7 +155,7 @@ Route::prefix('staff')->name('staff.')->group(function () {
      Route::delete('/subcategory/{id}', [StaffSubategoryController::class, 'destroy'])->name('subcategory.destroy');
      Route::patch('/subcategory/toggle-status', [StaffSubategoryController::class, 'toggleStatus'])->name('subcategory.toggleStatus');
  
-     // Admin Product Routes
+     // Staff Product Routes
      Route::get('/products', [StaffProductController::class, 'index'])->name('product.index');
      Route::get('/products/create', [StaffProductController::class, 'create'])->name('product.create');
      Route::post('/products', [StaffProductController::class, 'store'])->name('product.store');
@@ -180,7 +181,7 @@ Route::prefix('staff')->name('staff.')->group(function () {
      // Mail routes
      Route::post('/mail/store', [StaffEnquiryMailController::class, 'store'])->name('mail.store');
  
-     // Admin staff Routes
+     // Staff Routes
      Route::get('/staffs', [StaffStaffController::class, 'index'])->name('staff.index');
      Route::get('/staffs/create', [StaffStaffController::class, 'create'])->name('staff.create');
      Route::post('/staffs', [StaffStaffController::class, 'store'])->name('staff.store');
@@ -188,7 +189,7 @@ Route::prefix('staff')->name('staff.')->group(function () {
      Route::put('/staffs/{id}', [StaffStaffController::class, 'update'])->name('staff.update');
      Route::delete('/staffs/{id}', [StaffStaffController::class, 'destroy'])->name('staff.destroy');
  
-     // Admin 
+     // Staff 
      Route::get('/contact-enquiries', [StaffContactUsController::class, 'index'])->name('contact-enquiry.index');
      Route::get('/contact-enquiries/{id}/view', [StaffContactUsController::class, 'view'])->name('contact-enquiry.view');
      Route::delete('/contact-enquiries/{id}', [StaffContactUsController::class, 'destroy'])->name('contact-enquiry.destroy');
