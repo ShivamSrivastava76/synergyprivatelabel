@@ -42,15 +42,16 @@ Route::get('/searchproductlist/{key?}', [IndexController::class, 'searchproductl
 Route::get('/contact', [IndexController::class, 'contact']);
 Route::get('/products', [IndexController::class, 'products']);
 Route::get('/sortproduct/{key}', [IndexController::class, 'sortproduct']);
-Route::get('/category/sortproduct/{key}/{id}', [IndexController::class, 'categorysortproduct']);
+Route::get('/subcategory/sortproduct/{key}/{name}', [IndexController::class, 'subcategorysortproduct']);
+Route::get('/category/sortproduct/{key}/{name}', [IndexController::class, 'categorysortproduct']);
 Route::get('/custom_formulations', [IndexController::class, 'custom_formulations']);
 Route::get('/label_design_how_does_it_work', [IndexController::class, 'label_design_how_does_it_work']);
 Route::get('/privacy_policy', [IndexController::class, 'privacy_policy']);
 Route::get('/term_and_conditions', [IndexController::class, 'term_and_conditions']);
-Route::get('/product_details/{id}', [IndexController::class, 'product_details']);
+Route::get('/product_details/{name}', [IndexController::class, 'product_details']);
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
-Route::get('/category/{id}', [IndexController::class, 'category']);
-Route::get('/subcategory/{id}', [IndexController::class, 'subcategory']);
+Route::get('/category/{name}', [IndexController::class, 'category']);
+Route::get('/subcategory/{name}', [IndexController::class, 'subcategory']);
 Route::post('/enquiry', [IndexController::class, 'enquiry']);
 Route::post('/contact_us', [IndexController::class, 'contact_us']);
 

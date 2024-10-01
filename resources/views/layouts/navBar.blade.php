@@ -77,13 +77,13 @@
                                                     <h5> 
                                                         <strong class="text-center">
                                                             <li class="menu-list-item nav-item-sub">
-                                                                <a class="nav-link-sub nav-text-sub" href="{{url('category').'/'.$val->id}}"> {{$val->name}}</a>
+                                                                <a class="nav-link-sub nav-text-sub" href="{{url('category').'/'.$val->name}}"> {{$val->name}}</a>
                                                             </li>   
                                                         </strong> 
                                                     </h5>
                                                     @foreach($val->subcategories as $vals)                                           
                                                         <li class="menu-list-item nav-item-sub">
-                                                            <a class="nav-link-sub nav-text-sub"  href="{{url('subcategory').'/'.$vals->id}}">{{$vals->name}}</a>
+                                                            <a class="nav-link-sub nav-text-sub"  href="{{url('subcategory').'/'.$vals->name}}">{{$vals->name}}</a>
                                                         </li>                                
                                                     @endforeach
                                                 </ul>

@@ -19,7 +19,7 @@
                                     <ul class="footer-menu list-unstyled mb-0 d-md-block">
                                         @if(isset($category) != null && count($category) > 0)
                                             @foreach($category as $val)
-                                                <li class="footer-menu-item"><a href="{{url('category').'/'.$val->id}}">{{$val->name}}</a></li>
+                                                <li class="footer-menu-item"><a href="{{url('category').'/'.$val->name}}">{{$val->name}}</a></li>
                                             @endforeach
                                         @else
                                             <li class="footer-menu-item"><a>Protein Powders</a></li>
@@ -333,17 +333,23 @@
         function addtocart(id) 
         {
             let productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];
-            $('.cartNumber').html('02');
 
             if (!productIds.includes(id)) 
             {
                 productIds.push(id);
                 sessionStorage.setItem('productIds', JSON.stringify(productIds));
                 swal("Product Added", "This product is added to your cart", "success");
-                
             } 
             else
-                swal("Product Already Added", "This product is already in your cart", "success");
+                swal("Product Already Added", "This product is already in your cart", "error");
+                
+            if(productIds.length === 0)
+                $('.cartNumber').hide();
+            else
+            {
+                $('.cartNumber').html(productIds.length);
+                $('.cartNumber').show();
+            }
 
             if(productIds.length === 0)
                 $('.cartNumber').hide();
@@ -357,8 +363,6 @@
                 $('.cartNumber').html(productId);
                 $('.cartNumber').show();
             }
-
-            displayProductIds()
         }
         $(document).ready(function() {
             let productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];
@@ -366,24 +370,29 @@
                 $('.cartNumber').hide();
             else
             {
-                $('.cartNumber').html(productIds.length);
+                if(productIds.length > 0 && productIds.length < 10)
+                    productId = "0"+productIds.length
+                else
+                    productId = productIds.length
+                
+                $('.cartNumber').html(productId);
                 $('.cartNumber').show();
             }
            
         });
     // Function to display all stored product IDs
-    function displayProductIds() {
-        const productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];
+    // function displayProductIds() {
+    //     const productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];
         
-        if (productIds.length > 0) 
-        {
-            // api call
-        } 
-        else 
-        {
-            // value is 0
-        }
-    }
+    //     if (productIds.length > 0) 
+    //     {
+    //         // api call
+    //     } 
+    //     else 
+    //     {
+    //         // value is 0
+    //     }
+    // }
 
     </script>
 </body>

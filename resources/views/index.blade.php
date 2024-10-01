@@ -242,59 +242,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-12 col-12">
-                        <div class="about-hero-content">
-                            <h3 class="">Steps to follow</h3>
-                            <ul class="about-hero-action mt-5 p-0">
-                                <li class="action-item d-flex">
-                                    <div class="action-count">01</div>
-                                    <div class="action-content">
-                                        <h4 class="action-title"><a href="javascript:void(0)">Select a program</a></h4>
-                                        <p class="action-subtitle">Choose from our huge range of products available for private label by selecting the sizes, flavors and quantity of the preferred choice.</p>
-                                    </div>
-                                </li>
-                                <li class="action-item d-flex">
-                                    <div class="action-count">02</div>
-                                    <div class="action-content">
-                                        <h4 class="action-title"><a href="javascript:void(0)">Design your labels (or let us do it for you)</a></h4>
-                                        <p class="action-subtitle">Designing brings lots of dedication when it comes to placing, designing, choosing the
-                                            color and more. Our graphic designers work closely with you to make your custom label
-                                            picture perfect for you. You can either send us your label to use, we provide both
-                                            opportunities.
-                                            </p>
-                                    </div>
-                                </li>
-                                <li class="action-item d-flex">
-                                    <div class="action-count">03</div>
-                                    <div class="action-content">
-                                        <h4 class="action-title"><a href="javascript:void(0)">We manufacture and ship directly to you</a></h4>
-                                        <p class="action-subtitle">After selecting the shape, size, choosing the required logo with brand specific layout.
-                                            We manufacture the products, pack it and ship it directly to you. Our shelf-ready
-                                            products make us the best custom label company.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-12">
-                        <div class="overlay-furniture section-spacing"
-                            style="background: url({{url('/asset/img/vdobgImg.jpg')}}) no-repeat bottom center/cover">
-                            <div class="video-tools d-flex align-items-center justify-content-center">
-                                <div class="video-button-area">
-                                    <a class="video-button" href="#video-modal" data-bs-toggle="modal">
-                                        <svg width="22" height="26" viewBox="0 0 22 26" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M21.5 12.134C22.1667 12.5189 22.1667 13.4811 21.5 13.866L2 25.1244C1.33333 25.5093 0.499999 25.0281 0.499999 24.2583L0.5 1.74167C0.5 0.971867 1.33333 0.490743 2 0.875643L21.5 12.134Z"
-                                                fill="#FEFEFE" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -355,7 +302,7 @@
             <div class="collection-tab-inner">
                 <div class="container">
                     <div class="section-header text-center">
-                        <h2 class="section-heading primary-color">Our Products</h2>
+                        <h2 class="section-heading primary-color">Features Products</h2>
                     </div>
                     @if(isset($product) != null && count($product) > 0)
                         <div class="row">
@@ -563,8 +510,63 @@
             </div>
         </div>
         <!-- video end -->
-        
-        
+        <div class="about-hero mt-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <div class="about-hero-content">
+                            <h3 class="">Steps to follow</h3>
+                            <ul class="about-hero-action mt-5 p-0">
+                                <li class="action-item d-flex">
+                                    <div class="action-count">01</div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"><a href="javascript:void(0)">Select a program</a></h4>
+                                        <p class="action-subtitle">Choose from our huge range of products available for private label by selecting the sizes, flavors and quantity of the preferred choice.</p>
+                                    </div>
+                                </li>
+                                <li class="action-item d-flex">
+                                    <div class="action-count">02</div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"><a href="javascript:void(0)">Design your labels (or let us do it for you)</a></h4>
+                                        <p class="action-subtitle">Designing brings lots of dedication when it comes to placing, designing, choosing the
+                                            color and more. Our graphic designers work closely with you to make your custom label
+                                            picture perfect for you. You can either send us your label to use, we provide both
+                                            opportunities.
+                                            </p>
+                                    </div>
+                                </li>
+                                <li class="action-item d-flex">
+                                    <div class="action-count">03</div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"><a href="javascript:void(0)">We manufacture and ship directly to you</a></h4>
+                                        <p class="action-subtitle">After selecting the shape, size, choosing the required logo with brand specific layout.
+                                            We manufacture the products, pack it and ship it directly to you. Our shelf-ready
+                                            products make us the best custom label company.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <div class="overlay-furniture section-spacing"
+                            style="background: url({{url('/asset/img/vdobgImg.jpg')}}) no-repeat bottom center/cover">
+                            <div class="video-tools d-flex align-items-center justify-content-center">
+                                <div class="video-button-area">
+                                    <a class="video-button" href="#video-modal" data-bs-toggle="modal">
+                                        <svg width="22" height="26" viewBox="0 0 22 26" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M21.5 12.134C22.1667 12.5189 22.1667 13.4811 21.5 13.866L2 25.1244C1.33333 25.5093 0.499999 25.0281 0.499999 24.2583L0.5 1.74167C0.5 0.971867 1.33333 0.490743 2 0.875643L21.5 12.134Z"
+                                                fill="#FEFEFE" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- testimonial start -->
         <div class="testimonial-section mt-100 overflow-hidden home-section">

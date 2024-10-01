@@ -1,10 +1,10 @@
-@if(count($products->products) > 0)
+@if(count($products) > 0)
     <div class="row mb-5">
-        @foreach($products->products as $item)
+        @foreach($products as $item)
                 <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
                     <div class="product-card">
                         <div class="product-card-img">
-                            <a class="hover-switch" href="{{url('product_details/'.$item->id)}}">
+                            <a class="hover-switch" href="{{url('product_details/'.$item->name)}}">
                                 @if($item->image !=  null || $item->image !=  '')
                                     <img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}" alt="product">
                                 @else
@@ -12,12 +12,12 @@
                                 @endif
                             </a>
                             <div class="product-card-action product-card-action-2">
-                                <a href="{{url('product_details/'.$item->id)}}" class="quickview-btn btn-primary">QUICK VIEW</a>
+                                <a href="{{url('product_details/'.$item->name)}}" class="quickview-btn btn-primary">QUICK VIEW</a>
                                 <a class="addtocart-btn btn-primary" onclick="addtocart({{$item->id}})">ADD TO CART</a>
                             </div>
                         </div>
                         <div class="product-card-details">
-                            <h3 class="product-card-title"><a href="{{url('product_details/'.$item->id)}}">{{$item->name}}</a></h3>
+                            <h3 class="product-card-title"><a href="{{url('product_details/'.$item->name)}}">{{$item->name}}</a></h3>
                         </div>
                     </div>
                 </div>

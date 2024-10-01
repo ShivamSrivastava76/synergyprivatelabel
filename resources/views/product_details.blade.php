@@ -184,7 +184,7 @@
                                 <div class="new-item" data-aos="fade-up" data-aos-duration="300">
                                     <div class="product-card">
                                         <div class="product-card-img">
-                                            <a class="hover-switch" href="{{url('product_details/'.$item->id)}}">
+                                            <a class="hover-switch" href="{{url('product_details/'.$item->name)}}">
                                                 @if($item->image != null ||  $item->image != "")
                                                     <img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}" alt="product-img">
                                                 @else
@@ -193,7 +193,7 @@
                                             </a>
 
                                             <div class="product-card-action product-card-action-2">
-                                                <a href="{{url('product_details/'.$item->id)}}" class="quickview-btn btn-primary">QUICKVIEW</a>
+                                                <a href="{{url('product_details/'.$item->name)}}" class="quickview-btn btn-primary">QUICKVIEW</a>
                                                 <a class="addtocart-btn btn-primary" onclick="addtocart({{$item->id}})">ADD TO CART</a>
                                             </div>
                                         </div>

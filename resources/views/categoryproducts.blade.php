@@ -368,11 +368,11 @@
         </div>
     </main>
 <script>
-    function sortproduct(key)
+    function sortproduct(key) 
     {
-         var productId = {{ $products->id }}
+        var productId = "{{ $name }}"; // Assuming $name is a product identifier
         $.ajax({
-            url: "sortproduct/"+key+'/'+{{ $products->id }},
+            url: "sortproduct/" + key + "/" + encodeURIComponent(productId),
             method: 'GET',
             success: function(data) {
                 $('#sortproductlist').html(data);

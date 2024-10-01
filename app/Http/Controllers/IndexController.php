@@ -17,7 +17,6 @@ use Carbon\Carbon;
 
 class IndexController extends Controller
 {
-    public $category;
 
     public function __construct() 
     {
@@ -129,7 +128,8 @@ class IndexController extends Controller
         
         return view('product', compact('product'));
     }
-    public function categorysortproduct($key, $id)
+
+    public function categorysortproduct($key, $name)
     {
         $sortBy = 'updated_at';
         $sortDirection = 'asc';
@@ -161,7 +161,44 @@ class IndexController extends Controller
                 break;
         }
         
-        $products = category::with('products')->where('status',0)->find($id);
+        return $products = category::with('products')->where('status',0)->where('name',$name)->get();
+        
+        return view('categorysortproduct', compact('products'));
+    }
+
+    public function subcategorysortproduct($key, $name)
+    {
+        $sortBy = 'updated_at';
+        $sortDirection = 'asc';
+
+        switch ($key) {
+            case 'asc':
+                $sortBy = 'name';
+                $sortDirection = 'asc';
+                break;
+            case 'desc':
+                $sortBy = 'name';
+                $sortDirection = 'desc';
+                break;
+            case 'low':
+                $sortBy = 'price';
+                $sortDirection = 'asc';
+                break;
+            case 'high':
+                $sortBy = 'price';
+                $sortDirection = 'desc';
+                break;
+            case 'old':
+                $sortBy = 'updated_at';
+                $sortDirection = 'asc';
+                break;
+            case 'new':
+                $sortBy = 'updated_at';
+                $sortDirection = 'desc';
+                break;
+        }
+        
+        $products = Subcategory::with('products')->where('status',0)->where('name',$name)->get();
         
         return view('categorysortproduct', compact('products'));
     }
@@ -194,36 +231,36 @@ class IndexController extends Controller
         return view('term_and_conditions', compact('category', 'categories'));
     }
 
-    public function product_details($id): View
+    public function product_details($name): View
     {
         $category = $this->category;
         $categories = $this->categories;
-         $products = Product::where('status',0)->find($id);
+         $products = Product::where('status',0)->where('name',$name)->first();
 
          $subcategories = Subcategory::with('products')->get();
 
-        $variation = variation::where('products_id', $id)->get();
+        $variation = variation::where('products_id', $products->id)->get();
 
 
         return view('product_details', compact('products', 'variation' , 'category', 'subcategories', 'categories'));
     }
 
-    public function category($id): View
+    public function category($name): View
     {
         $category = $this->category;
         $categories = $this->categories;
-        $products = category::with('products')->where('status',0)->find($id);
+        $products = category::with('products')->where('status',0)->where('name',$name)->get();
 
-        return view('categoryproducts', compact('products', 'category', 'categories'));
+        return view('categoryproducts', compact('products', 'category', 'categories', 'name'));
     }
 
-    public function subcategory($id): View
+    public function subcategory($name): View
     {
         $category = $this->category;
         $categories = $this->categories;
-        $products = Subcategory::with('products')->where('status',0)->find($id);
+        $products = Subcategory::with('products')->where('status',0)->where('name',$name)->get();
 
-        return view('subcategoryproducts', compact('products', 'category', 'categories'));
+        return view('subcategoryproducts', compact('products', 'category', 'categories', 'name'));
     }
 
     public function enquiry(Request $request)
