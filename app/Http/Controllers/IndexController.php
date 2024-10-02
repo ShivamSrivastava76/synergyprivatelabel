@@ -266,6 +266,7 @@ class IndexController extends Controller
 
     public function enquiry(Request $request)
     {
+        unset($_COOKIE['productIds']);
         $count = User::where('email', $request->email);
 
         if($count->count() === 0)
@@ -275,6 +276,7 @@ class IndexController extends Controller
             $user->last_name = $request->last_name;
             $user->email = $request->email;
             $user->phone = $request->phone;
+            $user->company = $request->company ?? null;
             $user->role = 2;
             $user->save();
         }
@@ -296,10 +298,11 @@ class IndexController extends Controller
         if($ipCount > 0)
             return redirect()->back()->with('error', 'You IP Address Blocked By Admin Please contact to Admin!');
         
-        $count = enquiry::where('ip_address', $ip)->where('created_at', '>=', Carbon::today()->subDay())->where('created_at', '<', Carbon::now())->count();
+         $count = enquiry::where('ip_address', $ip)->where('created_at', '>=', Carbon::today()->subDay())->where('created_at', '<', Carbon::now())->count();
 
         if($count <= 10)
         {
+
             $enquiry = new enquiry();
             $enquiry->user_id = $user->id;
             $enquiry->ip_address =  $ip;
@@ -345,7 +348,21 @@ class IndexController extends Controller
         $contactus->save();
     
         return redirect()->back()->with('success', 'Your message has been sent successfully!');
+    }
 
-       
+    public function checkout()
+    {
+        $category = $this->category;
+        $categories = $this->categories;
+        if (isset($_COOKIE['productIds'])) {
+            $productIds = json_decode($_COOKIE['productIds']);
+            $products = Product::where('status',0)->whereIn('id',$productIds)->get();
+
+            return view('checkout', compact('products', 'category', 'categories', 'productIds'));
+
+
+        } else {
+            echo "No product IDs received";
+        }
     }
 }

@@ -54,6 +54,7 @@ Route::get('/category/{name}', [IndexController::class, 'category']);
 Route::get('/subcategory/{name}', [IndexController::class, 'subcategory']);
 Route::post('/enquiry', [IndexController::class, 'enquiry']);
 Route::post('/contact_us', [IndexController::class, 'contact_us']);
+Route::get('/checkout', [IndexController::class, 'checkout']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -329,72 +329,62 @@
         <script src="{{url('asset/js/main.js')}}"></script>
     </div>
     <script>
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Convert days to milliseconds
+            expires = "; expires=" + date.toUTCString(); // Set expiration date
+        }
+        document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/"; // Set cookie
+    }
 
-        function addtocart(id) 
-        {
-            let productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];
-
-            if (!productIds.includes(id)) 
-            {
-                productIds.push(id);
-                sessionStorage.setItem('productIds', JSON.stringify(productIds));
-                swal("Product Added", "This product is added to your cart", "success");
-            } 
-            else
-                swal("Product Already Added", "This product is already in your cart", "error");
-                
-            if(productIds.length === 0)
-                $('.cartNumber').hide();
-            else
-            {
-                $('.cartNumber').html(productIds.length);
-                $('.cartNumber').show();
-            }
-
-            if(productIds.length === 0)
-                $('.cartNumber').hide();
-            else
-            {
-                if(productIds.length > 0 && productIds.length < 10)
-                    productId = "0"+productIds.length
-                else
-                    productId = productIds.length
-                
-                $('.cartNumber').html(productId);
-                $('.cartNumber').show();
+    // Function to get a cookie by name
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const cookiesArr = document.cookie.split(';');
+        for (let i = 0; i < cookiesArr.length; i++) {
+            let cookie = cookiesArr[i].trim();
+            if (cookie.indexOf(nameEQ) === 0) {
+                return JSON.parse(decodeURIComponent(cookie.substring(nameEQ.length))); // Return parsed array
             }
         }
-        $(document).ready(function() {
-            let productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];
-            if(productIds.length === 0)
-                $('.cartNumber').hide();
-            else
-            {
-                if(productIds.length > 0 && productIds.length < 10)
-                    productId = "0"+productIds.length
-                else
-                    productId = productIds.length
-                
-                $('.cartNumber').html(productId);
-                $('.cartNumber').show();
-            }
-           
-        });
-    // Function to display all stored product IDs
-    // function displayProductIds() {
-    //     const productIds = JSON.parse(sessionStorage.getItem('productIds')) || [];
-        
-    //     if (productIds.length > 0) 
-    //     {
-    //         // api call
-    //     } 
-    //     else 
-    //     {
-    //         // value is 0
-    //     }
-    // }
+        return []; // Return empty array if cookie not found
+    }
 
-    </script>
+    // Function to update cart number
+    function updateCartNumber(productIds) {
+        if (productIds.length === 0) {
+            $('.cartNumber').hide();
+        } else {
+            let productId = (productIds.length < 10) ? "0" + productIds.length : productIds.length;
+            $('.cartNumber').html(productId);
+            $('.cartNumber').show();
+        }
+    }
+
+    // Function to add product to cart
+    function addtocart(id) {
+        let productIds = getCookie('productIds') || []; // Retrieve productIds from cookie
+
+        if (!productIds.includes(id)) {
+            productIds.push(id);
+            setCookie('productIds', JSON.stringify(productIds), 7); // Save in cookie, 7 days expiry
+            swal("Product Added", "This product is added to your cart", "success");
+        } else {
+            swal("Product Already Added", "This product is already in your cart", "error");
+        }
+
+        updateCartNumber(productIds); // Update cart display
+    }
+
+    // On document ready, initialize cart display based on stored cookie
+    $(document).ready(function() {
+        let productIds = getCookie('productIds') || []; // Retrieve productIds from cookie
+        updateCartNumber(productIds); // Update cart number
+    });
+</script>
 </body>
 
 </html>
