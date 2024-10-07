@@ -50,7 +50,7 @@ Route::get('/custom-formulations', [IndexController::class, 'custom_formulations
 Route::get('/label-design-how-does-it-work', [IndexController::class, 'label_design_how_does_it_work']);
 Route::get('/privacy-policy', [IndexController::class, 'privacy_policy']);
 Route::get('/term-and-conditions', [IndexController::class, 'term_and_conditions']);
-Route::get('/product-details/{name}', [IndexController::class, 'product_details']);
+Route::get('/product_details/{name}', [IndexController::class, 'product_details']);
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 Route::get('/collection/{name}', [IndexController::class, 'category']);
 Route::get('/collections/{name}', [IndexController::class, 'subcategory']);
