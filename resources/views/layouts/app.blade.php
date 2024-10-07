@@ -34,9 +34,9 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">
-                            <div class="announcement-text-wrapper d-flex align-items-center justify-content-center">
-                                <p class="announcement-text text-white">New year sale - 30% off</p>
-                            </div>
+                            <!--<div class="announcement-text-wrapper d-flex align-items-center justify-content-center">-->
+                            <!--    <p class="announcement-text text-white">New year sale - 30% off</p>-->
+                            <!--</div>-->
                         </div>
                         <div class="col-lg-3 d-lg-block d-none">
                             <div class="announcement-meta-wrapper d-flex align-items-center justify-content-end">

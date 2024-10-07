@@ -36,7 +36,8 @@
   --body-color: #000;
   --body-background-color: #fff;
   --body-font-family: "Roboto", sans-serif;
-  --body-font-size: 14px;
+  /*--body-font-size: 14px;*/
+  --body-font-size: 16px;
   --body-font-weight: 400;
 
   --section-heading-color: #000;
@@ -46,7 +47,8 @@
 
   --section-subheading-color: #000;
   --section-subheading-font-family: "Roboto", sans-serif;
-  --section-subheading-font-size: 16px;
+  /*--section-subheading-font-size: 16px;*/
+  --section-subheading-font-size: 18px;
   --section-subheading-font-weight: 400;
 }
 
@@ -2376,6 +2378,7 @@ blockquote {
 
 .variant-label {
   margin-left: 8px;
+  margin-bottom:8px;
   cursor: pointer; }
 
 .product-variant-color .variant-list {
@@ -3106,7 +3109,8 @@ blockquote {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
   border: 1px solid #FFAE00 !important;
-  min-width: 140px;
+  /*min-width: 140px;*/
+   min-width: 80px;
   margin-left: 20px; }
 
 .checkout-user-area {
@@ -4067,7 +4071,9 @@ blockquote {
     margin-top: 12px; }
   .edit-user {
     margin-left: 0;
-    margin-top: 20px; }
+    /*margin-top: 20px; */
+      
+  }
   .checkout-user-details {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
@@ -4279,4 +4285,64 @@ blockquote {
       /* width: auto; */
       min-width: 500px;
   }
+}
+
+/* Search CSS*/
+@media screen and (max-width: 475px) {
+  .h-search-form{
+      padding:10px;
+  }
+}
+#search {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#myUL {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0px 0px 4px #cfcfcf;
+    max-height: 380px;
+    overflow: auto;
+}
+
+#myUL li a {
+    border: 1px solid #ddd;
+    margin-top: -1px;
+    /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    display: block;
+    text-align: left;
+}
+
+#myUL li a.header {
+    /*background-color: #e2e2e2;*/
+    cursor: pointer;
+}
+
+#myUL li a:hover:not(.header) {
+    background-color: #eee;
+}
+
+#myUL li a img {
+    width: 40px;
+    margin-right: 10px;
+}
+.whatWeImg1 {
+    /*padding: 4px;*/
+    padding: 17px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom:10px;
 }

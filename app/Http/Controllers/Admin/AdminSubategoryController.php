@@ -38,6 +38,7 @@ class AdminSubategoryController extends Controller
             $subcategory->categories_id = $validatedData['categories_id'];
             $subcategory->description = $request['description'];
             $subcategory->status = 0;
+            $subcategory->in_group = 1;
             $subcategory->save();
         
             return redirect()->route('admin.subcategory.index')->with('success', 'Subcategory added successfully!');
@@ -95,6 +96,19 @@ class AdminSubategoryController extends Controller
         try {
             $subcategory = Subcategory::findOrFail($request->id);
             $subcategory->status = $request->status;
+            $subcategory->save();
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to update status.']);
+        }
+    }
+    public function toggleStatusGroup(Request $request)
+    {
+        // echo $request->group;
+        try {
+            $subcategory = Subcategory::findOrFail($request->id);
+            $subcategory->in_group = $request->group;
             $subcategory->save();
 
             return response()->json(['success' => true]);

@@ -16,7 +16,7 @@
                             <ul class="main-menu list-unstyled justify-content-center">
                                 <li class="menu-list-item nav-item has-megamenu">
                                     <div class="mega-menu-header">
-                                        <a class="nav-link" href="{{url('label_design_how_does_it_work')}}">How does it work</a>
+                                        <a class="nav-link" href="{{url('label-design-how-does-it-work')}}">How does it work</a>
                                     </div>
                                 </li>
                                 <li class="menu-list-item nav-item has-dropdown">
@@ -35,17 +35,17 @@
                                     </div>
                                     <div class="submenu-transform submenu-transform-desktop">
                                         <ul class="submenu list-unstyled">                                                
+                                            <!--<li class="menu-list-item nav-item-sub">-->
+                                            <!--    <a class="nav-link-sub nav-text-sub" href="{{url('about-us')}}">About Us</a>-->
+                                            <!--</li>              -->
                                             <li class="menu-list-item nav-item-sub">
-                                                <a class="nav-link-sub nav-text-sub" href="{{url('about_us')}}">About Us</a>
-                                            </li>              
-                                            <li class="menu-list-item nav-item-sub">
-                                                <a class="nav-link-sub nav-text-sub" href="{{url('what_we_do')}}">What we do</a>
+                                                <a class="nav-link-sub nav-text-sub" href="{{url('what-we-do')}}">What we do</a>
                                             </li>                                 
                                             <li class="menu-list-item nav-item-sub">
                                                 <a class="nav-link-sub nav-text-sub" href="{{url('faq')}}">FAQ</a>
                                             </li>
                                             <li class="menu-list-item nav-item-sub">
-                                                <a class="nav-link-sub nav-text-sub" href="{{url('our_team')}}">Our Team</a>
+                                                <a class="nav-link-sub nav-text-sub" href="{{url('our-team')}}">Our Team</a>
                                             </li>
                                             <li class="menu-list-item nav-item-sub">
                                                 <a class="nav-link-sub nav-text-sub" href="{{url('search')}}">Search</a>
@@ -72,22 +72,24 @@
                                     </div>
                                     <div class="submenu-transform-product submenu-transform-desktop">
                                         <div class="d-flex p-2">
+                                            @if(isset($categories) && count($categories)>0)
                                             @foreach($categories as $val)
                                                 <ul class="submenu list-unstyled">   
                                                     <h5> 
                                                         <strong class="text-center">
                                                             <li class="menu-list-item nav-item-sub">
-                                                                <a class="nav-link-sub nav-text-sub" href="{{url('category').'/'.$val->name}}"> <strong> {{$val->name}} </strong></a>
+                                                                <a class="nav-link-sub nav-text-sub" href="{{url('collection').'/'.$val->name}}"> <strong> {{$val->name}} </strong></a>
                                                             </li>   
                                                         </strong> 
                                                     </h5>
                                                     @foreach($val->subcategories as $vals)                                           
                                                         <li class="menu-list-item nav-item-sub">
-                                                            <a class="nav-link-sub nav-text-sub"  href="{{url('subcategory').'/'.$vals->name}}">{{$vals->name}}</a>
+                                                            <a class="nav-link-sub nav-text-sub"  href="{{url('collections').'/'.$vals->name}}">{{$vals->name}}</a>
                                                         </li>                                
                                                     @endforeach
                                                 </ul>
                                             @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </li>
@@ -100,7 +102,7 @@
                                 </li> -->
                                 <li class="menu-list-item nav-item has-dropdown">
                                     <div class="mega-menu-header">
-                                        <a class="nav-link" href="{{url('custom_formulations')}}">
+                                        <a class="nav-link" href="{{url('custom-formulations')}}">
                                             Custom Formulations
                                         </a>
                                     </div>
@@ -127,15 +129,22 @@
                                         fill="black" />
                                 </svg>
                             </a> -->
-                            <a class="header-action-item header-cart ms-4" href="#drawer-cart" data-bs-toggle="offcanvas">
-                                <svg class="icon icon-cart" width="24" height="26" viewBox="0 0 24 26" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12 0.000183105C9.25391 0.000183105 7 2.25409 7 5.00018V6.00018H2.0625L2 6.93768L1 24.9377L0.9375 26.0002H23.0625L23 24.9377L22 6.93768L21.9375 6.00018H17V5.00018C17 2.25409 14.7461 0.000183105 12 0.000183105ZM12 2.00018C13.6562 2.00018 15 3.34393 15 5.00018V6.00018H9V5.00018C9 3.34393 10.3438 2.00018 12 2.00018ZM3.9375 8.00018H7V11.0002H9V8.00018H15V11.0002H17V8.00018H20.0625L20.9375 24.0002H3.0625L3.9375 8.00018Z"
-                                        fill="black" />
+                            <!--<a class="header-action-item header-cart ms-4" href="{{url('checkout')}}" data-bs-toggle="offcanvas">-->
+                            <!--    <svg class="icon icon-cart" width="24" height="26" viewBox="0 0 24 26" fill="none"-->
+                            <!--        xmlns="http://www.w3.org/2000/svg">-->
+                            <!--        <path-->
+                            <!--            d="M12 0.000183105C9.25391 0.000183105 7 2.25409 7 5.00018V6.00018H2.0625L2 6.93768L1 24.9377L0.9375 26.0002H23.0625L23 24.9377L22 6.93768L21.9375 6.00018H17V5.00018C17 2.25409 14.7461 0.000183105 12 0.000183105ZM12 2.00018C13.6562 2.00018 15 3.34393 15 5.00018V6.00018H9V5.00018C9 3.34393 10.3438 2.00018 12 2.00018ZM3.9375 8.00018H7V11.0002H9V8.00018H15V11.0002H17V8.00018H20.0625L20.9375 24.0002H3.0625L3.9375 8.00018Z"-->
+                            <!--            fill="black" />-->
+                            <!--    </svg>-->
+                            <!--    <span class="cartNumber">01</span>-->
+                            <!--</a>-->
+                            <a class="header-action-item header-cart ms-4" href="{{ url('checkout') }}">
+                                <svg class="icon icon-cart" width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 0.000183105C9.25391 0.000183105 7 2.25409 7 5.00018V6.00018H2.0625L2 6.93768L1 24.9377L0.9375 26.0002H23.0625L23 24.9377L22 6.93768L21.9375 6.00018H17V5.00018C17 2.25409 14.7461 0.000183105 12 0.000183105ZM12 2.00018C13.6562 2.00018 15 3.34393 15 5.00018V6.00018H9V5.00018C9 3.34393 10.3438 2.00018 12 2.00018ZM3.9375 8.00018H7V11.0002H9V8.00018H15V11.0002H17V8.00018H20.0625L20.9375 24.0002H3.0625L3.9375 8.00018Z" fill="black" />
                                 </svg>
                                 <span class="cartNumber">01</span>
                             </a>
+
                             <a class="header-action-item header-hamburger ms-4 d-lg-none" href="#drawer-menu"
                                 data-bs-toggle="offcanvas">
                                 <svg class="icon icon-hamburger" xmlns="http://www.w3.org/2000/svg" width="24"

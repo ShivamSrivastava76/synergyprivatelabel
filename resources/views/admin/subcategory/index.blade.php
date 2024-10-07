@@ -58,6 +58,7 @@
                                 <th>Sr. No.</th>
                                 <th>Title</th>
                                 <th>Status</th>
+                                <th>Add in group</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -68,7 +69,13 @@
                                     <td>{{ $val->name }}</td> <!-- Display the category title -->
                                     <td>
                                         <label class="switch">
-                                            <input type="checkbox" class="toggle-status" data-id="{{ $val->id }}" {{ $val->status ? 'checked' : '' }}>
+                                            <input type="checkbox" class="toggle-status" data-id="{{ $val->id }}" {{ !$val->status ? 'checked' : '' }}>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="switch">
+                                            <input type="checkbox" class="toggle-status_group" data-id="{{ $val->id }}" {{ !$val->in_group ? 'checked' : '' }}>
                                             <span class="slider round"></span>
                                         </label>
                                     </td>
@@ -108,6 +115,42 @@
                     _token: '{{ csrf_token() }}',
                     id: categoryId,
                     status: status
+                },
+                success: function(response) {
+                    if(response.success) {
+                        $('#status_success').fadeIn();
+                        setTimeout(function() {
+                            $('#status_success').fadeOut(); // Hide the alert with fade-out effect
+                        }, 3000);
+                    } else {
+                        $('#status_error').fadeIn();
+                        setTimeout(function() {
+                            $('#status_error').fadeOut(); // Hide the alert with fade-out effect
+                        }, 3000);
+                    }
+                },
+                error: function(error) {
+                    $('#status_error').fadeIn();
+                    setTimeout(function() {
+                        $('#status_error').fadeOut(); // Hide the alert with fade-out effect
+                    }, 3000);
+                }
+            });
+        });
+        
+        // group Change
+        $('.toggle-status_group').change(function() {
+            
+            var group = $(this).prop('checked') ? 0 : 1;
+            var categoryId = $(this).data('id');
+            
+            $.ajax({
+                type: 'PATCH',
+                url: '{{ route("admin.subcategory.toggleStatusGroup") }}', // Correct route name
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: categoryId,
+                    group: group
                 },
                 success: function(response) {
                     if(response.success) {

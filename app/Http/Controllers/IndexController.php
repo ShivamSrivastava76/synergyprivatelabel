@@ -24,6 +24,7 @@ class IndexController extends Controller
 
         $this->categories = category::with('subcategories')->get();
         
+        
     }
 
     public function index()
@@ -31,8 +32,9 @@ class IndexController extends Controller
         $product = product::orderBy('updated_at', 'desc')->where('features',0)->where('status',0)->take(10)->get();
         $category = $this->category;
         $categories = $this->categories;
+        $group_categories = Subcategory::where('status',0)->where('in_group',0)->limit(3)->get();
         
-        return view('index', compact('product', 'category', 'categories'));
+        return view('index', compact('product', 'category', 'categories','group_categories'));
     }
 
     public function about_us(): View
@@ -70,11 +72,22 @@ class IndexController extends Controller
         return view('search', compact('category', 'categories'));
     }
 
-    public function searchproductlist($key= null): View
-    {
-        $product = Product::orderBy('updated_at', 'desc')->where('status',0)->where('name', 'like', '%'.$key.'%')->get();
+    // public function searchproductlist($key= null): View
+    // {
+    //     $product = Product::orderBy('updated_at', 'desc')->where('status',0)->where('name', 'like', '%'.$key.'%')->get();
 
-        return view('product', compact('product'));
+    //     return view('product', compact('product'));
+    // }
+    public function searchproductlist(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Fetch matching products based on the search query
+        $products = Product::where('name', 'like', "%{$query}%")
+                        // ->orWhere('description', 'like', "%{$query}%")
+                        ->get();
+    
+        return view('search-results', compact('products'));
     }
 
     public function contact(): View
@@ -266,7 +279,10 @@ class IndexController extends Controller
 
     public function enquiry(Request $request)
     {
+        // unset($_COOKIE['productIds']);
+        setcookie('productIds', '', time() - 3600, '/');
         unset($_COOKIE['productIds']);
+        
         $count = User::where('email', $request->email);
 
         if($count->count() === 0)
@@ -338,6 +354,34 @@ class IndexController extends Controller
 
     public function contact_us(Request $request)
     {
+        // Define validation rules
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'subject' => 'required|string|max:255',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'description' => 'required|string|min:10|max:1000',
+        ];
+
+        // Define custom messages
+        $messages = [
+            'name.required' => 'The full name is required.',
+            'name.string' => 'The full name must be a valid string.',
+            'name.max' => 'The full name cannot be longer than 255 characters.',
+            'email.required' => 'The email address is required.',
+            'email.email' => 'Please provide a valid email address.',
+            'subject.required' => 'Please enter a subject.',
+            'subject.string' => 'The subject must be a valid string.',
+            'subject.max' => 'The subject cannot be longer than 255 characters.',
+            'phone.required' => 'Please provide a phone number.',
+            'phone.regex' => 'The phone number format is invalid.',
+            'phone.min' => 'The phone number must be at least 10 digits.',
+            'description.required' => 'Please write your message.',
+            'description.max' => 'Your message cannot exceed 1000 characters.',
+        ];
+
+        // Validate the request with custom messages
+        $validatedData = $request->validate($rules, $messages);
         $contactus = new contactUs();
         $contactus->name = $request->name;
         $contactus->email = $request->email;
@@ -362,7 +406,9 @@ class IndexController extends Controller
 
 
         } else {
-            echo "No product IDs received";
+            // echo "No product IDs received";
+            $message = "No product in your cart";
+            return view('checkout', compact('category', 'categories', 'message'));
         }
     }
 }

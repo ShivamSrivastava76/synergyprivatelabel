@@ -30,8 +30,8 @@
                         <div class="detailsCont">
                             <h3 class="text-center">Our Team</h3>
                             <h4>Our Team</h4>
-                            <h5>Mannet (CEO, Moxxpahrma) </h5>
-                            <p>Moxxpharma is a team of highly experienced people in the nutrition and pharmaceutical industry. The company is led by Mr. Mannet, the visionary CEO of Moxxpharma. His extensive experience in the pharmaceutical innovation and nutrition industry combined with dedication makes us the best in the field, and makes us stand above all the competitors. When you choose to partner with Moxxpharma for your products or brand needs, you choose a world-class manufacturing brand partner to make you and your products as successful as possible by helping you out from scratch with license, govt approvals to boost sales and create a brand identity. </p>
+                            <h5>Manjeet (CEO, Moxxpahrma) </h5>
+                            <p>Moxxpharma is a team of highly experienced people in the nutrition and pharmaceutical industry. The company is led by Mr. Manjeet, the visionary CEO of Moxxpharma. His extensive experience in the pharmaceutical innovation and nutrition industry combined with dedication makes us the best in the field, and makes us stand above all the competitors. When you choose to partner with Moxxpharma for your products or brand needs, you choose a world-class manufacturing brand partner to make you and your products as successful as possible by helping you out from scratch with license, govt approvals to boost sales and create a brand identity. </p>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-12">
                                         <div class="team-item">
-                                            <img src="{{url('asset/img/team/1.jpg')}}" alt="img">
+                                            <img src="{{url('asset/img/team/10.jpg')}}" alt="img" style="heigth:1000px">
                                             <div class="member-absolute">
                                                 <div class="member-details text-center">
                                                     <h4 class="member-name">Javena Melo</h4>
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-12">
                                         <div class="team-item">
-                                            <img src="{{url('asset/img/team/2.jpg')}}" alt="img">
+                                            <img src="{{url('asset/img/team/20.jpg')}}" alt="img" style="heigth:1000px">
                                             <div class="member-absolute">
                                                 <div class="member-details text-center">
                                                     <h4 class="member-name">Paul Honson</h4>
@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-12">
                                         <div class="team-item">
-                                            <img src="{{url('asset/img/team/3.jpg')}}" alt="img">
+                                            <img src="{{url('asset/img/team/30.jpg')}}" alt="img" style="heigth:1000px">
                                             <div class="member-absolute">
                                                 <div class="member-details text-center">
                                                     <h4 class="member-name">Devon Lane</h4>
@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-12">
                                         <div class="team-item">
-                                            <img src="{{url('asset/img/team/4.jpg')}}" alt="img">
+                                            <img src="{{url('asset/img/team/40.jpg')}}" alt="img" style="heigth:1000px">
                                             <div class="member-absolute">
                                                 <div class="member-details text-center">
                                                     <h4 class="member-name">Jalen Davies</h4>
@@ -88,7 +88,7 @@
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-12">
                                         <div class="team-item">
-                                            <img src="{{url('asset/img/team/5.jpg')}}" alt="img">
+                                            <img src="{{url('asset/img/team/50.jpg')}}" alt="img" style="heigth:1000px">
                                             <div class="member-absolute">
                                                 <div class="member-details text-center">
                                                     <h4 class="member-name">Kylee Danford</h4>
@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-12">
                                         <div class="team-item">
-                                            <img src="{{url('asset/img/team/6.jpg')}}" alt="img">
+                                            <img src="{{url('asset/img/team/60.jpg')}}" alt="img" style="heigth:1000px">
                                             <div class="member-absolute">
                                                 <div class="member-details text-center">
                                                     <h4 class="member-name">Luisa Wilson</h4>

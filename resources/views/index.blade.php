@@ -240,61 +240,177 @@
                                 businesses, ensuring they have everything needed for success.
                             </p>
                         </div>
+                        
+                        
+                        
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <div class="about-hero-content">
+                            <h3 class="">Steps to follow</h3>
+                            <ul class="about-hero-action mt-5 p-0">
+                                <li class="action-item d-flex">
+                                    <div class="action-count">01</div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"><a href="javascript:void(0)">Select a program</a></h4>
+                                        <p class="action-subtitle">Choose from our huge range of products available for private label by selecting the sizes, flavors and quantity of the preferred choice.</p>
+                                    </div>
+                                </li>
+                                <li class="action-item d-flex">
+                                    <div class="action-count">02</div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"><a href="javascript:void(0)">Design your labels (or let us do it for you)</a></h4>
+                                        <p class="action-subtitle">Designing brings lots of dedication when it comes to placing, designing, choosing the
+                                            color and more. Our graphic designers work closely with you to make your custom label
+                                            picture perfect for you. You can either send us your label to use, we provide both
+                                            opportunities.
+                                            </p>
+                                    </div>
+                                </li>
+                                <li class="action-item d-flex">
+                                    <div class="action-count">03</div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"><a href="javascript:void(0)">We manufacture and ship directly to you</a></h4>
+                                        <p class="action-subtitle">After selecting the shape, size, choosing the required logo with brand specific layout.
+                                            We manufacture the products, pack it and ship it directly to you. Our shelf-ready
+                                            products make us the best custom label company.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <div class="overlay-furniture section-spacing"
+                            style="background: url({{url('/asset/img/vdobgImg.jpg')}}) no-repeat bottom center/cover">
+                            <div class="video-tools d-flex align-items-center justify-content-center">
+                                <div class="video-button-area">
+                                    <a class="video-button" href="#video-modal" data-bs-toggle="modal">
+                                        <svg width="22" height="26" viewBox="0 0 22 26" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M21.5 12.134C22.1667 12.5189 22.1667 13.4811 21.5 13.866L2 25.1244C1.33333 25.5093 0.499999 25.0281 0.499999 24.2583L0.5 1.74167C0.5 0.971867 1.33333 0.490743 2 0.875643L21.5 12.134Z"
+                                                fill="#FEFEFE" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
             </div>
         </div>
+       
+        
+        
 
         <!-- banner start -->
-        <div class="grid-banner mt-100 overflow-hidden">
+        @if(isset($group_categories) && count($group_categories) > 0)
+            <div class="grid-banner mt-100 overflow-hidden">
             <div class="collection-tab-inner mt-0">
                 <div class="container">
                     <div class="grid-container-2">
-                        <a class="grid-item grid-item-1 position-relative rounded mt-0 d-flex" href="{{url('products')}}" data-aos="fade-right" data-aos-duration="700">
-                            <img class="banner-img rounded" src="{{url('asset/img/banner/f1.webp')}}" alt="banner-1">
-                            <div class="content-absolute content-slide">
-                                <div class="container height-inherit d-flex">
-                                    <div class="content-box banner-content p-4">
-                                        <span class="text_12 mt-4 link-underline d-block primary-color">
-                                            VIEW MORE
-                                        </span>
+                        @foreach($group_categories as $key => $group_category)
+                            @if($key == 0 )
+                                <a class="grid-item grid-item-1 position-relative rounded mt-0 d-flex" href="{{ url('/subcategory/' . $group_category->name) }}" data-aos="fade-right" data-aos-duration="700">
+                                    <img class="banner-img rounded" src="{{url('asset/img/banner/f1.webp')}}" alt="banner-1">
+                                    <div class="content-absolute content-slide">
+                                        <div class="container height-inherit d-flex">
+                                            <div class="content-box banner-content p-4">
+                                                <!--<h2 class="heading_34 primary-color">Lprotein powder <br>collection </h2>-->
+                                                <span class="text_12 mt-4 link-underline d-block primary-color">
+                                                    VIEW MORE
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="grid-item grid-item-2 position-relative rounded mt-0 d-flex" href="{{url('products')}}"
+                                </a>
+                            @endif
+                            @if($key == 1 )
+                            <a class="grid-item grid-item-2 position-relative rounded mt-0 d-flex" href="{{ url('/subcategory/' . $group_category->name) }}"
                             data-aos="fade-right" data-aos-duration="700">
-                            <img class="banner-img rounded" src="{{url('asset/img/banner/f3.webp')}}" alt="banner-1">
-                            <div class="content-absolute content-slide">
-                                <div class="container height-inherit d-flex">
-                                    <div class="content-box banner-content p-4">
-
-                                        <span class="text_12 mt-4 link-underline d-block primary-color">
-                                            VIEW MORE
-                                        </span>
+                                <img class="banner-img rounded" src="{{url('asset/img/banner/f3.webp')}}" alt="banner-1">
+                                <div class="content-absolute content-slide">
+                                    <div class="container height-inherit d-flex">
+                                        <div class="content-box banner-content p-4">
+                                            <!--<h2 class="heading_34 primary-color">Lprotein powder <br>collection </h2>-->
+                                            <span class="text_12 mt-4 link-underline d-block primary-color">
+                                                VIEW MORE
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a class="grid-item grid-item-3 position-relative rounded mt-0 d-flex" href="{{url('products')}}"
-                            data-aos="fade-left" data-aos-duration="700">
-                            <img class="banner-img rounded" src="{{url('asset/img/banner/f2.jpg')}}" alt="banner-1">
-                            <div class="content-absolute content-slide">
-                                <div class="container height-inherit d-flex">
-                                    <div class="content-box banner-content p-4">
-                                        <h2 class="heading_34 primary-color">Lprotein powder <br>collection </h2>
-
-                                        <span class="text_12 mt-4 link-underline d-block primary-color">
-                                            VIEW MORE
-                                        </span>
+                            </a>
+                            @endif
+                            @if($key == 2 )
+                                <a class="grid-item grid-item-3 position-relative rounded mt-0 d-flex" href="{{ url('/subcategory/' . $group_category->name) }}"
+                                data-aos="fade-left" data-aos-duration="700">
+                                    <img class="banner-img rounded" src="{{url('asset/img/banner/f2.jpg')}}" alt="banner-1">
+                                    <div class="content-absolute content-slide">
+                                        <div class="container height-inherit d-flex">
+                                            <div class="content-box banner-content p-4">
+                                                <h2 class="heading_34 primary-color">{{$group_category->name}} <br>collection </h2>
+        
+                                                <span class="text_12 mt-4 link-underline d-block primary-color">
+                                                    VIEW MORE
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </a>
+                                </a>
+                            @endif
+                        @endforeach
+                        <!--<a class="grid-item grid-item-1 position-relative rounded mt-0 d-flex" href="{{url('products')}}" data-aos="fade-right" data-aos-duration="700">-->
+                        <!--    <img class="banner-img rounded" src="{{url('asset/img/banner/f1.webp')}}" alt="banner-1">-->
+                        <!--    <div class="content-absolute content-slide">-->
+                        <!--        <div class="container height-inherit d-flex">-->
+                        <!--            <div class="content-box banner-content p-4">-->
+                        <!--                <span class="text_12 mt-4 link-underline d-block primary-color">-->
+                        <!--                    VIEW MORE-->
+                        <!--                </span>-->
+                        <!--            </div>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--</a>-->
+                        <!--<a class="grid-item grid-item-2 position-relative rounded mt-0 d-flex" href="{{url('products')}}"-->
+                        <!--    data-aos="fade-right" data-aos-duration="700">-->
+                        <!--    <img class="banner-img rounded" src="{{url('asset/img/banner/f3.webp')}}" alt="banner-1">-->
+                        <!--    <div class="content-absolute content-slide">-->
+                        <!--        <div class="container height-inherit d-flex">-->
+                        <!--            <div class="content-box banner-content p-4">-->
+
+                        <!--                <span class="text_12 mt-4 link-underline d-block primary-color">-->
+                        <!--                    VIEW MORE-->
+                        <!--                </span>-->
+                        <!--            </div>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--</a>-->
+                        <!--<a class="grid-item grid-item-3 position-relative rounded mt-0 d-flex" href="{{url('products')}}"-->
+                        <!--    data-aos="fade-left" data-aos-duration="700">-->
+                        <!--    <img class="banner-img rounded" src="{{url('asset/img/banner/f2.jpg')}}" alt="banner-1">-->
+                        <!--    <div class="content-absolute content-slide">-->
+                        <!--        <div class="container height-inherit d-flex">-->
+                        <!--            <div class="content-box banner-content p-4">-->
+                        <!--                <h2 class="heading_34 primary-color">Lprotein powder <br>collection </h2>-->
+
+                        <!--                <span class="text_12 mt-4 link-underline d-block primary-color">-->
+                        <!--                    VIEW MORE-->
+                        <!--                </span>-->
+                        <!--            </div>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--</a>-->
                     </div>
                 </div>
             </div>
         </div>
+            
+        @endif
+        
         <!-- banner end -->
 
         <!-- collection start -->
@@ -302,7 +418,7 @@
             <div class="collection-tab-inner">
                 <div class="container">
                     <div class="section-header text-center">
-                        <h2 class="section-heading primary-color">Features Products</h2>
+                        <h2 class="section-heading primary-color">Featured Products</h2>
                     </div>
                     @if(isset($product) != null && count($product) > 0)
                         <div class="row">
@@ -510,63 +626,7 @@
             </div>
         </div>
         <!-- video end -->
-        <div class="about-hero mt-100">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-12 col-12">
-                        <div class="about-hero-content">
-                            <h3 class="">Steps to follow</h3>
-                            <ul class="about-hero-action mt-5 p-0">
-                                <li class="action-item d-flex">
-                                    <div class="action-count">01</div>
-                                    <div class="action-content">
-                                        <h4 class="action-title"><a href="javascript:void(0)">Select a program</a></h4>
-                                        <p class="action-subtitle">Choose from our huge range of products available for private label by selecting the sizes, flavors and quantity of the preferred choice.</p>
-                                    </div>
-                                </li>
-                                <li class="action-item d-flex">
-                                    <div class="action-count">02</div>
-                                    <div class="action-content">
-                                        <h4 class="action-title"><a href="javascript:void(0)">Design your labels (or let us do it for you)</a></h4>
-                                        <p class="action-subtitle">Designing brings lots of dedication when it comes to placing, designing, choosing the
-                                            color and more. Our graphic designers work closely with you to make your custom label
-                                            picture perfect for you. You can either send us your label to use, we provide both
-                                            opportunities.
-                                            </p>
-                                    </div>
-                                </li>
-                                <li class="action-item d-flex">
-                                    <div class="action-count">03</div>
-                                    <div class="action-content">
-                                        <h4 class="action-title"><a href="javascript:void(0)">We manufacture and ship directly to you</a></h4>
-                                        <p class="action-subtitle">After selecting the shape, size, choosing the required logo with brand specific layout.
-                                            We manufacture the products, pack it and ship it directly to you. Our shelf-ready
-                                            products make us the best custom label company.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-12">
-                        <div class="overlay-furniture section-spacing"
-                            style="background: url({{url('/asset/img/vdobgImg.jpg')}}) no-repeat bottom center/cover">
-                            <div class="video-tools d-flex align-items-center justify-content-center">
-                                <div class="video-button-area">
-                                    <a class="video-button" href="#video-modal" data-bs-toggle="modal">
-                                        <svg width="22" height="26" viewBox="0 0 22 26" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M21.5 12.134C22.1667 12.5189 22.1667 13.4811 21.5 13.866L2 25.1244C1.33333 25.5093 0.499999 25.0281 0.499999 24.2583L0.5 1.74167C0.5 0.971867 1.33333 0.490743 2 0.875643L21.5 12.134Z"
-                                                fill="#FEFEFE" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
         <!-- testimonial start -->
         <div class="testimonial-section mt-100 overflow-hidden home-section">

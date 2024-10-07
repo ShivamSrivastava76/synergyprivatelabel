@@ -31,30 +31,33 @@ use App\Http\Controllers\Staff\StaffStaffController;
 
 use App\Http\Controllers\Admin\AdminContactUsController;
 use App\Http\Controllers\Staff\StaffContactUsController;
+use App\Http\Controllers\SubscriberController;
 
 Route::get('/', [IndexController::class, 'index']);
-Route::get('/about_us', [IndexController::class, 'about_us']);
-Route::get('/what_we_do', [IndexController::class, 'what_we_do']);
+Route::get('/about-us', [IndexController::class, 'about_us']);
+Route::get('/what-we-do', [IndexController::class, 'what_we_do']);
 Route::get('/faq', [IndexController::class, 'faq']);
-Route::get('/our_team', [IndexController::class, 'our_team']);
+Route::get('/our-team', [IndexController::class, 'our_team']);
 Route::get('/search', [IndexController::class, 'search']);
-Route::get('/searchproductlist/{key?}', [IndexController::class, 'searchproductlist']);
+// Route::get('/searchproductlist/{key?}', [IndexController::class, 'searchproductlist']);
+Route::get('/searchproductlist', [IndexController::class, 'searchproductlist'])->name('searchproductlist');
 Route::get('/contact', [IndexController::class, 'contact']);
 Route::get('/products', [IndexController::class, 'products']);
 Route::get('/sortproduct/{key}', [IndexController::class, 'sortproduct']);
-Route::get('/subcategory/sortproduct/{key}/{name}', [IndexController::class, 'subcategorysortproduct']);
-Route::get('/category/sortproduct/{key}/{name}', [IndexController::class, 'categorysortproduct']);
-Route::get('/custom_formulations', [IndexController::class, 'custom_formulations']);
-Route::get('/label_design_how_does_it_work', [IndexController::class, 'label_design_how_does_it_work']);
-Route::get('/privacy_policy', [IndexController::class, 'privacy_policy']);
-Route::get('/term_and_conditions', [IndexController::class, 'term_and_conditions']);
-Route::get('/product_details/{name}', [IndexController::class, 'product_details']);
+Route::get('/collections/sortproduct/{key}/{name}', [IndexController::class, 'subcategorysortproduct']);
+Route::get('/collection/sortproduct/{key}/{name}', [IndexController::class, 'categorysortproduct']);
+Route::get('/custom-formulations', [IndexController::class, 'custom_formulations']);
+Route::get('/label-design-how-does-it-work', [IndexController::class, 'label_design_how_does_it_work']);
+Route::get('/privacy-policy', [IndexController::class, 'privacy_policy']);
+Route::get('/term-and-conditions', [IndexController::class, 'term_and_conditions']);
+Route::get('/product-details/{name}', [IndexController::class, 'product_details']);
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
-Route::get('/category/{name}', [IndexController::class, 'category']);
-Route::get('/subcategory/{name}', [IndexController::class, 'subcategory']);
+Route::get('/collection/{name}', [IndexController::class, 'category']);
+Route::get('/collections/{name}', [IndexController::class, 'subcategory']);
 Route::post('/enquiry', [IndexController::class, 'enquiry']);
-Route::post('/contact_us', [IndexController::class, 'contact_us']);
+Route::post('/contact-us', [IndexController::class, 'contact_us']);
 Route::get('/checkout', [IndexController::class, 'checkout']);
+Route::post('/subscribe', [SubscriberController::class, 'subscribe'])->name('subscribe'); // category  //  subcategory
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -90,6 +93,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('/subcategory/{id}/update', [AdminSubategoryController::class, 'update'])->name('subcategory.update');
     Route::delete('/subcategory/{id}', [AdminSubategoryController::class, 'destroy'])->name('subcategory.destroy');
     Route::patch('/subcategory/toggle-status', [AdminSubategoryController::class, 'toggleStatus'])->name('subcategory.toggleStatus');
+    Route::patch('/subcategory/toggle-status-group', [AdminSubategoryController::class, 'toggleStatusGroup'])->name('subcategory.toggleStatusGroup');
 
     // Admin Product Routes
     Route::get('/products', [AdminProductController::class, 'index'])->name('product.index');

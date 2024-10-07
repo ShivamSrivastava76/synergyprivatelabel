@@ -18,11 +18,13 @@
                                     <div class="img-large-wrapper">
                                         @if($products->image != null ||  $products->image != "")
                                             <a href="{{url('assets/images/products'.'/'.$products->image)}}" data-fancybox="gallery">
-                                                <img src="{{url('assets/images/products'.'/'.$products->image)}}" alt="img">
+                                                <!--<img src="{{url('assets/images/products'.'/'.$products->image)}}" alt="img">-->
+                                                <img src="{{url('/asset/img/products/Moxx.jpg')}}" alt="img">
                                             </a>
                                         @else
                                             <a href="{{url('asset/img/products/product1.jpg')}}" data-fancybox="gallery">
-                                                <img src="{{url('asset/img/products/product1.jpg')}}" alt="img">
+                                                <!--<img src="{{url('asset/img/products/product1.jpg')}}" alt="img">-->
+                                                <img src="{{url('/asset/img/products/Moxx.jpg')}}" alt="img">
                                             </a>
                                         @endif
                                     </div>
@@ -51,10 +53,14 @@
                                             <strong class="label mb-1 d-block">{{$val->name}}:</strong>
                                             @php  $value = explode(",", $val->value); @endphp
                                             <ul class="variant-list list-unstyled d-flex align-items-center flex-wrap">
-                                                @foreach($value as $item)
+                                                @foreach($value as $key => $item)
                                                     <li class="variant-item">
-                                                        <input type="radio" value="34" >
-                                                        <label class="variant-label">{{$item}}</label>
+                                                        <!--<input type="radio" name="variant" value="34" id="variant-{{ $key }}">-->
+                                                        <!--<label class="variant-label" for="variant-{{ $key }}">{{ $item }}</label>-->
+                                                        <input type="radio" name="{{ $val->name }}" value="{{ $item }}" id="variant-{{ $val->name }}-{{ $key }}">
+                
+                                                        <!-- Link the label to the radio button using the correct id -->
+                                                        <label class="variant-label" for="variant-{{ $val->name }}-{{ $key }}">{{ $item }}</label>
                                                     </li>
                                                 @endforeach
                                             </ul>
@@ -186,9 +192,11 @@
                                         <div class="product-card-img">
                                             <a class="hover-switch" href="{{url('product_details/'.$item->name)}}">
                                                 @if($item->image != null ||  $item->image != "")
-                                                    <img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}" alt="product-img">
+                                                    <!--<img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}" alt="product-img">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}" alt="product-img">
                                                 @else
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}" alt="product">
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}" alt="product">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}" alt="product-img">
                                                 @endif
                                             </a>
 

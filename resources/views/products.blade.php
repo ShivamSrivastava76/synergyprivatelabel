@@ -81,7 +81,9 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                    <!--    alt="product">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}"
                                                         alt="product">
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">
@@ -101,8 +103,8 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                    <!--    alt="product">-->
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">
                                                     <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
@@ -121,7 +123,9 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                        alt="product">
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}"
                                                         alt="product">
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">
@@ -141,7 +145,9 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                    <!--    alt="product">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}"
                                                         alt="product">
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">
@@ -161,7 +167,9 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                    <!--    alt="product">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}"
                                                         alt="product">
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">
@@ -181,7 +189,9 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                    <!--    alt="product">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}"
                                                         alt="product">
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">
@@ -201,7 +211,9 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                    <!--    alt="product">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}"
                                                         alt="product">
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">
@@ -221,7 +233,9 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                    <!--    alt="product">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}"
                                                         alt="product">
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">
@@ -242,7 +256,9 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                    <!--    alt="product">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}"
                                                         alt="product">
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">
@@ -262,7 +278,9 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                    <!--    alt="product">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}"
                                                         alt="product">
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">
@@ -282,7 +300,9 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                    <!--    alt="product">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}"
                                                         alt="product">
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">
@@ -302,7 +322,9 @@
                                         <div class="product-card">
                                             <div class="product-card-img">
                                                 <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
+                                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"-->
+                                                    <!--    alt="product">-->
+                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}"
                                                         alt="product">
                                                 </a>
                                                 <div class="product-card-action product-card-action-2">

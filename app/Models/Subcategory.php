@@ -15,6 +15,7 @@ class Subcategory extends Model
         'description',
         'categories_id',
         'status',
+        'in_group'
     ];
 
     public function products()

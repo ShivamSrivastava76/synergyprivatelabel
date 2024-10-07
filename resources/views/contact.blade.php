@@ -100,37 +100,53 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <form action="{{url('contact_us')}}"  method="post" class="contact-form">
+                            <form action="{{url('contact_us')}}" method="post" class="contact-form">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <fieldset>
-                                            <input type="text" placeholder="Full name" name="name" />
+                                            <input type="text" placeholder="Full name" name="name" value="{{ old('name') }}" required/>
+                                            @error('name')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <fieldset>
-                                            <input type="email" placeholder="Email Address" name="email" />
+                                            <input type="email" placeholder="Email Address" name="email" value="{{ old('email') }}" required/>
+                                            @error('email')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <fieldset>
-                                            <input type="text" placeholder="Type a subject" name="subject" />
+                                            <input type="text" placeholder="Type a subject" name="subject" value="{{ old('subject') }}" required/>
+                                            @error('subject')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <fieldset>
-                                            <input type="text" placeholder="Phone Number" name="phone" />
+                                            <input type="number" placeholder="Phone Number" name="phone" value="{{ old('phone') }}" maxlength="10" minlength="10" required pattern="\d{10}"/>
+                                            @error('phone')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </fieldset>
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <fieldset>
-                                            <textarea cols="20" rows="6" placeholder="Write your message here" name="description"></textarea>
+                                            <textarea cols="20" rows="6" placeholder="Write your message here" name="description" required>{{ old('description') }}</textarea>
+                                            @error('description')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </fieldset>
                                         <button type="submit" class="position-relative review-submit-btn contact-submit-btn">SEND MESSAGE</button>
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>

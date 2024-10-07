@@ -6,9 +6,11 @@
                         <div class="product-card-img">
                             <a class="hover-switch" href="{{url('product_details/'.$item->name)}}">
                                 @if($item->image !=  null || $item->image !=  '')
-                                    <img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}" alt="product">
+                                    <!--<img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}" alt="product">-->
+                                     <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}" alt="product">
                                 @else
-                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}" alt="product">
+                                    <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}" alt="product">-->
+                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}" alt="product">
                                 @endif
                             </a>
                             <div class="product-card-action product-card-action-2">

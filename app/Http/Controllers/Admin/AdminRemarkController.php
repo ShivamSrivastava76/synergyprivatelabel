@@ -11,6 +11,7 @@ class AdminRemarkController extends Controller
 {
     public function store(Request $request)
     {
+        
         try {
             // Validate the request
             $request->validate([
@@ -34,6 +35,7 @@ class AdminRemarkController extends Controller
             return redirect()->back()->with('success', 'Remark added successfully');
         
         } catch (\Exception $e) {
+            echo "<pre>"; print_r($e); die;
             // Handle the exception and return an error message
             return redirect()->back()->with('error', 'Failed to add remark. Please try again. Error: ' . $e->getMessage());
         }

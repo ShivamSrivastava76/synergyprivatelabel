@@ -19,7 +19,7 @@
                                     <ul class="footer-menu list-unstyled mb-0 d-md-block">
                                         @if(isset($category) != null && count($category) > 0)
                                             @foreach($category as $val)
-                                                <li class="footer-menu-item"><a href="{{url('category').'/'.$val->name}}">{{$val->name}}</a></li>
+                                                <li class="footer-menu-item"><a href="{{url('collection').'/'.$val->name}}">{{$val->name}}</a></li>
                                             @endforeach
                                         @else
                                             <li class="footer-menu-item"><a>Protein Powders</a></li>
@@ -44,11 +44,11 @@
                                         </span>
                                     </h4>
                                     <ul class="footer-menu list-unstyled mb-0 d-md-block">
-                                        <li class="footer-menu-item"><a href="{{url('what_we_do')}}">What We Do</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('what-we-do')}}">What We Do</a></li>
                                         <li class="footer-menu-item"><a href="{{url('products')}}">Products</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('label_design_how_does_it_work')}}">How does it work</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('privacy_policy')}}">Privacy policy</a> </li>
-                                        <li class="footer-menu-item"><a href="{{url('term_and_conditions')}}">Terms & Conditions</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('label-design-how-does-it-work')}}">How does it work</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('privacy-policy')}}">Privacy policy</a> </li>
+                                        <li class="footer-menu-item"><a href="{{url('term-and-conditions')}}">Terms & Conditions</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -65,9 +65,9 @@
                                         </span>
                                     </h4>
                                     <ul class="footer-menu list-unstyled mb-0 d-md-block">
-                                        <li class="footer-menu-item"><a href="{{url('about_us')}}">About Us</a></li>
+                                        <!--<li class="footer-menu-item"><a href="{{url('about_us')}}">About Us</a></li>-->
                                         <li class="footer-menu-item"><a href="{{url('search')}}">Search</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('our_team')}}">Our Team</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('our-team')}}">Our Team</a></li>
                                         <li class="footer-menu-item"><a href="{{url('faq')}}">FAQs</a></li>
                                         <li class="footer-menu-item"><a href="{{url('contact')}}">Contact Us</a></li>
                                     </ul>
@@ -83,13 +83,14 @@
                                     <div class="footer-newsletter">
                                         <p class="footer-text mb-3">Stay up to date with all the news.</p>
                                         <div class="newsletter-wrapper">
-                                            <form action="#" class="footer-newsletter-form d-flex align-items-center">
-                                                <input class="footer-newsletter-input bg-transparent" type="email"
-                                                    placeholder="Your e-mail" autocomplete="off">
-                                                <button class="footer-newsletter-btn" type="submit">SIGN
-                                                    UP</button>
+                                            <form id="subscribe-form" class="footer-newsletter-form d-flex align-items-center">
+                                                @csrf
+                                                <input class="footer-newsletter-input bg-transparent" type="email" name="email"
+                                                    placeholder="Your e-mail" autocomplete="off" required>
+                                                <button class="footer-newsletter-btn" type="submit">SIGN UP</button>
                                             </form>
                                         </div>
+                                        
                                         <div class="footer-social-wrapper">
                                             <ul
                                                 class="footer-social list-unstyled d-flex align-items-center flex-wrap mb-0">
@@ -162,8 +163,8 @@
                     <div
                         class="footer-bottom-inner d-flex flex-wrap justify-content-md-between justify-content-center align-items-center">
                         <ul class="footer-bottom-menu list-unstyled d-flex flex-wrap align-items-center mb-0">
-                            <li class="footer-menu-item"><a href="{{url('privacy_policy')}}">Privacy policy</a></li>
-                            <li class="footer-menu-item"><a href="{{url('term_and_conditions')}}">Terms & Conditions</a></li>
+                            <li class="footer-menu-item"><a href="{{url('privacy-policy')}}">Privacy policy</a></li>
+                            <li class="footer-menu-item"><a href="{{url('term-and-conditions')}}">Terms & Conditions</a></li>
                         </ul>
                         <p class="copyright footer-text">©<span class="current-year"></span> Moxxpharma</p>
                     </div>
@@ -194,7 +195,7 @@
                         <ul class="main-menu list-unstyled">
                             <li class="menu-list-item nav-item has-dropdown active">
                                 <div class="mega-menu-header">
-                                    <a class="nav-link active" href="{{url('label_design_how_does_it_work')}}">
+                                    <a class="nav-link active" href="{{url('label-design-how-does-it-work')}}">
                                         How does it work
                                     </a>
                                 </div>
@@ -226,17 +227,17 @@
                                             </h5>
                                         </div>
                                         <ul class="submenu megamenu-container list-unstyled">
+                                            <!--<li class="menu-list-item nav-item-sub">-->
+                                            <!--    <div class="mega-menu-header">-->
+                                            <!--        <a class="nav-link-sub nav-text-sub megamenu-heading"-->
+                                            <!--            href="{{url('about_us')}}">About Us-->
+                                            <!--        </a>-->
+                                            <!--    </div>-->
+                                            <!--</li>-->
                                             <li class="menu-list-item nav-item-sub">
                                                 <div class="mega-menu-header">
                                                     <a class="nav-link-sub nav-text-sub megamenu-heading"
-                                                        href="{{url('about_us')}}">About Us
-                                                    </a>
-                                                </div>
-                                            </li>
-                                            <li class="menu-list-item nav-item-sub">
-                                                <div class="mega-menu-header">
-                                                    <a class="nav-link-sub nav-text-sub megamenu-heading"
-                                                        href="{{url('what_we_do')}}">What we do
+                                                        href="{{url('what-we-do')}}">What we do
                                                     </a>
                                                 </div>
                                             </li>
@@ -250,7 +251,7 @@
                                             <li class="menu-list-item nav-item-sub">
                                                 <div class="mega-menu-header">
                                                     <a class="nav-link-sub nav-text-sub megamenu-heading"
-                                                        href="{{url('our_team')}}">Our Team
+                                                        href="{{url('our-team')}}">Our Team
                                                     </a>
                                                 </div>
                                             </li>
@@ -269,7 +270,7 @@
                                 <a class="nav-link" href="{{url('products')}}"> Products</a>
                             </li>
                             <li class="menu-list-item nav-item">
-                                <a class="nav-link" href="{{url('custom_formulations')}}">
+                                <a class="nav-link" href="{{url('custom-formulations')}}">
                                     Custom Formulations</a>
                             </li>
                             <li class="menu-list-item nav-item">
@@ -383,6 +384,24 @@
     $(document).ready(function() {
         let productIds = getCookie('productIds') || []; // Retrieve productIds from cookie
         updateCartNumber(productIds); // Update cart number
+    });
+    
+    $('#subscribe-form').on('submit', function(event) {
+        event.preventDefault();
+
+        $.ajax({
+            url: '{{ route('subscribe') }}',
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                swal("Subscribed", "Thank you for subscribing!", "success");
+                document.getElementById('subscribe-form').reset();
+            },
+            error: function(xhr) {
+                let errorMessage = xhr.responseJSON.errors.email[0];
+                swal("Oops...", "Try Again", "error");
+            }
+        });
     });
 </script>
 </body>

@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('remarks', function (Blueprint $table) {
+        Schema::create('subcategories', function (Blueprint $table) {
             $table->id();
-            $table->longText('remark');
-            $table->unsignedBigInteger('enquiry_id');
-            $table->foreign('enquiry_id')->references('id')->on('enquiries');// remove
-            $table->tinyInteger('user_type');// remove
-            $table->string('remark_type');// remove
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('name');
+            $table->longText('description')->nullable();
+            $table->unsignedBigInteger('categories_id');
+            $table->foreign('categories_id')->references('id')->on('categories');
             $table->tinyInteger('status')->comment("0 => active, 1 => inactive");
+            $table->tinyInteger('in_group')->comment("0 => active, 1 => inactive");
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('remarks');
+        Schema::dropIfExists('subcategories');
     }
 };
