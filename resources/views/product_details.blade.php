@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-12">
                    
-                        <div class="product-gallery product-gallery-vertical d-flex">
+                        <!-- <div class="product-gallery product-gallery-vertical d-flex">
                             <div class="product-img-large">
                                 <div class="img-large-slider common-slider" data-slick='{
                                     "slidesToShow": 1, 
@@ -14,23 +14,23 @@
                                     "dots": false,
                                     "arrows": false,
                                     "asNavFor": ".img-thumb-slider"
-                                }'>
-                                    <div class="img-large-wrapper">
+                                }'> -->
+                                    <div class="">
                                         @if($products->image != null ||  $products->image != "")
-                                            <a href="{{url('assets/images/products'.'/'.$products->image)}}" data-fancybox="gallery">
+                                            <!-- <a href="{{url('assets/images/products'.'/'.$products->image)}}" data-fancybox="gallery"> -->
                                                 <!--<img src="{{url('assets/images/products'.'/'.$products->image)}}" alt="img">-->
                                                 <img src="{{url('/asset/img/products/Moxx.jpg')}}" alt="img">
-                                            </a>
+                                            <!-- </a> -->
                                         @else
-                                            <a href="{{url('asset/img/products/product1.jpg')}}" data-fancybox="gallery">
+                                            <!-- <a href="{{url('asset/img/products/product1.jpg')}}" data-fancybox="gallery"> -->
                                                 <!--<img src="{{url('asset/img/products/product1.jpg')}}" alt="img">-->
                                                 <img src="{{url('/asset/img/products/Moxx.jpg')}}" alt="img">
-                                            </a>
+                                            <!-- </a> -->
                                         @endif
                                     </div>
-                                </div>
+                                <!-- </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="col-lg-6 col-md-12 col-12">
@@ -98,27 +98,47 @@
             <div class="form-group mb-4">
                 <label for="first_name" class="mb-2">First Name:</label>
                 <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your First Name">
+                <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
             </div>
             <div class="form-group mb-4">
                 <label for="last_name" class="mb-2">Last Name:</label>
                 <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter your Last Name">
+                <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
             </div>
             <div class="form-group mb-4">
                 <label for="email" class="mb-2">Email:</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email">
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
             <div class="form-group mb-4">
                 <label for="phone" class="mb-2">Phone:</label>
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
+                <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+            </div>
+            <div class="form-group mb-4">
+                <fieldset>
+                    <label  for="password" class="mb-2">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="********"/>
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </fieldset>
+            </div>
+            <div class="form-group mb-4">
+                <fieldset>
+                    <label  for="password_confirmation" class="mb-2">Confirm Password</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="********"/>
+                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2"/>
+                </fieldset>
             </div>
             <div class="form-group mb-4">
                 <input class="form-check-input" type="checkbox" id="customiable" name="customiable"  onclick="customiable_formula()">
-                <label class="form-check-label" for="customiable">Customiable</label>
+                <label class="form-check-label" for="customiable">Customizable</label>
             </div>
             <div class="form-group mb-4" id="formula" style="display:none">
                 <label for="formula_customiable" class="mb-2">Formula:</label>
                 <input type="text" class="form-control" id="formula_customiable" name="formula" placeholder="Enter your Formula">
+                <x-input-error :messages="$errors->get('formula_customiable')" class="mt-2" />
             </div>
+            
             <button type="submit" class="btn btn-primary">Send Enquiry</button>
         </form>
                         

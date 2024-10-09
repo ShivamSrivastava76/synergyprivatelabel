@@ -15,7 +15,7 @@ class AdminEnquiryController extends Controller
         //             ->where('status', 0)
         //             ->get();
 
-        $enquiries = enquiry::with(['user'])->get();
+        $enquiries = enquiry::with(['user'])->orderBy('last_message', 'ASC')->orderBy('updated_at', 'DESC')->get();
 
         // Return the view with the enquiries data
         return view('admin.enquries.index', compact('enquiries'));

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('ip_address', 45)->nullable();
+            $table->tinyInteger('last_message', 45)->nullable()->comment("0 => User, 1 => Staff/Admin");
             $table->tinyInteger('status')->comment("0 => active, 1 => inactive");
             $table->timestamps();
             $table->softDeletes();

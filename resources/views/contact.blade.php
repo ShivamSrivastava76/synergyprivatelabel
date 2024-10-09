@@ -100,7 +100,7 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <form action="{{url('contact_us')}}" method="post" class="contact-form">
+                            <form action="{{url('contact')}}" method="post" class="contact-form">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-12">

@@ -316,7 +316,7 @@
                         @foreach($group_categories as $key => $group_category)
                             @if($key == 0 )
                                 <a class="grid-item grid-item-1 position-relative rounded mt-0 d-flex" href="{{ url('/subcategory/' . $group_category->name) }}" data-aos="fade-right" data-aos-duration="700">
-                                    <img class="banner-img rounded" src="{{url('asset/img/banner/f1.webp')}}" alt="banner-1">
+                                    <img class="banner-img rounded h-270" src="{{url('asset/img/banner/f1.jpg')}}" alt="banner-1">
                                     <div class="content-absolute content-slide">
                                         <div class="container height-inherit d-flex">
                                             <div class="content-box banner-content p-4">
@@ -332,7 +332,7 @@
                             @if($key == 1 )
                             <a class="grid-item grid-item-2 position-relative rounded mt-0 d-flex" href="{{ url('/subcategory/' . $group_category->name) }}"
                             data-aos="fade-right" data-aos-duration="700">
-                                <img class="banner-img rounded" src="{{url('asset/img/banner/f3.webp')}}" alt="banner-1">
+                                <img class="banner-img rounded h-270" src="{{url('asset/img/banner/f3.jpg')}}" alt="banner-1">
                                 <div class="content-absolute content-slide">
                                     <div class="container height-inherit d-flex">
                                         <div class="content-box banner-content p-4">

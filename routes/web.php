@@ -55,7 +55,7 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 Route::get('/collection/{name}', [IndexController::class, 'category']);
 Route::get('/collections/{name}', [IndexController::class, 'subcategory']);
 Route::post('/enquiry', [IndexController::class, 'enquiry']);
-Route::post('/contact-us', [IndexController::class, 'contact_us']);
+Route::post('/contact', [IndexController::class, 'contactUs']);
 Route::get('/checkout', [IndexController::class, 'checkout']);
 Route::post('/subscribe', [SubscriberController::class, 'subscribe'])->name('subscribe'); // category  //  subcategory
 

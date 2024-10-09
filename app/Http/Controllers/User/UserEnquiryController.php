@@ -15,7 +15,7 @@ class UserEnquiryController extends Controller
         //             ->where('status', 0)
         //             ->get();
 
-        $enquiries = enquiry::with(['user'])->get();
+        $enquiries = enquiry::with(['user'])->orderBy('updated_at', 'DESC')->get();
 
         // Return the view with the enquiries data
         return view('user.enquries.index', compact('enquiries'));

@@ -37,7 +37,7 @@
                 </div>
 
                 <!-- team start -->
-                <div class="team-section" data-aos="fade-up" data-aos-duration="700">
+                <!-- <div class="team-section" data-aos="fade-up" data-aos-duration="700">
                     <div class="team-section-wrapper">
                         <div class="container">
                             <div class="team-wrapper">
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- team end -->
             </div>
         </div>

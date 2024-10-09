@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
 use App\Models\product;
 use Illuminate\View\View;
@@ -279,7 +280,33 @@ class IndexController extends Controller
 
     public function enquiry(Request $request)
     {
-        // unset($_COOKIE['productIds']);
+        $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'company' => ['nullable', 'string', 'max:255'], 
+            'email' => ['required', 'email', 'max:255'], 
+            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],  // password with confirmation
+            'password_confirmation' => ['required'],  // password confirmation
+        ], [
+            'first_name.required' => 'The first name is required.',
+            'first_name.string' => 'The first name must be a valid string.',
+            'first_name.max' => 'The first name cannot be longer than 255 characters.',
+            'last_name.required' => 'The last name is required.',
+            'last_name.string' => 'The last name must be a valid string.',
+            'last_name.max' => 'The last name cannot be longer than 255 characters.',
+            'company.string' => 'The company must be a valid string.',
+            'company.max' => 'The company cannot be longer than 255 characters.',
+            'email.required' => 'The email address is required.',
+            'email.email' => 'Please provide a valid email address.',
+            'phone.required' => 'Please provide a phone number.',
+            'phone.regex' => 'The phone number format is invalid.',
+            'phone.min' => 'The phone number must be at least 10 digits.',
+            'password.required' => 'A password is required.',
+            'password.confirmed' => 'The password confirmation does not match.',
+            'password_confirmation.required' => 'Please confirm your password.',
+        ]);
+
         setcookie('productIds', '', time() - 3600, '/');
         unset($_COOKIE['productIds']);
         
@@ -293,6 +320,7 @@ class IndexController extends Controller
             $user->email = $request->email;
             $user->phone = $request->phone;
             $user->company = $request->company ?? null;
+            $user->password = $request->password;
             $user->role = 2;
             $user->save();
         }
@@ -345,14 +373,13 @@ class IndexController extends Controller
                 $enquiryproduct->status = 0;
                 $enquiryproduct->save();
             }
-
             return redirect()->back()->with('success', 'Enquiry created successfully');
         }
         else
             return redirect()->back()->with('error', 'You have reached the daily limit of 10  products enquiry!');
     }
 
-    public function contact_us(Request $request)
+    public function contactUs(Request $request)
     {
         // Define validation rules
         $rules = [

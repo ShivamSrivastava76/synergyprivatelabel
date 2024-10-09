@@ -24,6 +24,16 @@
     <main id="MainContent" class="content-for-layout">
         <div class="checkout-page mt-100">
             <div class="container">
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 @if(isset($products) && $products->count() > 0)
                    
                     <form action="{{url('enquiry')}}" method="post" class="shipping-address-form common-form">
@@ -52,31 +62,50 @@
                                                 <div class="col-lg-6 col-md-12 col-12">
                                                     <fieldset>
                                                         <label class="label">First name</label>
-                                                        <input type="text" name="first_name" required />
+                                                        <input type="text" name="first_name"  />
+                                                        <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
                                                     </fieldset>
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 col-12">
                                                     <fieldset>
                                                         <label class="label">Last name</label>
                                                         <input type="text" name="last_name" required/>
+                                                        <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                                                     </fieldset>
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 col-12">
                                                     <fieldset>
                                                         <label class="label">Email address</label>
                                                         <input type="email" name="email" required/>
+                                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                                     </fieldset>
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 col-12">
                                                     <fieldset>
                                                         <label class="label">Phone number</label>
                                                         <input type="number" name="phone" required/>
+                                                        <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                                                     </fieldset>
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 col-12">
                                                     <fieldset>
                                                         <label class="label">Company</label>
                                                         <input type="text"  name="company"/>
+                                                        <x-input-error :messages="$errors->get('company')" class="mt-2" />
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 col-12">
+                                                    <fieldset>
+                                                        <label class="label">Password</label>
+                                                        <input type="password"  name="password"/>
+                                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 col-12">
+                                                    <fieldset>
+                                                        <label class="label">Confirm Password</label>
+                                                        <input type="password"  name="password_confirmation"/>
+                                                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                                     </fieldset>
                                                 </div>
                                                 <input type="hidden" name="product_id" value="{{ implode(',', $productIds) }}"/>
