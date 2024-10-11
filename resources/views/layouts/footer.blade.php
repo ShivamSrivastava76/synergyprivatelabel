@@ -7,7 +7,7 @@
                             <div class="col-xl-2 col-lg-2 col-md-6 col-12 footer-widget">
                                 <div class="footer-widget-inner">
                                     <h4 class="footer-heading d-flex align-items-center justify-content-between">
-                                        <span>Our Products</span>
+                                        <span class="text-white">Our Products</span>
                                         <span class="d-md-none">
                                             <svg class="icon icon-dropdown" xmlns="http://www.w3.org/2000/svg"
                                                 width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f0f0f"
@@ -19,14 +19,8 @@
                                     <ul class="footer-menu list-unstyled mb-0 d-md-block">
                                         @if(isset($category) != null && count($category) > 0)
                                             @foreach($category as $val)
-                                                <li class="footer-menu-item"><a href="{{url('collection').'/'.$val->name}}">{{$val->name}}</a></li>
+                                                <li class="footer-menu-item"><a href="{{url('collection').'/'.$val->name}}" class="text-white">{{$val->name}}</a></li>
                                             @endforeach
-                                        @else
-                                            <li class="footer-menu-item"><a>Protein Powders</a></li>
-                                            <li class="footer-menu-item"><a>Vegan Products</a></li>
-                                            <li class="footer-menu-item"><a>Supplements</a></li>
-                                            <li class="footer-menu-item"><a>Bulk Protein</a></li>
-                                            <li class="footer-menu-item"><a>GYM Supplements</a></li>
                                         @endif
                                     </ul>
                                 </div>
@@ -34,7 +28,7 @@
                             <div class="col-xl-2 col-lg-2 col-md-6 col-12 footer-widget">
                                 <div class="footer-widget-inner">
                                     <h4 class="footer-heading d-flex align-items-center justify-content-between">
-                                        <span>Useful Links</span>
+                                        <span class="text-white">Useful Links</span>
                                         <span class="d-md-none">
                                             <svg class="icon icon-dropdown" xmlns="http://www.w3.org/2000/svg"
                                                 width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f0f0f"
@@ -44,18 +38,18 @@
                                         </span>
                                     </h4>
                                     <ul class="footer-menu list-unstyled mb-0 d-md-block">
-                                        <li class="footer-menu-item"><a href="{{url('what-we-do')}}">What We Do</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('products')}}">Products</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('label-design-how-does-it-work')}}">How does it work</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('privacy-policy')}}">Privacy policy</a> </li>
-                                        <li class="footer-menu-item"><a href="{{url('term-and-conditions')}}">Terms & Conditions</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('what-we-do')}}" class="text-white">What We Do</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('products')}}" class="text-white">Products</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('label-design-how-does-it-work')}}" class="text-white">How does it work</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('privacy-policy')}}" class="text-white">Privacy policy</a> </li>
+                                        <li class="footer-menu-item"><a href="{{url('term-and-conditions')}}" class="text-white">Terms & Conditions</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-xl-2 col-lg-2 col-md-6 col-12 footer-widget">
                                 <div class="footer-widget-inner">
                                     <h4 class="footer-heading d-flex align-items-center justify-content-between">
-                                        <span>About Moxxpharma</span>
+                                        <span class="text-white">About Moxxpharma</span>
                                         <span class="d-md-none">
                                             <svg class="icon icon-dropdown" xmlns="http://www.w3.org/2000/svg"
                                                 width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f0f0f"
@@ -66,10 +60,10 @@
                                     </h4>
                                     <ul class="footer-menu list-unstyled mb-0 d-md-block">
                                         <!--<li class="footer-menu-item"><a href="{{url('about_us')}}">About Us</a></li>-->
-                                        <li class="footer-menu-item"><a href="{{url('search')}}">Search</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('our-team')}}">Our Team</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('faq')}}">FAQs</a></li>
-                                        <li class="footer-menu-item"><a href="{{url('contact')}}">Contact Us</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('search')}}" class="text-white">Search</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('our-team')}}" class="text-white">Our Team</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('faq')}}" class="text-white">FAQs</a></li>
+                                        <li class="footer-menu-item"><a href="{{url('contact')}}" class="text-white">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -77,17 +71,18 @@
                                 <div class="footer-widget-inner">
                                     <h4 class="footer-logo">
                                         <a href="{{url('/')}}">
-                                            <h3>Moxxpharma</h3>
+                                            <!-- <h2 class="text-white">MOXXPHARMA</h2> -->
+                                            <img src="{{url('asset/img/logo.png')}}" loading="lazy" alt="bisum">
                                         </a>
                                     </h4>
                                     <div class="footer-newsletter">
-                                        <p class="footer-text mb-3">Stay up to date with all the news.</p>
+                                        <p class="footer-text mb-3 text-white">Stay up to date with all the news.</p>
                                         <div class="newsletter-wrapper">
                                             <form id="subscribe-form" class="footer-newsletter-form d-flex align-items-center">
                                                 @csrf
                                                 <input class="footer-newsletter-input bg-transparent" type="email" name="email"
                                                     placeholder="Your e-mail" autocomplete="off" required>
-                                                <button class="footer-newsletter-btn" type="submit">SIGN UP</button>
+                                                <button class="footer-newsletter-btn text-white" type="submit">SIGN UP</button>
                                             </form>
                                         </div>
                                         
@@ -96,7 +91,7 @@
                                                 class="footer-social list-unstyled d-flex align-items-center flex-wrap mb-0">
                                                 <li class="footer-social-item">
                                                     <a href="#">
-                                                        <svg class="icon icon-twitter" width="20" height="20"
+                                                        <svg class="icon icon-twitter text-white" width="20" height="20"
                                                             viewBox="0 0 20 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path
@@ -107,7 +102,7 @@
                                                 </li>
                                                 <li class="footer-social-item">
                                                     <a href="#">
-                                                        <svg class="icon icon-facebook" width="20" height="20"
+                                                        <svg class="icon icon-facebook text-white" width="20" height="20"
                                                             viewBox="0 0 20 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path
@@ -118,7 +113,7 @@
                                                 </li>
                                                 <li class="footer-social-item">
                                                     <a href="#">
-                                                        <svg class="icon icon-instagram" width="20" height="20"
+                                                        <svg class="icon icon-instagram text-white" width="20" height="20"
                                                             viewBox="0 0 20 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path
@@ -129,7 +124,7 @@
                                                 </li>
                                                 <li class="footer-social-item">
                                                     <a href="#">
-                                                        <svg class="icon icon-tiktok" width="20" height="20"
+                                                        <svg class="icon icon-tiktok text-white" width="20" height="20"
                                                             viewBox="0 0 20 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -140,7 +135,7 @@
                                                 </li>
                                                 <li class="footer-social-item">
                                                     <a href="#">
-                                                        <svg class="icon icon-youtube" width="20" height="20"
+                                                        <svg class="icon icon-youtube text-white" width="20" height="20"
                                                             viewBox="0 0 20 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path
@@ -163,10 +158,10 @@
                     <div
                         class="footer-bottom-inner d-flex flex-wrap justify-content-md-between justify-content-center align-items-center">
                         <ul class="footer-bottom-menu list-unstyled d-flex flex-wrap align-items-center mb-0">
-                            <li class="footer-menu-item"><a href="{{url('privacy-policy')}}">Privacy policy</a></li>
-                            <li class="footer-menu-item"><a href="{{url('term-and-conditions')}}">Terms & Conditions</a></li>
+                            <li class="footer-menu-item"><a href="{{url('privacy-policy')}}" class="text-white">Privacy policy</a></li>
+                            <li class="footer-menu-item"><a href="{{url('term-and-conditions')}}" class="text-white">Terms & Conditions</a></li>
                         </ul>
-                        <p class="copyright footer-text">©<span class="current-year"></span> Moxxpharma</p>
+                        <p class="copyright footer-text">©<span class="current-year"></span class="text-white"> Moxxpharma</p>
                     </div>
                 </div>
             </div>
@@ -195,14 +190,14 @@
                         <ul class="main-menu list-unstyled">
                             <li class="menu-list-item nav-item has-dropdown active">
                                 <div class="mega-menu-header">
-                                    <a class="nav-link active" href="{{url('label-design-how-does-it-work')}}">
+                                    <a class="nav-link active text-white" href="{{url('label-design-how-does-it-work')}}">
                                         How does it work
                                     </a>
                                 </div>
                             </li>
                             <li class="menu-list-item nav-item has-megamenu">
                                 <div class="mega-menu-header">
-                                    <a class="nav-link" href="javascript:void(0)">
+                                    <a class="nav-link text-white" href="javascript:void(0)">
                                         Who We Are
                                     </a>
                                     <span class="open-submenu">
@@ -236,28 +231,28 @@
                                             <!--</li>-->
                                             <li class="menu-list-item nav-item-sub">
                                                 <div class="mega-menu-header">
-                                                    <a class="nav-link-sub nav-text-sub megamenu-heading"
+                                                    <a class="nav-link-sub nav-text-sub megamenu-heading text-white"
                                                         href="{{url('what-we-do')}}">What we do
                                                     </a>
                                                 </div>
                                             </li>
                                             <li class="menu-list-item nav-item-sub">
                                                 <div class="mega-menu-header">
-                                                    <a class="nav-link-sub nav-text-sub megamenu-heading"
+                                                    <a class="nav-link-sub nav-text-sub megamenu-heading text-white"
                                                         href="{{url('faq')}}'">FAQ
                                                     </a>
                                                 </div>
                                             </li>
                                             <li class="menu-list-item nav-item-sub">
                                                 <div class="mega-menu-header">
-                                                    <a class="nav-link-sub nav-text-sub megamenu-heading"
+                                                    <a class="nav-link-sub nav-text-sub megamenu-heading text-white"
                                                         href="{{url('our-team')}}">Our Team
                                                     </a>
                                                 </div>
                                             </li>
                                             <li class="menu-list-item nav-item-sub">
                                                 <div class="mega-menu-header">
-                                                    <a class="nav-link-sub nav-text-sub megamenu-heading"
+                                                    <a class="nav-link-sub nav-text-sub megamenu-heading text-white"
                                                         href="{{url('search')}}">Search
                                                     </a>
                                                 </div>
@@ -267,14 +262,14 @@
                                 </div>
                             </li>
                             <li class="menu-list-item nav-item">
-                                <a class="nav-link" href="{{url('products')}}"> Products</a>
+                                <a class="nav-link text-white" href="{{url('products')}}"> Products</a>
                             </li>
                             <li class="menu-list-item nav-item">
-                                <a class="nav-link" href="{{url('custom-formulations')}}">
+                                <a class="nav-link text-white" href="{{url('custom-formulations')}}">
                                     Custom Formulations</a>
                             </li>
                             <li class="menu-list-item nav-item">
-                                <a class="nav-link" href="{{url('contact')}}"> Contact Us</a>
+                                <a class="nav-link text-white" href="{{url('contact')}}"> Contact Us</a>
                             </li>
                         </ul>
                     </nav>
@@ -330,80 +325,106 @@
         <script src="{{url('asset/js/main.js')}}"></script>
     </div>
     <script>
-    // Function to set a cookie
-    function setCookie(name, value, days) {
-        let expires = "";
-        if (days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Convert days to milliseconds
-            expires = "; expires=" + date.toUTCString(); // Set expiration date
-        }
-        document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/"; // Set cookie
-    }
 
-    // Function to get a cookie by name
-    function getCookie(name) {
-        const nameEQ = name + "=";
-        const cookiesArr = document.cookie.split(';');
-        for (let i = 0; i < cookiesArr.length; i++) {
-            let cookie = cookiesArr[i].trim();
-            if (cookie.indexOf(nameEQ) === 0) {
-                return JSON.parse(decodeURIComponent(cookie.substring(nameEQ.length))); // Return parsed array
+        function findAllOccurrences(arr, value) 
+        {
+            return arr.reduce((acc, item, index) => {
+                if (item.toLowerCase() === value.toLowerCase()) {
+                    acc.push(index);
+                }
+                return acc;
+            }, []);
+        }
+
+       
+        va = [];
+        function addtocart(id) 
+        {
+            keys = JSON.parse($("#key").val());
+            vals = JSON.parse($("#val").val());
+            indices = findAllOccurrences(vals, 'other');
+            if(indices.length > 0)
+            {
+                for(i=0; i<indices.length; i++)
+                {
+                    va[i] = $("#"+keys[indices[i]]+"1").val()
+                }
             }
+
+            $.ajax({
+                type: 'post',
+                url: '{{ url("addtocart") }}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    keys: keys.join(','),
+                    vals: vals.join(','),
+                    indices: indices.join(','),
+                    va: va.join(','),
+                },
+                success: function(response) {
+                    console.log(response);
+                    if(response.status)
+                    {
+                        swal("Product Added", "This product is added to your cart", "success");
+                        if(response > 0 && response < 10)
+                            cart = '0'+response;
+                        else
+                            cart = response
+                        $(".cartNumber").html(cart);
+                    }
+                    else
+                        swal("Product Already Added", "This product is already in your cart", "error");
+                },
+                
+            })
+
         }
-        return []; // Return empty array if cookie not found
-    }
 
-    // Function to update cart number
-    function updateCartNumber(productIds) {
-        if (productIds.length === 0) {
-            $('.cartNumber').hide();
-        } else {
-            let productId = (productIds.length < 10) ? "0" + productIds.length : productIds.length;
-            $('.cartNumber').html(productId);
-            $('.cartNumber').show();
-        }
-    }
+        $('#subscribe-form').on('submit', function(event) {
+            event.preventDefault();
 
-    // Function to add product to cart
-    function addtocart(id) {
-        let productIds = getCookie('productIds') || []; // Retrieve productIds from cookie
-
-        if (!productIds.includes(id)) {
-            productIds.push(id);
-            setCookie('productIds', JSON.stringify(productIds), 7); // Save in cookie, 7 days expiry
-            swal("Product Added", "This product is added to your cart", "success");
-        } else {
-            swal("Product Already Added", "This product is already in your cart", "error");
-        }
-
-        updateCartNumber(productIds); // Update cart display
-    }
-
-    // On document ready, initialize cart display based on stored cookie
-    $(document).ready(function() {
-        let productIds = getCookie('productIds') || []; // Retrieve productIds from cookie
-        updateCartNumber(productIds); // Update cart number
-    });
-    
-    $('#subscribe-form').on('submit', function(event) {
-        event.preventDefault();
-
-        $.ajax({
-            url: '{{ route('subscribe') }}',
-            method: 'POST',
-            data: $(this).serialize(),
-            success: function(response) {
-                swal("Subscribed", "Thank you for subscribing!", "success");
-                document.getElementById('subscribe-form').reset();
-            },
-            error: function(xhr) {
-                let errorMessage = xhr.responseJSON.errors.email[0];
-                swal("Oops...", "Try Again", "error");
-            }
+            $.ajax({
+                url: '{{ route('subscribe') }}',
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    swal("Subscribed", "Thank you for subscribing!", "success");
+                    document.getElementById('subscribe-form').reset();
+                },
+                error: function(xhr) {
+                    let errorMessage = xhr.responseJSON.errors.email[0];
+                    swal("Oops...", "Try Again", "error");
+                }
+            });
         });
-    });
-</script>
+
+        $(document).ready(function() {
+            $.ajax({
+                url: "{{ url('addtocart') }}",
+                method: 'get',
+                success: function(response) {
+                    if(response == 0 )
+                        $(".cartNumber").hide();
+                    if(response > 0 && response < 10)
+                        cart = '0'+response;
+                    else
+                        cart = response
+                    $(".cartNumber").show();
+                    $(".cartNumber").html(cart);
+                },
+            });
+        });
+
+        function customiable(id)
+        {
+            if($('#flexCheckDefault'+id).is(":checked"))
+                $('#CustomProduct'+id).show()
+            else
+                $('#CustomProduct'+id).hide()
+        }
+
+    </script>
 </body>
 
 </html>

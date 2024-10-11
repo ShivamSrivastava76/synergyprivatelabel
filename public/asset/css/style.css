@@ -72,31 +72,31 @@ iframe {
     padding-right: var(--bs-gutter-x, 0.75rem); } }
 
 .bg-1 {
-  background-color: #68594a; }
+  background-color: #000080; }
 
 .bg-2 {
   background-color: #000; }
 
 .bg-3 {
-  background-color: #F76B6A; }
+  background-color: #000080; }
 
 .bg-4 {
-  background-color: #071C1F; }
+  background-color: #000080; }
 
 .bg-5 {
-  background-color: #f3f3f3; }
+  background-color: #000080cf; }
 
 .bg-pink {
-  background-color: #FFF3F3; }
+  background-color: #55BEBB; }
 
 .bg-trust-1 {
-  background-color: #FCEDDA; }
+  background-color: #55BEBB; }
 
 .bg-trust-2 {
-  background-color: #F2FBCB; }
+  background-color: #55BEBB; }
 
 .bg-trust-3 {
-  background-color: #F7D8F9; }
+  background-color: #55BEBB; }
 
 .btn-primary,
 .btn-primary:hover,
@@ -3109,8 +3109,7 @@ blockquote {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
   border: 1px solid #FFAE00 !important;
-  /*min-width: 140px;*/
-   min-width: 80px;
+  min-width: 140px;
   margin-left: 20px; }
 
 .checkout-user-area {
@@ -4071,7 +4070,7 @@ blockquote {
     margin-top: 12px; }
   .edit-user {
     margin-left: 0;
-    /*margin-top: 20px; */
+    margin-top: 20px;
       
   }
   .checkout-user-details {
@@ -4274,6 +4273,7 @@ blockquote {
   display: none;
 
 }
+
 @media (min-width: 992px) {
   .submenu-transform-product {
       position: absolute;

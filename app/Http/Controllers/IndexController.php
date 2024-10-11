@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\enquiry;
 use App\Models\EnquiryProduct;
 use App\Models\contactUs;
+use App\Models\AddToCard;
 use Carbon\Carbon; 
 
 
@@ -280,14 +281,15 @@ class IndexController extends Controller
 
     public function enquiry(Request $request)
     {
+        
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'company' => ['nullable', 'string', 'max:255'], 
             'email' => ['required', 'email', 'max:255'], 
             'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],  // password with confirmation
-            'password_confirmation' => ['required'],  // password confirmation
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password_confirmation' => ['required'],
         ], [
             'first_name.required' => 'The first name is required.',
             'first_name.string' => 'The first name must be a valid string.',
@@ -307,9 +309,6 @@ class IndexController extends Controller
             'password_confirmation.required' => 'Please confirm your password.',
         ]);
 
-        setcookie('productIds', '', time() - 3600, '/');
-        unset($_COOKIE['productIds']);
-        
         $count = User::where('email', $request->email);
 
         if($count->count() === 0)
@@ -346,33 +345,35 @@ class IndexController extends Controller
 
         if($count <= 10)
         {
-
             $enquiry = new enquiry();
             $enquiry->user_id = $user->id;
             $enquiry->ip_address =  $ip;
             $enquiry->status = 0;
             $enquiry->save();
 
-            $productIds = $request->product_id;
-            if (is_string($productIds))
-                $productIds = explode(',', $productIds);
-            
+            $productIds = AddToCard::where('ip_address', $ip)->get();
            
-            foreach ($productIds as $productId) 
+            foreach ($productIds as $key => $productId) 
             {
                 $enquiryproduct = new EnquiryProduct();
                 $enquiryproduct->enquiries_id = $enquiry->id;
-                $enquiryproduct->products_id = $productId; 
-                if(isset($request->customiable) != null)
+                $enquiryproduct->products_id = $productId->products_id; 
+                $enquiryproduct->Key = $productId->Key; 
+                $enquiryproduct->value = $productId->value; 
+                $enquiryproduct->indices = $productId->indices; 
+                $enquiryproduct->custom = $productId->custom; 
+                if($request->customiable[$key] != '')
                 {
                     $enquiryproduct->customiable = 0;
-                    $enquiryproduct->formula = $request->formula;
+                    $enquiryproduct->formula = $request->customiable[$key];
                 }
                 else
                     $enquiryproduct->customiable = 1;
                 $enquiryproduct->status = 0;
                 $enquiryproduct->save();
+                AddToCard::where('ip_address', $ip)->forceDelete();
             }
+
             return redirect()->back()->with('success', 'Enquiry created successfully');
         }
         else
@@ -425,17 +426,73 @@ class IndexController extends Controller
     {
         $category = $this->category;
         $categories = $this->categories;
-        if (isset($_COOKIE['productIds'])) {
-            $productIds = json_decode($_COOKIE['productIds']);
-            $products = Product::where('status',0)->whereIn('id',$productIds)->get();
-
-            return view('checkout', compact('products', 'category', 'categories', 'productIds'));
-
-
-        } else {
-            // echo "No product IDs received";
-            $message = "No product in your cart";
-            return view('checkout', compact('category', 'categories', 'message'));
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))
+        {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } 
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+        {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else 
+        {
+            $ip = $_SERVER['REMOTE_ADDR'];
         }
+        
+        $addtocard =  AddToCard::with('products')->where('ip_address', $ip)->where('status', 0)->get();
+      
+        return view('checkout', compact('addtocard', 'category', 'categories'));
+    }
+
+    public function addtocart(Request $request)
+    {
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))
+        {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } 
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+        {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else 
+        {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+    
+        $existingItem = AddToCard::where('ip_address', $ip)->where('products_id', $request->id) ->count();
+
+    
+        if ($existingItem == 0) 
+        {
+            $addtocard = new AddToCard();
+            $addtocard->ip_address = $ip;
+            $addtocard->products_id = $request->id;
+            $addtocard->Key = $request->keys;
+            $addtocard->value = $request->vals;
+            $addtocard->indices = $request->indices;
+            $addtocard->custom = $request->va;
+            $addtocard->status = 0;
+            $addtocard->save();
+
+            $cartCount = AddToCard::where('ip_address', $ip)->count();
+            
+            return response()->json(['status' => true, 'message' => $cartCount]);
+        } 
+        else
+            return response()->json(['status' => false, 'message' => "This product is already in your cart"]);
+    }
+
+    public function addtocartview(Request  $request)
+    {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            // Check if the IP is from shared internet
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            // Check if the IP is passed from a proxy
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            // Default to REMOTE_ADDR
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+
+        return AddToCard::where('ip_address', $ip)->count();
     }
 }

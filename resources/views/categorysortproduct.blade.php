@@ -14,8 +14,8 @@
                                 @endif
                             </a>
                             <div class="product-card-action product-card-action-2">
-                                <a href="{{url('product_details/'.$item->name)}}" class="quickview-btn btn-primary">QUICK VIEW</a>
-                                <a class="addtocart-btn btn-primary" onclick="addtocart({{$item->id}})">ADD TO CART</a>
+                                <!-- <a href="{{url('product_details/'.$item->name)}}" class="quickview-btn btn-primary">QUICK VIEW</a>
+                                <a class="addtocart-btn btn-primary" onclick="addtocart({{$item->id}})">ADD TO CART</a> -->
                             </div>
                         </div>
                         <div class="product-card-details">

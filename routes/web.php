@@ -57,7 +57,9 @@ Route::get('/collections/{name}', [IndexController::class, 'subcategory']);
 Route::post('/enquiry', [IndexController::class, 'enquiry']);
 Route::post('/contact', [IndexController::class, 'contactUs']);
 Route::get('/checkout', [IndexController::class, 'checkout']);
-Route::post('/subscribe', [SubscriberController::class, 'subscribe'])->name('subscribe'); // category  //  subcategory
+Route::get('/addtocart', [IndexController::class, 'addtocartview']);
+Route::post('/addtocart', [IndexController::class, 'addtocart']);
+Route::post('/subscribe', [SubscriberController::class, 'subscribe'])->name('subscribe');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

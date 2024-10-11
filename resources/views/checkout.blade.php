@@ -24,40 +24,76 @@
     <main id="MainContent" class="content-for-layout">
         <div class="checkout-page mt-100">
             <div class="container">
-                @if(session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                @if(session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
-                @if(isset($products) && $products->count() > 0)
-                   
-                    <form action="{{url('enquiry')}}" method="post" class="shipping-address-form common-form">
-                        <div class="checkout-page-wrapper">
-                            @if(session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
+                <div class="checkout-page-wrapper">
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    <form action="{{url('enquiry')}}" method="post" >
+                        @csrf
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-12">
+                                <div class="cart-total-area checkout-summary-area pt-3">
+                                    <h3 class="d-none d-lg-block mb-0 text-center heading_24 mb-4">Order summary</h3>
+                                    @if(isset($addtocard) != null && count($addtocard) > 0)
+                                        @foreach($addtocard as $indexs => $val)
+                                            <div class="minicart-item d-flex">
+                                                <div class="mini-img-wrapper">
+                                                    <img class="mini-img" src="{{ url('asset/img/products/product1.jpg')}}" alt="img">
+                                                </div>
+                                                <div class="product-info">
+                                                    <h2 class="product-title">{{$val->products[0]->name}}</h2>    
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="product-variant-wrapper d-flex">
+                                                            <div class="form-check d-flex mt-2">
+                                                                <input class="form-check-input me-2" type="checkbox" id="flexCheckDefault{{$val->id}}" name="customiables[]" onclick="customiable({{$val->id}})" >
+                                                                <label class="form-check-label" for="flexCheckDefault{{$val->id}}">
+                                                                    Custom
+                                                                </label>
+                                                            </div>
+                                                            <input class="ms-2" type="text" id="CustomProduct{{$val->id}}" name="customiable[]" placeholder="Custom Product" style="display:none"/>
+                                                        </div>
+
+                                                        <div class="product-variant product-variant-other ms-4  d-flex align-items-center flex-wrap">
+                                                            @php 
+                                                                $key = explode(",", $val->Key);
+                                                                $value = explode(",", $val->value);
+                                                                $indices = explode(",", $val->indices);
+                                                                $custom = explode(",", $val->custom);
+                                                                $c = 0;
+                                                            @endphp
+                                                            @foreach($value as $index => $val)
+                                                                @if($val == "other")
+                                                                    <label class="variant-label">{{ $custom[$c] ?? '' }}</label>
+                                                                    @php $c++ @endphp
+                                                                @else
+                                                                    <label class="variant-label">{{$val}}</label>
+                                                                @endif
+                                                            @endforeach
+                                                            <!-- <label class="variant-label">Box</label>
+                                                            <label class="variant-label">Mango</label> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <p>No Product added in your cart</p>
+                                    @endif
                                 </div>
-                            @endif
-                            @if(session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
-                            <div class="row">
-                                <div class="col-xl-9 col-lg-8 col-md-12 col-12">
-                                    <div class="section-header mb-3  d-flex justify-content-between">
-                                        <h2 class="section-heading">Check out</h2>
-                                        <a href="{{url('login')}}" class="edit-user btn-secondary">LOGIN</a>
+                            </div>    
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                                <div class="shipping-address-area mt-0">
+                                    <h2 class="shipping-address-heading pb-1">Personal Details</h2>
+                                    <div class="shipping-address-form-wrapper">
                                         
-                                    </div>
-                                    <div class="shipping-address-area">
-                                        <div class="shipping-address-form-wrapper">
-                                            @csrf
+                                        <div class="shipping-address-form common-form">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-12 col-12">
                                                     <fieldset>
@@ -108,43 +144,21 @@
                                                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                                     </fieldset>
                                                 </div>
-                                                <input type="hidden" name="product_id" value="{{ implode(',', $productIds) }}"/>
                                             </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-lg-4 col-md-12 col-12">
-                                    <div class="cart-total-area checkout-summary-area">
-                                        <h3 class="d-none d-lg-block mb-0 text-center heading_24 mb-4">Order summary</h4>
-                                        @foreach($products as $val)
-                                            <div class="minicart-item d-flex">
-                                                <div class="mini-img-wrapper">
-                                                    @if($val->image != null || $val->image != '')
-                                                        <img class="mini-img" src="{{url('assets/images/products').'/'.$val->image}}" alt="img">
-                                                    @else
-                                                        <img class="mini-img" src="{{url('asset/img/products/product1.jpg')}}" alt="img">
-                                                    @endif
-                                                </div>
-                                                <div class="product-info">
-                                                    <h2 class="product-title"><a >{{$val->name}}</a></h2>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        <div class="mt-4 checkout-promo-code">
-                                            <input type="submit" class="btn-apply-code position-relative btn-secondary text-uppercase mt-3" />
-                                                
-                                            <!-- </buttton> -->
-                                        </div>
+                                <div class="shipping-address-area billing-area">
+                                    <div class="minicart-btn-area d-flex align-items-center justify-content-center flex-wrap">
+                                        <!-- <a href="cart.html" class="checkout-page-btn minicart-btn btn-secondary">BACK TO CART</a> -->
+                                        <button class="checkout-page-btn minicart-btn btn-primary">Submit</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div>   
                         </div>
                     </form>
-                @else
-                    <!-- Show message if no products are in the cart -->
-                    <p>{{ $message ?? 'No product in your cart' }}</p>
-                @endif
-
+                </div>
             </div>
         </div>            
     </main>

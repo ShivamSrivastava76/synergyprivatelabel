@@ -11,16 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('enquiry_products', function (Blueprint $table) {
+        Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('enquiries_id');
-            $table->foreign('enquiries_id')->references('id')->on('enquiries');
             $table->unsignedBigInteger('products_id');
             $table->foreign('products_id')->references('id')->on('products');
-            $table->tinyInteger('customiable')->comment("0 => Yes, 1 => No");
-            $table->string('formula')->nullable();
-            $table->string('Key');
-            $table->string('value');
+            $table->string('image');
             $table->tinyInteger('status')->comment("0 => active, 1 => inactive");
             $table->timestamps();
             $table->softDeletes();
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('product_images');
     }
 };

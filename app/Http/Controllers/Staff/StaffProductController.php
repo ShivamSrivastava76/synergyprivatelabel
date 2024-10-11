@@ -49,18 +49,26 @@ class StaffProductController extends Controller
             'description.required' => 'The product description is required.',
         ]);
         try{
-            
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $imageName = time() . '.' . $image->getClientOriginalExtension();
-                $imagePath = public_path('assets/images/products/' . $imageName);
-                $image->move(public_path('assets/images/products/'), $imageName);
-                $validatedData['image'] = $imageName;
-            
                 $validatedData['status'] = 0;
                 $validatedData['price'] = $validatedData['price'] ?? 0;
     
                 $product = product::create($validatedData);
+
+                if ($request->hasFile('images')) 
+                {
+                    foreach ($request->file('images') as $image) 
+                    {
+                        $imageName = time() . '_' . $image->getClientOriginalName();
+                        $image->move(public_path('assets/images/products/'), $imageName);
+
+                        $ProductImage = new ProductImage();
+                        $ProductImage->products_id   = $product->id;
+                        $ProductImage->image = $imageName;
+                        $ProductImage->image = $imageName;
+                        $ProductImage->status = 0;
+                        $ProductImage->save();
+                    }
+                }
 
                 $product->productsCategory()->attach($request->input('categories_id'));
                 $product->productsSubcategory()->attach($request->input('subcategories_id'));
@@ -78,7 +86,7 @@ class StaffProductController extends Controller
                 }
                 
                 return redirect()->route('staff.product.index')->with('success', 'Product added successfully!');
-            }
+            
         }catch(\Exception $e){
             return redirect()->route('staff.product.create')->with('error', 'Failed to add product. Please try again.');
         }
@@ -116,22 +124,22 @@ class StaffProductController extends Controller
         try {
             
             $product = product::findOrFail($id);
+            ProductImage::where('products_id',$id)->forceDelete();
 
-            if ($request->hasFile('image')) 
+            if ($request->hasFile('images')) 
             {
-                if ($product->image) 
+                foreach ($request->file('images') as $image) 
                 {
-                    $oldImagePath = public_path('assets/images/products/' . $product->image);
-                    if (file_exists($oldImagePath)) 
-                    {
-                        unlink($oldImagePath);
-                    }
+                    $imageName = time() . '_' . $image->getClientOriginalName();
+                    $image->move(public_path('assets/images/products/'), $imageName);
+
+                    $ProductImage = new ProductImage();
+                    $ProductImage->products_id   = $id;
+                    $ProductImage->image = $imageName;
+                    $ProductImage->image = $imageName;
+                    $ProductImage->status = 0;
+                    $ProductImage->save();
                 }
-                $image = $request->file('image');
-                $imageName = time() . '.' . $image->getClientOriginalExtension();
-                $imagePath = public_path('assets/images/products/' . $imageName);
-                $image->move(public_path('assets/images/products/'), $imageName);
-                $validatedData['image'] = $imageName;
             }
 
             $product->update($validatedData);
