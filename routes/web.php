@@ -61,6 +61,9 @@ Route::get('/addtocart', [IndexController::class, 'addtocartview']);
 Route::post('/addtocart', [IndexController::class, 'addtocart']);
 Route::post('/subscribe', [SubscriberController::class, 'subscribe'])->name('subscribe');
 
+// upload email image and pdf
+Route::post('save-mail-details',[AdminEnquiryMailController::class,'saveMailDetails']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -178,6 +181,7 @@ Route::prefix('staff')->name('staff.')->group(function () {
      // Enquiry routes
      Route::get('enquiries', [StaffEnquiryController::class, 'index'])->name('enquiries.index');
      Route::get('enquiries/{id}', [StaffEnquiryController::class, 'showEnquiryDetails'])->name('enquiries.details');
+     Route::post('iplock', [AdminEnquiryController::class, 'iplock'])->name('enquiries.iplock');
  
      // Route::get('enquiries/create', [StaffEnquiryController::class, 'create'])->name('enquiries.create');
      // Route::post('enquiries', [StaffEnquiryController::class, 'store'])->name('enquiries.store');

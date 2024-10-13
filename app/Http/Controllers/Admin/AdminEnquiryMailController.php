@@ -92,4 +92,43 @@ class AdminEnquiryMailController extends Controller
             return redirect()->back()->with('error', 'An error occurred while sending the email. Please try again later.');
         }
     }
+    public function saveMailDetails(Request $request)
+    {
+        try {
+            // Validate the incoming request
+            $validatedData = $request->validate([
+                'file' => 'required|file|max:2048', // Limit file size to 2MB
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Return validation error messages
+            return response()->json([
+                'success' => false,
+                'errors' => $e->errors(),
+            ], 422);
+        }
+    
+        // Handle the uploaded file
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileExtension = $file->getClientOriginalExtension();
+            $timestamp = now()->format('YmdHis'); // Format: YYYYMMDDHHMMSS
+            $filename = $timestamp . '_' . preg_replace('/[^A-Za-z0-9.]/', '_', $file->getClientOriginalName());
+            // Define a path where the file will be stored
+            $path = $file->storeAs('email-uploaded-document', $filename, 'public');  // Store in 'storage/app/public/email-uploaded-document'
+            
+            // Respond with a success message and the file path
+            return response()->json([
+                'success' => true,
+                'filePath' => $path,
+                'fileName' => $filename,
+                'fileExtension' => $fileExtension
+            ]);
+        }
+    
+        // If no file is uploaded, return an error response with a specific message
+        return response()->json([
+            'success' => false,
+            'message' => 'No file was uploaded. Please select a file to upload.',
+        ], 400);
+    }
 }

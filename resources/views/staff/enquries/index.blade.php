@@ -1,14 +1,12 @@
 @extends('staff.layout.master')
-
 @section('content')
-<!-- Success/Error Message Display -->
 @if(session('success'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ session('success') }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 @endif
 @if($errors->any())
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -23,29 +21,22 @@
     </div>
 @endif
 <div class="email-wrapper wrapper">
-    <div class="row align-items-stretch">
-        
+    <div class="row align-items-stretch"> 
         <div class="mail-list-container col-md-4 pt-4 pb-4 border-right bg-white">
             <div class="border-bottom pb-4 mb-3 px-3">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <input class="form-control w-100" type="search" placeholder="Search mail" id="mail-search">
-                </div>
+                </div> -->
             </div>
             @forelse($enquiries as $index => $enquiry)
                 <div class="mail-list {{ $index == 0 ? 'active' : '' }}" data-id="{{ $enquiry->id }}">
-                    <div class="form-check"> </div>
                     <div class="content flex">
-                    <p class="message_text"> <strong> Id: </strong> {{ $enquiry->id }}  </p>
-                    <p class="message_text"> <strong> Name: </strong> {{ $enquiry->user->first_name }} {{ $enquiry->user->last_name }}</p>
-                    <p class="message_text"> <strong> Date & Time:  </strong>   {{ $enquiry->created_at }}   </p>  
+                        <p class="message_text"> <strong> Id: </strong> {{ $enquiry->id }}  </p>
+                        <p class="message_text"> <strong> Name: </strong> {{ $enquiry->user->first_name }} {{ $enquiry->user->last_name }}</p>
+                        <p class="message_text"> <strong> Date & Time:  </strong>   {{ $enquiry->created_at }}   </p>  
                         <p class="message_text">{{ $enquiry->user->company }}  </p>      
-                        
-                    </div>
-                    <div class="details">
-                        <i class="fa fa-star-o"></i>
                     </div>
                     <div class="text-rigth">
-                        <!-- <i class="fa fa-lock"></i> -->
                         @if($enquiry->status == 0)
                             <i class="fa fa-unlock" onclick="ipaddresslock('{{$enquiry->ip_address}}')" ></i>
                         @else
@@ -58,11 +49,9 @@
                         <p class="sender-name">No Enquiry Found</p>
                 </div>
             @endforelse
-
         </div>
-        <div class="mail-view d-none d-md-block col-md-9 col-lg-8 bg-white">
+        <div class="mail-view col-md-8 col-lg-8 bg-white">
             <div id="enquiry-details">
-                <!-- The AJAX-loaded content will be placed here -->
                 <div class="message-body">
                     <p>Select an enquiry to view details</p>
                 </div>
@@ -126,11 +115,12 @@ $(document).ready(function () {
         });
     });
 });
-function ipaddresslock(ip)
+
+    function ipaddresslock(ip)
     {
         $.ajax({
             type: 'POST',
-            url: '{{ url("/admin/iplock/") }}',
+            url: '{{ url("/staff/iplock/") }}',
             data: {
                     _token: '{{ csrf_token() }}',
                     ip: ip,
@@ -146,7 +136,7 @@ function ipaddresslock(ip)
     {
         $.ajax({
             type: 'POST',
-            url: '{{ url("/admin/iplock/") }}',
+            url: '{{ url("/staff/iplock/") }}',
             data: {
                     _token: '{{ csrf_token() }}',
                     ip: ip,

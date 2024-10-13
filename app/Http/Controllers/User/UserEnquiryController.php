@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\User;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\enquiry;
@@ -15,7 +15,7 @@ class UserEnquiryController extends Controller
         //             ->where('status', 0)
         //             ->get();
 
-        $enquiries = enquiry::with(['user'])->orderBy('updated_at', 'DESC')->get();
+        $enquiries = enquiry::with(['user'])->orderBy('updated_at', 'DESC')->where('user_id',Auth::user()->id)->get();
 
         // Return the view with the enquiries data
         return view('user.enquries.index', compact('enquiries'));

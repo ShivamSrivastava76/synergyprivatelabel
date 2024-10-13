@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6" style="position: relative; min-height: 100vh;">
         <div class="sender-details">
             <div class="details">
                 <p>
@@ -7,10 +7,11 @@
                 </p>
             </div>
         </div>
-        <div class="sender-details">
+        <div class="sender-details" >
             <div class="sender-details" style="display:block;">
                 @forelse($enquiry->remarks as $remark)
-                    @if(Auth::user()->role == $remark->user_type )
+                    @if(Auth::user()->role == $remark->user_type)
+                    
                         @if($remark->remark_type == "remark")
                             <div class="col-md-9 grid-margin stretch-card" style="float:inline-end;">
                                 <div class="card" style=" background:#c1ecc763;">
@@ -103,6 +104,36 @@
                 @endforelse
             </div>
         </div>
+        <div style=" bottom: 0; width: 100%;">
+            <form action="{{ route('admin.remarks.store') }}" method="POST" id="remarkForm">
+                @csrf
+                <input type="hidden" name="enquiry_id" value="{{ $enquiry->id }}"> <!-- Enquiry ID -->
+                <input type="hidden" name="user_id" value="{{ Auth::id() }}"> <!-- Logged-in user ID -->
+                <input type="hidden" name="user_email" value="{{ $enquiry->user->email }}">
+                <input type="hidden" name="status" value="0">
+                <div class="form-group">
+                    <label for="summernoteExample">Remark Description</label>
+                    <div id="summernoteExample">
+                    </div>
+                </div>
+                <input type="hidden" id="remark" name="remark" value="">
+                <input type="hidden" id="uploaded_file_path" name="uploaded_file_path" value="">
+                <div class="form-group">
+                    <!-- Add the custom file upload button -->
+                    <button type="button" id="myFileUploadButton" class="btn btn-primary">
+                        <i class="fa fa-file-pdf"></i> Upload File
+                    </button>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="send_mail" value="0" id="sendMailCheckbox">&nbsp;&nbsp;Send Mail
+
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Sumbit</button>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="col-md-6">
         <!-- Enquiry Details -->
@@ -137,13 +168,114 @@
 
 <script>
 $(document).ready(function() {
+    // for checkbox
+    document.getElementById('sendMailCheckbox').addEventListener('change', function () {
+        if (this.checked) {
+            this.value = 1; // Set value when checked
+        } else {
+            this.value = 0; // Set value when unchecked
+        }
+    });
+
+
+    // Add the event listener to the custom upload button
+    document.getElementById('myFileUploadButton').addEventListener('click', function () {
+        $('<input type="file" accept=".pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .csv, .odt, .rtf, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, text/plain, application/csv">')
+        .click().on('change', function () {
+            var file = this.files[0];
+            // Handle the file upload
+            uploadFile(file);
+        });
+    });
+
+
     // Initialize Summernote for remark input
     if ($("#summernoteExample").length) {
         $('#summernoteExample').summernote({
             height: 200,
             tabsize: 2,
+            // toolbar: [
+            //     ['style', ['style', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']],
+            //     ['style', ['bold', 'italic', 'underline', 'clear']],
+            //     ['fontname', ['fontname']],
+            //     ['color', ['color']],
+            //     // Paragraph options
+            //     ['para', ['ul', 'ol', 'paragraph']],
+            
+            //     // Insert options including the custom file upload
+            //     ['insert', ['picture', 'link', 'video', 'table', 'myFileUpload']],
+            // ],
+            // buttons: {
+            //     // Add the file upload button with minimal code
+            //     myFileUpload: function () {
+            //         var ui = $.summernote.ui;
+            //         var button = ui.button({
+            //             contents: '<i class="fa fa-file-pdf"/>', // File icon
+            //             tooltip: 'Upload File',
+            //             click: function () {
+            //                 $('<input type="file" accept=".pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .csv, .odt, .rtf, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, text/plain, application/csv">').click().on('change', function () {
+                                
+            //                     var file = this.files[0];
+            //                     // You can handle the file upload here
+            //                     uploadFile(file); // You can add your own file upload logic here
+            //                 });
+            //             }
+            //         });
+            //         return button.render(); // Return the button HTML
+            //     }
+            // },
         });
     }
+    // Minimal file upload handler (you can customize it)
+    function uploadFile(file) {
+        var csrfToken = "{{ csrf_token() }}";
+        var data = new FormData();
+        data.append('file', file);
+        data.append('_token', csrfToken);
+        data.append('_token', csrfToken); // Add CSRF token to FormData
+        $.ajax({
+            url: '{{ url("/save-mail-details/") }}', // Your backend file upload endpoint
+            method: 'POST',
+            data: data,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Set CSRF token in headers
+            },
+            success: function (response) {
+                var filePath = response.filePath; // Adjust based on your response structure
+                console.log(response.fileName)
+                var fileUrl = '{{ url("storage") }}' + '/' + filePath;
+                $('#uploaded_file_path').val(filePath); 
+                // $('#uploaded_file_path').val(response.fileName); 
+                alert("File uploaded");
+                
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            // Get the response message
+                var errorMessage = 'File upload failed.';
+
+                if (jqXHR.responseJSON && jqXHR.responseJSON.errors) {
+                    // If the server returned validation errors, get the first error message
+                    var errors = jqXHR.responseJSON.errors;
+                    errorMessage = errors.file ? errors.file[0] : errorMessage;
+                } else if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
+                    // If there is a custom error message, use it
+                    errorMessage = jqXHR.responseJSON.message;
+                }
+
+                // Display the error message
+                alert(errorMessage);
+                console.error('File upload failed:', errorThrown);
+            }
+        });
+    }
+
+
+
+
+
+
     // Initialize Summernote for remark input
     if ($("#summernoteExample1").length) {
         $('#summernoteExample1').summernote({
