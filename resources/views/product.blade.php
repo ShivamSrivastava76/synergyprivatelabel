@@ -5,10 +5,10 @@
                 <div class="product-card">
                     <div class="product-card-img">
                         <a class="hover-switch" href="{{url('product_details/'.$item->name)}}">
-                            @if($item->image != null ||  $item->image != "")
+                            @if(isset($item->image) != null &&  count($item->image) > 0)
                                 <!--<img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}" alt="product">-->
-                                <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}" alt="product">
-                                {{$item->image}}
+                                <img class="primary-img" src="{{url('assets/images/products').'/'.$item->image[0]->image}}" alt="product">
+                                
                             @else
                                 <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}" alt="product">-->
                                 <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}" alt="product">

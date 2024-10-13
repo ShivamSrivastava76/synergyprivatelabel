@@ -6,7 +6,8 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-gallery product-gallery-vertical d-flex">
-                            @if($products->image != null ||  $products->image != "")
+                           
+                        @if(isset($products->image) && count($products->image) > 0)
                                 <div class="product-img-large">
                                     <div class="img-large-slider common-slider" data-slick='{
                                         "slidesToShow": 1, 
@@ -15,41 +16,13 @@
                                         "arrows": false,
                                         "asNavFor": ".img-thumb-slider"
                                     }'>
-                                        <div class="img-large-wrapper">
-                                            <a href="assets/img/products/39.jpg" data-fancybox="gallery">
-                                                <img src="assets/img/products/39.jpg" alt="img">
-                                            </a>
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <a href="assets/img/products/38.jpg" data-fancybox="gallery">
-                                                <img src="assets/img/products/38.jpg" alt="img">
-                                            </a>
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <a href="assets/img/products/37.jpg" data-fancybox="gallery">
-                                                <img src="assets/img/products/37.jpg" alt="img">
-                                            </a>
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <a href="assets/img/products/36.jpg" data-fancybox="gallery">
-                                                <img src="assets/img/products/36.jpg" alt="img">
-                                            </a>
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <a href="assets/img/products/34.jpg" data-fancybox="gallery">
-                                                <img src="assets/img/products/34.jpg" alt="img">
-                                            </a>
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <a href="assets/img/products/30.jpg" data-fancybox="gallery">
-                                                <img src="assets/img/products/30.jpg" alt="img">
-                                            </a>
-                                        </div>
-                                        <div class="img-large-wrapper">
-                                            <a href="assets/img/products/32.jpg" data-fancybox="gallery">
-                                                <img src="assets/img/products/32.jpg" alt="img">
-                                            </a>
-                                        </div>
+                                        @foreach($products->image as  $image)
+                                            <div class="img-large-wrapper">
+                                                <a href="{{url('assets/images/products').'/'.$image->image}}" data-fancybox="gallery">
+                                                    <img src="{{url('assets/images/products').'/'.$image->image}}" alt="img">
+                                                </a>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="product-img-thumb">
@@ -65,41 +38,13 @@
                                         "swipeToSlide": true,
                                         "asNavFor": ".img-large-slider"
                                     }'>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="assets/img/products/39.jpg" alt="img">
+                                        @foreach($products->image as  $image)
+                                            <div>
+                                                <div class="img-thumb-wrapper">
+                                                    <img src="{{url('assets/images/products').'/'.$image->image}}" alt="img">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="assets/img/products/38.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="assets/img/products/37.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="assets/img/products/36.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="assets/img/products/34.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="assets/img/products/30.jpg" alt="img">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="img-thumb-wrapper">
-                                                <img src="assets/img/products/32.jpg" alt="img">
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                     <div class="activate-arrows show-arrows-always arrows-white d-none d-lg-flex justify-content-between mt-3"></div>
                                 </div>
@@ -136,7 +81,6 @@
                                             <select class="form-control" id="{{ str_replace(' ', '_', $val->name) }}" onchange="change('{{ str_replace(' ', '_', $val->name) }}')">
                                                 @foreach($value as $key => $item)
                                                     @php 
-                                                        // Store the first item for the corresponding key
                                                         if (!isset($val_key[$keys])) {  // Check if the key is not set
                                                             $val_key[$keys] = $item;  
                                                         }
@@ -246,6 +190,7 @@
                     <div id="pdescription" class="tab-pane fade show active">
                         <div class="row">
                             {!! $products->description !!}
+                            
                         </div>
                     </div>
                 </div>

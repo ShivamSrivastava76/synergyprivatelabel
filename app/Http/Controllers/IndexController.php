@@ -29,9 +29,9 @@ class IndexController extends Controller
         
     }
 
-    public function index()
+    public function index(): View
     {
-        $product = product::orderBy('updated_at', 'desc')->where('features',0)->where('status',0)->take(10)->get();
+        $product = product::with('Image')->orderBy('updated_at', 'desc')->where('features',0)->where('status',0)->take(10)->get();
         $category = $this->category;
         $categories = $this->categories;
         $group_categories = Subcategory::where('status',0)->where('in_group',0)->limit(3)->get();
@@ -84,10 +84,7 @@ class IndexController extends Controller
     {
         $query = $request->input('query');
 
-        // Fetch matching products based on the search query
-        $products = Product::where('name', 'like', "%{$query}%")
-                        // ->orWhere('description', 'like', "%{$query}%")
-                        ->get();
+        $products = Product::with('Image')->where('name', 'like', "%{$query}%")->get();
     
         return view('search-results', compact('products'));
     }
@@ -103,7 +100,7 @@ class IndexController extends Controller
     {
         $category = $this->category;
         $categories = $this->categories;
-        $product = Product::orderBy('updated_at', 'desc')->where('status',0)->get();
+        $product = Product::with('Image')->orderBy('updated_at', 'desc')->where('status',0)->get();
         return view('products', compact('product', 'category', 'categories'));
     }
 
@@ -139,7 +136,7 @@ class IndexController extends Controller
                 break;
         }
         
-        $product = Product::orderBy($sortBy, $sortDirection)->where('status',0)->get();
+        $product = Product::with('Image')->orderBy($sortBy, $sortDirection)->where('status',0)->get();
         
         return view('product', compact('product'));
     }
@@ -250,7 +247,7 @@ class IndexController extends Controller
     {
         $category = $this->category;
         $categories = $this->categories;
-         $products = Product::where('status',0)->where('name',$name)->first();
+        $products = Product::with('Image')->where('status',0)->where('name',$name)->first();
 
          $subcategories = Subcategory::with('products')->get();
 
