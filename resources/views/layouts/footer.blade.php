@@ -28,7 +28,7 @@
                             <div class="col-xl-2 col-lg-2 col-md-6 col-12 footer-widget">
                                 <div class="footer-widget-inner">
                                     <h4 class="footer-heading d-flex align-items-center justify-content-between">
-                                        <span class="text-white">Useful Links</span>
+                                        <span class="">Useful Links</span>
                                         <span class="d-md-none">
                                             <svg class="icon icon-dropdown" xmlns="http://www.w3.org/2000/svg"
                                                 width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f0f0f"
@@ -49,7 +49,7 @@
                             <div class="col-xl-2 col-lg-2 col-md-6 col-12 footer-widget">
                                 <div class="footer-widget-inner">
                                     <h4 class="footer-heading d-flex align-items-center justify-content-between">
-                                        <span class="text-white">About Moxxpharma</span>
+                                        <span class="">About Moxxpharma</span>
                                         <span class="d-md-none">
                                             <svg class="icon icon-dropdown" xmlns="http://www.w3.org/2000/svg"
                                                 width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f0f0f"
@@ -188,16 +188,16 @@
                 <div class="offcanvas-body p-0 d-flex flex-column justify-content-between">
                     <nav class="site-navigation">
                         <ul class="main-menu list-unstyled">
-                            <li class="menu-list-item nav-item has-dropdown active">
+                            <li class="menu-list-item nav-item has-dropdown">
                                 <div class="mega-menu-header">
-                                    <a class="nav-link active text-white" href="{{url('label-design-how-does-it-work')}}">
+                                    <a class="nav-link" href="{{url('label-design-how-does-it-work')}}">
                                         How does it work
                                     </a>
                                 </div>
                             </li>
                             <li class="menu-list-item nav-item has-megamenu">
                                 <div class="mega-menu-header">
-                                    <a class="nav-link text-white" href="javascript:void(0)">
+                                    <a class="nav-link" href="javascript:void(0)">
                                         Who We Are
                                     </a>
                                     <span class="open-submenu">
@@ -222,37 +222,30 @@
                                             </h5>
                                         </div>
                                         <ul class="submenu megamenu-container list-unstyled">
-                                            <!--<li class="menu-list-item nav-item-sub">-->
-                                            <!--    <div class="mega-menu-header">-->
-                                            <!--        <a class="nav-link-sub nav-text-sub megamenu-heading"-->
-                                            <!--            href="{{url('about_us')}}">About Us-->
-                                            <!--        </a>-->
-                                            <!--    </div>-->
-                                            <!--</li>-->
                                             <li class="menu-list-item nav-item-sub">
                                                 <div class="mega-menu-header">
-                                                    <a class="nav-link-sub nav-text-sub megamenu-heading text-white"
+                                                    <a class="nav-link-sub nav-text-sub megamenu-heading"
                                                         href="{{url('what-we-do')}}">What we do
                                                     </a>
                                                 </div>
                                             </li>
                                             <li class="menu-list-item nav-item-sub">
                                                 <div class="mega-menu-header">
-                                                    <a class="nav-link-sub nav-text-sub megamenu-heading text-white"
+                                                    <a class="nav-link-sub nav-text-sub megamenu-heading"
                                                         href="{{url('faq')}}'">FAQ
                                                     </a>
                                                 </div>
                                             </li>
                                             <li class="menu-list-item nav-item-sub">
                                                 <div class="mega-menu-header">
-                                                    <a class="nav-link-sub nav-text-sub megamenu-heading text-white"
+                                                    <a class="nav-link-sub nav-text-sub megamenu-heading"
                                                         href="{{url('our-team')}}">Our Team
                                                     </a>
                                                 </div>
                                             </li>
                                             <li class="menu-list-item nav-item-sub">
                                                 <div class="mega-menu-header">
-                                                    <a class="nav-link-sub nav-text-sub megamenu-heading text-white"
+                                                    <a class="nav-link-sub nav-text-sub megamenu-heading"
                                                         href="{{url('search')}}">Search
                                                     </a>
                                                 </div>
@@ -261,15 +254,89 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="menu-list-item nav-item">
-                                <a class="nav-link text-white" href="{{url('products')}}"> Products</a>
+                            <li class="menu-list-item nav-item has-megamenu">
+                                <div class="mega-menu-header">
+                                    <a class="nav-link" >
+                                        Product
+                                    </a>
+                                    <span class="open-submenu">
+                                        <svg class="icon icon-dropdown" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="submenu-transform submenu-transform-desktop">
+                                    <div class="container">
+                                        <div class="offcanvas-header border-btm-black">
+                                            <h5 class="drawer-heading btn-menu-back d-flex align-items-center">
+                                                <svg class="icon icon-menu-back" xmlns="http://www.w3.org/2000/svg"
+                                                    width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                                </svg>
+                                                <span class="menu-back-text">Back</span>
+                                            </h5>
+                                        </div>
+                                        <ul class="submenu megamenu-container list-unstyled">
+                                            @if(isset($categories) && count($categories)>0)
+                                                <ul class="main-menu list-unstyled">
+                                                    @foreach($categories as $val)
+                                                        <li class="menu-list-item nav-item has-megamenu">
+                                                            <div class="mega-menu-header">
+                                                                <a class="nav-link" href="{{url('collection').'/'.$val->name}}">
+                                                                    {{$val->name}}
+                                                                </a>
+                                                                <span class="open-submenu">
+                                                                    <svg class="icon icon-dropdown" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                                                    </svg>
+                                                                </span>
+                                                            </div>
+                                                            <div class="submenu-transform submenu-transform-desktop">
+                                                                <div class="container">
+                                                                    <div class="offcanvas-header border-btm-black">
+                                                                        <h5 class="drawer-heading btn-menu-back d-flex align-items-center">
+                                                                            <svg class="icon icon-menu-back" xmlns="http://www.w3.org/2000/svg"
+                                                                                width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                                                stroke-linejoin="round">
+                                                                                <polyline points="15 18 9 12 15 6"></polyline>
+                                                                            </svg>
+                                                                            <span class="menu-back-text">Back</span>
+                                                                        </h5>
+                                                                    </div>
+                                                                    <ul class="submenu megamenu-container list-unstyled">
+                                                                        @foreach($val->subcategories as $vals)       
+                                                                            <li class="menu-list-item nav-item-sub">
+                                                                                <div class="mega-menu-header">
+                                                                                    <a class="nav-link-sub nav-text-sub megamenu-heading"
+                                                                                    href="{{url('collections').'/'.$vals->name}}"> {{$vals->name}}
+                                                                                    </a>
+                                                                                </div>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </ul>
+                                    </div>
+                                </div>
                             </li>
                             <li class="menu-list-item nav-item">
-                                <a class="nav-link text-white" href="{{url('custom-formulations')}}">
+                                <a class="nav-link" href="{{url('custom-formulations')}}">
                                     Custom Formulations</a>
                             </li>
                             <li class="menu-list-item nav-item">
-                                <a class="nav-link text-white" href="{{url('contact')}}"> Contact Us</a>
+                                <a class="nav-link" href="{{url('contact')}}"> Contact Us</a>
                             </li>
                         </ul>
                     </nav>
@@ -367,10 +434,10 @@
                     if(response.status)
                     {
                         swal("Product Added", "This product is added to your cart", "success");
-                        if(response > 0 && response < 10)
-                            cart = '0'+response;
+                        if(response.message > 0 && response.message < 10)
+                            cart = '0'+response.message;
                         else
-                            cart = response
+                            cart = response.message
                         $(".cartNumber").html(cart);
                     }
                     else
@@ -410,8 +477,8 @@
                         cart = '0'+response;
                     else
                         cart = response
-                    $(".cartNumber").show();
                     $(".cartNumber").html(cart);
+                    $(".cartNumber").show();
                 },
             });
         });
@@ -422,6 +489,23 @@
                 $('#CustomProduct'+id).show()
             else
                 $('#CustomProduct'+id).hide()
+        }
+
+        function del(id)
+        {
+            $.ajax({
+                url: "{{ url('addtocartdel') }}",
+                data: {
+                    id: id
+                },
+                method: 'get',
+                success: function(response) {
+                    swal("Product deleted", "This product is deleted from your cart", "success")
+                    .then((value) => {
+                        window.location.reload();
+                    });
+                },
+            });
         }
 
     </script>

@@ -1,13 +1,30 @@
 @include('layouts.app')
 @include('layouts.navBar')
+    <!-- breadcrumb start -->
+        <div class="container mt-4">
+            <ul class="list-unstyled d-flex align-items-center m-0">
+                <li><a class="tab-link active" href="{{url('/')}}">Home</a></li>
+                <li>
+                    <svg class="icon icon-breadcrumb" width="64" height="64" viewBox="0 0 64 64" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g opacity="0.4">
+                            <path
+                                d="M25.9375 8.5625L23.0625 11.4375L43.625 32L23.0625 52.5625L25.9375 55.4375L47.9375 33.4375L49.3125 32L47.9375 30.5625L25.9375 8.5625Z"
+                                fill="#000" />
+                        </g>
+                    </svg>
+                </li>
+                <li>{{$products->name}}</li>
+            </ul>
+        </div>
+        <!-- breadcrumb end -->
     <main id="MainContent" class="content-for-layout">
         <div class="product-page mt-100">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-gallery product-gallery-vertical d-flex">
-                           
-                        @if(isset($products->image) && count($products->image) > 0)
+                        @if(isset($products->Image) && count($products->Image) > 0)
                                 <div class="product-img-large">
                                     <div class="img-large-slider common-slider" data-slick='{
                                         "slidesToShow": 1, 
@@ -16,7 +33,7 @@
                                         "arrows": false,
                                         "asNavFor": ".img-thumb-slider"
                                     }'>
-                                        @foreach($products->image as  $image)
+                                        @foreach($products->Image as  $image)
                                             <div class="img-large-wrapper">
                                                 <a href="{{url('assets/images/products').'/'.$image->image}}" data-fancybox="gallery">
                                                     <img src="{{url('assets/images/products').'/'.$image->image}}" alt="img">
@@ -38,7 +55,7 @@
                                         "swipeToSlide": true,
                                         "asNavFor": ".img-large-slider"
                                     }'>
-                                        @foreach($products->image as  $image)
+                                        @foreach($products->Image as  $image)
                                             <div>
                                                 <div class="img-thumb-wrapper">
                                                     <img src="{{url('assets/images/products').'/'.$image->image}}" alt="img">
@@ -70,32 +87,30 @@
                             @if(isset($variation) != null && count($variation) > 0) 
                                 <div class="product-variant-wrapper">
                                     <div class="product-variant product-variant-other">
-                                        @php  $key_val = []; $val_key = []; @endphp
-
-                                        @foreach($variation as $keys => $val)
-                                            <strong class="label mb-1 d-block">{{ $val->name }}:</strong>
-                                            @php  
-                                                $value = explode(",", $val->value);  
-                                            @endphp
-
-                                            <select class="form-control" id="{{ str_replace(' ', '_', $val->name) }}" onchange="change('{{ str_replace(' ', '_', $val->name) }}')">
-                                                @foreach($value as $key => $item)
-                                                    @php 
-                                                        if (!isset($val_key[$keys])) {  // Check if the key is not set
-                                                            $val_key[$keys] = $item;  
-                                                        }
+                                            @php  $key_val = []; $val_key = []; @endphp
+                                            @foreach($variation as $keys => $val)
+                                                @if($val->name != null) 
+                                                    <strong class="label mb-1 d-block">{{ $val->name }}:</strong>
+                                                    @php  
+                                                        $value = explode(",", $val->value);  
                                                     @endphp
-                                                    <option value="{{ $item }}">{{ $item }}</option>
-                                                @endforeach
-                                                <option value="Other">Other</option>
-                                            </select>
-
-                                            <input type="text" class="form-control my-3" id="{{ str_replace(' ', '_', $val->name) }}1" value="" style="display:none"/>
-                                            
-                                            @php 
-                                                $key_val[$keys] = str_replace(' ', '_', $val->name); 
-                                            @endphp
-                                        @endforeach
+                                                    <select class="form-select" id="{{ str_replace(' ', '_', $val->name) }}" onchange="change('{{ str_replace(' ', '_', $val->name) }}')">
+                                                        @foreach($value as $key => $item)
+                                                            @php 
+                                                                if (!isset($val_key[$keys])) {  
+                                                                    $val_key[$keys] = $item;  
+                                                                }
+                                                            @endphp
+                                                            <option value="{{ $item }}">{{ $item }}</option>
+                                                        @endforeach
+                                                        <option value="Other">Other</option>
+                                                    </select>
+                                                    <input type="text" class="form-control my-3" id="{{ str_replace(' ', '_', $val->name) }}1" value="" style="display:none"/>
+                                                    @php 
+                                                        $key_val[$keys] = str_replace(' ', '_', $val->name); 
+                                                    @endphp
+                                                @endif
+                                            @endforeach
                                     </div>
                                 </div>
                                 <input type="hidden" id="key" class="" value="{{json_encode($key_val)}}" />
@@ -226,21 +241,23 @@
                         ]
                     }'>
                         @foreach($subcategories as $val)
-                            @foreach($val->products as $item)
+                           
                                 <div class="new-item" data-aos="fade-up" data-aos-duration="300">
                                     <div class="product-card">
                                         <div class="product-card-img">
-                                            <a class="hover-switch" href="{{url('product_details/'.$item->name)}}">
-                                                @if($item->image != null ||  $item->image != "")
-                                                    <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}" alt="product-img">
+                                            <a class="hover-switch" href="{{url('product-details/'.$val->name)}}">
+                                                @if($val->Image != null &&  count($val->Image) > 0)
+                                                    <img class="primary-img" src="{{url('assets/images/products').'/'.$val->Image[0]->image}}" alt="product-img">
                                                 @else
                                                     <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}" alt="product-img">
                                                 @endif
                                             </a>
                                         </div>
                                     </div>
+                                    <div class="product-card-details">
+                                        <h3 class="product-card-title"><a href="{{url('product-details/'.$val->name)}}">{{$val->name}}</a></h3>
+                                    </div>
                                 </div>
-                            @endforeach
                         @endforeach
                     </div>
                     <div class="activate-arrows show-arrows-always article-arrows arrows-white"></div>

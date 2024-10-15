@@ -74,12 +74,6 @@ class IndexController extends Controller
         return view('search', compact('category', 'categories'));
     }
 
-    // public function searchproductlist($key= null): View
-    // {
-    //     $product = Product::orderBy('updated_at', 'desc')->where('status',0)->where('name', 'like', '%'.$key.'%')->get();
-
-    //     return view('product', compact('product'));
-    // }
     public function searchproductlist(Request $request)
     {
         $query = $request->input('query');
@@ -172,8 +166,11 @@ class IndexController extends Controller
                 $sortDirection = 'desc';
                 break;
         }
+
         
-        $products = category::with('products')->where('status',0)->where('name',$name)->first();
+        $products = Category::with(['products' => function ($query) use ($sortBy, $sortDirection) {
+            $query->orderBy($sortBy, $sortDirection)->where('status', 0);
+        }, 'products.Image'])->where('status', 0)->where('name', $name)->first();
         
         return view('categorysortproduct', compact('products'));
     }
@@ -209,8 +206,10 @@ class IndexController extends Controller
                 $sortDirection = 'desc';
                 break;
         }
-        
-        $products = Subcategory::with('products')->where('status',0)->where('name',$name)->first();
+        $products = Subcategory::with(['products' => function ($query) use ($sortBy, $sortDirection) {
+            $query->orderBy($sortBy, $sortDirection)->where('status', 0);
+        }, 'products.Image'])->where('status', 0)->where('name', $name)->first();
+
         
         return view('categorysortproduct', compact('products'));
     }
@@ -247,31 +246,45 @@ class IndexController extends Controller
     {
         $category = $this->category;
         $categories = $this->categories;
-        $products = Product::with('Image')->where('status',0)->where('name',$name)->first();
+        $products = Product::with('Image')->where('status',0)->where('name',$name);
 
-         $subcategories = Subcategory::with('products')->get();
+        if($products->count() != 0)
+        {
+            $products =  $products->first();
 
-        $variation = variation::where('products_id', $products->id)->get();
+            $subcategories =  product::with('Image')->whereHas('subcategories', function($query) use ($products) {
+                $query->whereIn('subcategories.id', $products->subcategories->pluck('id'));
+            })
+            ->where('id', '!=', $products->id)
+            ->where('status', 0)
+            ->inRandomOrder() 
+            ->take(8)
+            ->get();
+
+            $variation = variation::where('products_id', $products->id)->get();
 
 
-        return view('product_details', compact('products', 'variation' , 'category', 'subcategories', 'categories'));
+            return view('product_details', compact('products', 'variation' , 'category', 'subcategories', 'categories'));
+        }
+        else
+            return view('errors.404');
     }
 
     public function category($name)
     {
         $category = $this->category;
         $categories = $this->categories;
-        $products = category::with('products')->where('status',0)->where('name',$name)->first();
+        $products = category::with('products.Image')->where('status',0)->where('name',$name)->first();
         
 
         return view('categoryproducts', compact('products', 'category', 'categories', 'name'));
     }
 
-    public function subcategory($name): View
+    public function subcategory($name)
     {
         $category = $this->category;
         $categories = $this->categories;
-        $products = Subcategory::with('products')->where('status',0)->where('name',$name)->first();
+        $products = Subcategory::with('products.Image')->where('status',0)->where('name',$name)->first();
 
         return view('subcategoryproducts', compact('products', 'category', 'categories', 'name'));
     }
@@ -475,6 +488,26 @@ class IndexController extends Controller
         } 
         else
             return response()->json(['status' => false, 'message' => "This product is already in your cart"]);
+    }
+
+    public function addtocartdel(Request $request)
+    {
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))
+        {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } 
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+        {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else 
+        {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+    
+        AddToCard::where('ip_address', $ip)->where('id', $request->id)->forceDelete();
+        
+        return response()->json(['status' => true]);
+      
     }
 
     public function addtocartview(Request  $request)

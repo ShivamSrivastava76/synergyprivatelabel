@@ -54,7 +54,7 @@
                                 </li>
                                 <li class="menu-list-item nav-item has-dropdown">
                                     <div class="mega-menu-header">
-                                        <a class="nav-link" href="{{url('products')}}">
+                                        <a class="nav-link">
                                             Products
                                         </a>
                                         <span class="open-submenu">
@@ -69,22 +69,22 @@
                                     <div class="submenu-transform-product submenu-transform-desktop">
                                         <div class="d-flex p-2">
                                             @if(isset($categories) && count($categories)>0)
-                                            @foreach($categories as $val)
-                                                <ul class="submenu list-unstyled">   
-                                                    <h5> 
-                                                        <strong class="text-center">
+                                                @foreach($categories as $val)
+                                                    <ul class="submenu list-unstyled">   
+                                                        <h5> 
+                                                            <strong class="text-center">
+                                                                <li class="menu-list-item nav-item-sub">
+                                                                    <a class="nav-link-sub nav-text-sub" href="{{url('collection').'/'.$val->name}}"> <strong> {{$val->name}} </strong></a>
+                                                                </li>   
+                                                            </strong> 
+                                                        </h5>
+                                                        @foreach($val->subcategories as $vals)                                           
                                                             <li class="menu-list-item nav-item-sub">
-                                                                <a class="nav-link-sub nav-text-sub" href="{{url('collection').'/'.$val->name}}"> <strong> {{$val->name}} </strong></a>
-                                                            </li>   
-                                                        </strong> 
-                                                    </h5>
-                                                    @foreach($val->subcategories as $vals)                                           
-                                                        <li class="menu-list-item nav-item-sub">
-                                                            <a class="nav-link-sub nav-text-sub"  href="{{url('collections').'/'.$vals->name}}">{{$vals->name}}</a>
-                                                        </li>                                
-                                                    @endforeach
-                                                </ul>
-                                            @endforeach
+                                                                <a class="nav-link-sub nav-text-sub"  href="{{url('collections').'/'.$vals->name}}">{{$vals->name}}</a>
+                                                            </li>                                
+                                                        @endforeach
+                                                    </ul>
+                                                @endforeach
                                             @endif
                                         </div>
                                     </div>

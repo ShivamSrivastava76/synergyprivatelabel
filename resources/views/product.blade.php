@@ -4,13 +4,11 @@
             <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
                 <div class="product-card">
                     <div class="product-card-img">
-                        <a class="hover-switch" href="{{url('product_details/'.$item->name)}}">
-                            @if(isset($item->image) != null &&  count($item->image) > 0)
-                                <!--<img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}" alt="product">-->
-                                <img class="primary-img" src="{{url('assets/images/products').'/'.$item->image[0]->image}}" alt="product">
+                        <a class="hover-switch" href="{{url('product-details/'.$item->name)}}">
+                            @if(isset($item->Image) != null &&  count($item->Image) > 0)
+                                <img class="primary-img" src="{{url('assets/images/products').'/'.$item->Image[0]->image}}" alt="product">
                                 
                             @else
-                                <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}" alt="product">-->
                                 <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}" alt="product">
                             @endif
                         </a>
@@ -20,7 +18,7 @@
                         </div>
                     </div>
                     <div class="product-card-details">
-                        <h3 class="product-card-title"><a href="{{url('product_details/'.$item->name)}}">{{$item->name}}</a></h3>
+                        <h3 class="product-card-title"><a href="{{url('product-details/'.$item->name)}}">{{$item->name}}</a></h3>
                     </div>
                 </div>
             </div>

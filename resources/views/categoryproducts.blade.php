@@ -31,7 +31,7 @@
                         <div class="filter-sort-wrapper d-flex justify-content-between flex-wrap">
                             <div class="collection-title-wrap d-flex align-items-end">
                                 <h2 class="collection-title heading_24 mb-0">All products</h2>
-                                <p class="collection-counter text_16 mb-0 ms-2">(@if(isset($products->products) != null && count($products->products) > 0) {{count($products->products)}} @else 237 @endif items)</p>
+                                <p class="collection-counter text_16 mb-0 ms-2">(@if(isset($products->products) != null && count($products->products) > 0) {{count($products->products)}} @endif items)</p>
                             </div>
                             <div class="filter-sorting">
                                 <div class="collection-sorting position-relative d-none d-lg-block">
@@ -75,249 +75,6 @@
                                     <div id="sortproductlist">
                                         @include('categorysortproduct')
                                     </div>
-                                @else
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">best wood furniture</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                    </div>
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">Vita Lounge Chair</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">Sarno Dining Chair</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                    </div>
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">bisum tea table</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">Eliot Reversible tool</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                    </div>
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">Vita Lounge wardrobe</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                    </div>
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">Sarno Dining Chair</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                    </div>
-
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">Vita Lounge Chair</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">Eliot Reversible tool</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">Eliot Reversible tool</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">Eliot Reversible tool</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                                        <div class="product-card">
-                                            <div class="product-card-img">
-                                                <a class="hover-switch" href="{{url('product_details')}}">
-                                                    <img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}"
-                                                        alt="product">
-                                                </a>
-                                                <div class="product-card-action product-card-action-2">
-                                                    <a href="{{url('product_details')}}" class="quickview-btn btn-primary"
-                                                        data-bs-toggle="modal">QUICKVIEW</a>
-                                                    <a href="{{url('product_details')}}" class="addtocart-btn btn-primary">ADD TO CART</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card-details">
-                                                <h3 class="product-card-title">
-                                                    <a href="{{url('product_details')}}">Eliot Reversible tool</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endif
                             </div>
                     </div>
@@ -347,16 +104,14 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <div id="filter-mobile-sort" class="accordion-collapse collapse show">
+                                <div id="filter-mobile-sort" class="accordion-collapse ">
                                     <ul class="sorting-lists-mobile list-unstyled m-0">
-                                        <li><a class="text_14">Featured</a></li>
-                                        <li><a class="text_14">Best Selling</a></li>
-                                        <li><a class="text_14">Alphabetically, A-Z</a></li>
-                                        <li><a class="text_14">Alphabetically, Z-A</a></li>
-                                        <li><a class="text_14">Price, low to high</a></li>
-                                        <li><a class="text_14">Price, high to low</a></li>
-                                        <li><a class="text_14">Date, old to new</a></li>
-                                        <li><a class="text_14">Date, new to old</a></li>
+                                        <li><a onclick="sortproduct('asc')" class="text_14">Alphabetically, A-Z</a></li>
+                                        <li><a onclick="sortproduct('desc')" class="text_14">Alphabetically, Z-A</a></li>
+                                        <li><a onclick="sortproduct('low')" class="text_14">Price, low to high</a></li>
+                                        <li><a onclick="sortproduct('high')" class="text_14">Price, high to low</a></li>
+                                        <li><a onclick="sortproduct('old')" class="text_14">Date, old to new</a></li>
+                                        <li><a onclick="sortproduct('new')" class="text_14">Date, new to old</a></li>
                                     </ul>
                                 </div>
                             </div>
