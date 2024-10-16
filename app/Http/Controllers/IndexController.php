@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\product;
 use Illuminate\View\View;
@@ -291,51 +292,6 @@ class IndexController extends Controller
 
     public function enquiry(Request $request)
     {
-        
-        $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'company' => ['nullable', 'string', 'max:255'], 
-            'email' => ['required', 'email', 'max:255'], 
-            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'password_confirmation' => ['required'],
-        ], [
-            'first_name.required' => 'The first name is required.',
-            'first_name.string' => 'The first name must be a valid string.',
-            'first_name.max' => 'The first name cannot be longer than 255 characters.',
-            'last_name.required' => 'The last name is required.',
-            'last_name.string' => 'The last name must be a valid string.',
-            'last_name.max' => 'The last name cannot be longer than 255 characters.',
-            'company.string' => 'The company must be a valid string.',
-            'company.max' => 'The company cannot be longer than 255 characters.',
-            'email.required' => 'The email address is required.',
-            'email.email' => 'Please provide a valid email address.',
-            'phone.required' => 'Please provide a phone number.',
-            'phone.regex' => 'The phone number format is invalid.',
-            'phone.min' => 'The phone number must be at least 10 digits.',
-            'password.required' => 'A password is required.',
-            'password.confirmed' => 'The password confirmation does not match.',
-            'password_confirmation.required' => 'Please confirm your password.',
-        ]);
-
-        $count = User::where('email', $request->email);
-
-        if($count->count() === 0)
-        {
-            $user = new User();
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->company = $request->company ?? null;
-            $user->password = $request->password;
-            $user->role = 2;
-            $user->save();
-        }
-        else
-            $user = $count->first();
-       
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             // Check if the IP is from shared internet
             $ip = $_SERVER['HTTP_CLIENT_IP'];
@@ -356,7 +312,7 @@ class IndexController extends Controller
         if($count <= 10)
         {
             $enquiry = new enquiry();
-            $enquiry->user_id = $user->id;
+            $enquiry->user_id = Auth::user()->id;
             $enquiry->ip_address =  $ip;
             $enquiry->status = 0;
             $enquiry->save();
@@ -434,6 +390,10 @@ class IndexController extends Controller
 
     public function checkout()
     {
+        if(!Auth::check())
+            return redirect()->route('login');
+
+            
         $category = $this->category;
         $categories = $this->categories;
         if (!empty($_SERVER['HTTP_CLIENT_IP']))

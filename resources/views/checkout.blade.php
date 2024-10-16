@@ -38,7 +38,7 @@
                     <form action="{{url('enquiry')}}" method="post" >
                         @csrf
                         <div class="row">
-                            <div class="col-xl-8 col-lg-8 col-md-8 col-12">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                                 <div class="cart-total-area checkout-summary-area pt-3">
                                     <h3 class="d-none d-lg-block mb-0 text-center heading_24 mb-4">Order summary</h3>
                                     @if(isset($addtocard) != null && count($addtocard) > 0)
@@ -91,7 +91,7 @@
                                     @endif
                                 </div>
                             </div>    
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                            <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                 <div class="shipping-address-area mt-0">
                                     <h2 class="shipping-address-heading pb-1">Personal Details</h2>
                                     <div class="shipping-address-form-wrapper">
@@ -154,12 +154,16 @@
                                 </div>
                                 <div class="shipping-address-area billing-area">
                                     <div class="minicart-btn-area d-flex align-items-center justify-content-center flex-wrap">
-                                        <!-- <a href="cart.html" class="checkout-page-btn minicart-btn btn-secondary">BACK TO CART</a> -->
-                                        <button class="checkout-page-btn minicart-btn btn-primary">Submit</button>
+                                       
+                                        <button class="checkout-page-btn minicart-btn btn-primary">checkout</button>
                                     </div>
                                 </div>
-                            </div>   
+                            </div>    -->
                         </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="checkout-page-btn btn-primary">Checkout</button>
+                        </div>
+                       
                     </form>
                 </div>
             </div>
