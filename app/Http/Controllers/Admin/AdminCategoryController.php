@@ -47,6 +47,7 @@ class AdminCategoryController extends Controller
             $category->name = $validatedData['categoryName'];
             $category->description = $request['description'];
             $category->status = 0;
+            $category->slug = str_replace(' ', '-', $request->categoryName);
             $category->save();
         
             return redirect()->route('admin.category.index')->with('success', 'Category added successfully!');
@@ -85,6 +86,7 @@ class AdminCategoryController extends Controller
         try {
             // Find the category and update it
             $category = category::findOrFail($id);
+            $validatedData['slug'] = str_replace(' ', '-', $request->name);
             $category->update($validatedData);
     
             // Redirect to the index page with a success message

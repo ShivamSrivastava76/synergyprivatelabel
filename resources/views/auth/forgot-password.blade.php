@@ -1,9 +1,8 @@
 @include('layouts.app')
 @include('layouts.navBar')
     <!-- breadcrumb start -->
-    <div class="breadcrumb innerpagebanner" style="background-image: url({{url('asset/img/banner1.jpg')}});">
+    <div class="innerpagebanner py-4">
         <div class="container">
-            <h2 class="text-white">Forgot Password</h2>
             <ul class="list-unstyled d-flex align-items-center m-0">
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li>

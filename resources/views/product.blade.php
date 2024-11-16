@@ -1,35 +1,55 @@
 @if(count($product) > 0)
-    <div class="row mb-5">
-        @foreach($product as $item)
-            <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
-                <div class="product-card">
-                    <div class="product-card-img">
-                        <a class="hover-switch" href="{{url('product_details/'.$item->name)}}">
-                            @if(isset($item->image) != null &&  count($item->image) > 0)
-                                <!--<img class="primary-img" src="{{url('/assets/images/products/'.$item->image)}}" alt="product">-->
-                                <img class="primary-img" src="{{url('assets/images/products').'/'.$item->image[0]->image}}" alt="product">
-                                
-                            @else
-                                <!--<img class="primary-img" src="{{url('asset/img/products/product1.jpg')}}" alt="product">-->
-                                <img class="primary-img" src="{{url('/asset/img/products/Moxx.jpg')}}" alt="product">
-                            @endif
-                        </a>
-                        <div class="product-card-action product-card-action-2">
-                            <!-- <a href="{{url('product_details/'.$item->name)}}" class="quickview-btn btn-primary">QUICK VIEW</a> -->
-                            <!-- <a class="addtocart-btn btn-primary" onclick="addtocart({{$item->id}})">ADD TO CART</a> -->
+    <div class="grid_view_product" id="pMenu1">
+        <div class="row">
+            @foreach($product as $item)
+                <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-duration="700">
+                    <div class="product-card">
+                        <div class="product-card-img">
+                            <a class="hover-switch" href="{{url('product-details/'.$item->slug)}}">
+                                @if(isset($item->Image) != null &&  count($item->Image) > 0)
+                                    <img src="{{url('assets/images/products/150x150').'/'.$item->Image[0]->image}}"  class="card-img-top" alt="product">   
+                                @else
+                                    <img src="{{url('/asset/img/products/Moxx.jpg')}}" style="width:150px" class="card-img-top" alt="product">
+                                @endif
+                            </a>
+                        </div>
+                        <div class="product-card-details">
+                            <h3 class="product-card-title">
+                                <a href="{{url('product-details/'.$item->name)}}">{{$item->name}}</a>
+                            </h3>
                         </div>
                     </div>
-                    <div class="product-card-details">
-                        <h3 class="product-card-title"><a href="{{url('product_details/'.$item->name)}}">{{$item->name}}</a></h3>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+
+    <div class="list_view_product show" id="pMenu2">
+        @foreach($product as $item)
+            <a class="hover-switch" href="{{url('product-details/'.$item->slug)}}">
+                <div class="card bg-warning-subtle mt-4">
+                    @if(isset($item->Image) != null &&  count($item->Image) > 0)
+                        <img src="{{url('assets/images/products/150x150').'/'.$item->Image[0]->image}}"  class="card-img-top" alt="product">
+                        
+                    @else
+                        <img src="{{url('/asset/img/products/Moxx.jpg')}}" style="width:150px" class="card-img-top" alt="product">
+                    @endif
+                    <div class="card-body">
+                        <div class="text-section">
+                            <h5 class="card-title fw-bold">{{$item->name}}</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         @endforeach
     </div>
+     <!-- Pagination Links -->
+    {{ $product->links('vendor.pagination.bootstrap-5') }}
 @else
-<div class="row mb-5">
-    <div class="col-md-12 text-center">
-        <h2>No products found</h2>
+    <div class="row mb-5">
+        <div class="col-md-12 text-center">
+            <h2>No products found</h2>
+        </div>
     </div>
-</div>
 @endif

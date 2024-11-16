@@ -71,5 +71,13 @@
                 </a>
             </li>
         @endif
+        <!-- @if(Auth::user()->permissions->contains('id', 6))
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('staff.quote.index') }}">
+                    <i class="fas fa-clipboard-list menu-icon"></i>
+                    <span class="menu-title">Quote Enquiries</span>
+                </a>
+            </li>
+        @endif -->
     </ul>
 </nav>

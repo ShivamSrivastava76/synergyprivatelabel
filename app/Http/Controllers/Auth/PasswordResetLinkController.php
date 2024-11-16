@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
+use App\Models\HearAboutOption;
+use App\Models\category;
 
 class PasswordResetLinkController extends Controller
 {
@@ -15,7 +17,10 @@ class PasswordResetLinkController extends Controller
      */
     public function create(): View
     {
-        return view('auth.forgot-password');
+        $category  = category::orderBy('id', 'asc')->where('status',0)->take(5)->get();
+        $categories = category::with('subcategories')->get();
+        $HearAboutOption = HearAboutOption::where('status',0)->get();
+        return view('auth.forgot-password', compact('HearAboutOption', 'category', 'categories'));
     }
 
     /**

@@ -133,6 +133,11 @@
   $('.filter-drawer-trigger').on('click', function () {
     $('.filter-drawer').toggleClass('active');
   });
+  
+  // filter drawer open
+  $('.filter-drawer-trigger1').on('click', function () {
+    $('.filter-drawer1').toggleClass('active');
+  });
 
   // product img popup
   $('[data-fancybox="gallery"]').fancybox({
@@ -177,3 +182,27 @@
   })
 
 })(jQuery);
+
+
+
+// Get elements
+const quoteButton = document.getElementById('quoteButton');
+const quotePopup = document.getElementById('quotePopup');
+const closePopup = document.getElementById('closePopup');
+
+// Show popup when button is clicked
+quoteButton.addEventListener('click', () => {
+    quotePopup.classList.add('show');
+});
+
+// Hide popup when close button is clicked
+closePopup.addEventListener('click', () => {
+    quotePopup.classList.remove('show');
+});
+
+// Hide popup if clicking outside of it
+window.addEventListener('click', (e) => {
+    if (e.target === quotePopup) {
+        quotePopup.classList.remove('show');
+    }
+});

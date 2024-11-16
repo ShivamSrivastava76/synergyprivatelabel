@@ -68,8 +68,8 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>
-                                    @if($product->image)
-                                        <img src="{{ asset('assets/images/products/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px;">
+                                    @if(count($product->image))
+                                        <img src="{{ asset('assets/images/products/150x150/' . $product->image[0]->image) }}" alt="{{ $product->name }}" style="width: 150px; height: 150px;">
                                     @else
                                         No Image
                                     @endif

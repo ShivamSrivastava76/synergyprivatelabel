@@ -4,7 +4,7 @@
 
 
 :root {
-  --primary-color: #0f0f0f;
+  --primary-color: #000080;
   --secondary-color: #ffc107;
 
   --btn-primary-border-radius: 0.25rem;
@@ -1060,7 +1060,7 @@ button,
 .trusted-badge {
   margin-top: 24px;
   padding: 40px;
-  height: 100%;
+  height: 150px;
   -ms-display: flex;
   -webkit-display: flex;
   display: -webkit-box;
@@ -1093,7 +1093,9 @@ button,
 
 .product-card-img {
   position: relative;
-  overflow: hidden; }
+  overflow: hidden; 
+  height: 240px;
+}
 
 .product-card-title,
 .product-card-title a {
@@ -2595,7 +2597,7 @@ blockquote {
 /**/
 .accordion-button:not(.collapsed) {
     color: #ffffff;
-    background-color: #68594a;
+    background-color: var(--primary-color);
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
 }
 .accordion-button:not(.collapsed)::after{
@@ -2629,7 +2631,7 @@ blockquote {
 .action-count {
      min-width: 63px;
     background: #d5d5d5;
-    height: 63px;
+    height: 45px;
     border-radius: 50%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2686,7 +2688,7 @@ blockquote {
     z-index: -9;
 } */
 .action-item {
-    margin-bottom: 60px;
+    margin-bottom: 10px;
 }
 
 .promo-title {
@@ -3445,7 +3447,7 @@ blockquote {
     padding: 12px 20px;
     cursor: pointer; }
   .header-1 .main-menu > .menu-list-item {
-    padding: 28px 20px;
+    padding: 28px 0.9%;
     cursor: pointer; }
   .main-menu-2 > .menu-list-item {
     padding: 29px 20px; }
@@ -3800,7 +3802,7 @@ blockquote {
     position: relative; }
     .sorting-lists-mobile li:not(:first-child) {
       padding: 7px 0; }
-    .sorting-lists-mobile li:before {
+    /* .sorting-lists-mobile li:before {
       content: "";
       z-index: 9;
       width: 16px;
@@ -3810,7 +3812,7 @@ blockquote {
       display: inline-block;
       top: 3px;
       position: relative;
-      margin-right: 10px; }
+      margin-right: 10px; } */
   .product-details {
     margin-top: 30px; }
   .img-large-list {
@@ -3958,8 +3960,7 @@ blockquote {
   .product-gallery-vertical {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
-  .product-img-thumb img {
-    max-width: 100%; }
+  
   .product-gallery-vertical .img-thumb-wrapper {
     margin-top: 10px;
     margin-bottom: 10px; }
@@ -4126,9 +4127,12 @@ blockquote {
     margin-right: 0;
     margin-bottom: 15px; } }
 
-   .innerpagebanner .list-unstyled li,  .innerpagebanner .list-unstyled li a{
+   /* .innerpagebanner .list-unstyled li,  .innerpagebanner .list-unstyled li a{
         color: #fff;
-    }
+    } */
+  .innerpagebanner{
+    background: #54BEBA;
+  }
 
 .detailsCont{
   padding-top: 60px;
@@ -4184,9 +4188,9 @@ blockquote {
 .list_view_product .card {
   max-width: 100%;
   flex-direction: row;
-  background-color: #f4f4f4;
+  /* background-color: #f4f4f4; */
   border: 0;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18);
+  /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18); */
   margin: 2em auto;
 }
 .list_view_product .card.bg-light-subtle .card-title {
@@ -4232,7 +4236,11 @@ blockquote {
 
 }
 
-
+.icon
+{
+  height: 16px;
+  width: 16px;
+}
 
 .cartNumber{
 
@@ -4262,17 +4270,13 @@ blockquote {
 
 }
 
-/* .grid_view_product{
-
-  display: none;
-
-} */
-
-.list_view_product{
+.grid_view_product{
 
   display: none;
 
 }
+
+
 
 @media (min-width: 992px) {
   .submenu-transform-product {
@@ -4349,4 +4353,134 @@ blockquote {
 
 .h-270{
   height: 270px;
+}
+
+.cursoer 
+{
+  cursor: pointer;
+}
+.product-card-img {
+  position: relative;
+  overflow: hidden;
+  height: 240px;
+}
+.product-card-img a img {
+  object-fit: contain;
+  width: 100%;
+  height: 240px;
+}
+
+.help-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--primary-color); ;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Help Section */
+.help-section {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  width: 300px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 999;
+}
+
+.help-section.show {
+  transform: translateY(0);
+}
+
+/* Styling the form inside help section */
+.contact-form .row {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.contact-form button {
+  background-color: var(--primary-color); ;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-quote{
+  border: 1px solid var(--primary-color);
+  padding: 7px !important;
+  background-color: var(--primary-color);
+  color: white !important;
+
+}
+.btn-quote:hover{
+  color: var(--secondary-color) !important;
+}
+
+
+
+/* Button Styles */
+.quote-btn {
+  position: fixed;
+  right: -50px; /* Adjust position to make it appear fully visible */
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg); /* Rotate by 90 degrees */
+  transform-origin: center;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+/* Popup Styles */
+.side-popup {
+  position: fixed;
+  top: 25%;
+  right: -100%; /* Hide off-screen initially */
+  width: 300px;
+  height: 50%;
+  background-color: #f9f9f9;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.side-popup .popup-content {
+  padding: 20px;
+}
+
+.side-popup .close-btn {
+  font-size: 24px;
+  color: #333;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+}
+
+/* Show Popup */
+.side-popup.show {
+  right: 0;
 }

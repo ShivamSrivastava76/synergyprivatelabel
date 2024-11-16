@@ -9,15 +9,19 @@ use App\Models\category;
 use App\Models\Subcategory;
 use App\Models\productsCategory;
 use App\Models\productsSubcategory;
+use App\Models\ProductImage;
 use App\Models\variation;
 use Illuminate\Support\Facades\Log;
+
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class StaffProductController extends Controller
 {
 
     public function index()
     {
-        $products = product::with('category')->whereNull('deleted_at')->get();
+        $products = product::with(['category', 'Image'])->whereNull('deleted_at')->get();
         return view('staff.product.index', compact('products'));
     }
 
@@ -51,19 +55,40 @@ class StaffProductController extends Controller
         try{
                 $validatedData['status'] = 0;
                 $validatedData['price'] = $validatedData['price'] ?? 0;
-    
+                $validatedData['slug'] = str_replace(' ', '-', $request->name);
                 $product = product::create($validatedData);
 
-                if ($request->hasFile('images')) 
-                {
-                    foreach ($request->file('images') as $image) 
-                    {
+                if ($request->hasFile('images')) {
+                    foreach ($request->file('images') as $image) {
+                        
+                        // Generate a unique name for the image
                         $imageName = time() . '_' . $image->getClientOriginalName();
-                        $image->move(public_path('assets/images/products/'), $imageName);
-
+                
+                        // Define paths for each size
+                        $path150 = public_path('assets/images/products/150x150/'.$imageName);
+                        $path500 = public_path('assets/images/products/500x500/'.$imageName);
+                        $path1500 = public_path('assets/images/products/1500x1500/'.$imageName);
+                
+                        // create image manager with desired driver
+                        $manager = new ImageManager(new Driver());
+    
+                        // open an image file
+                        $image1 = $manager->read($image);
+    
+                        // Resize and save 150x150 image
+                        $image150 = $image->scale(width: 150);
+                        $image150->toPng()->save($path150);
+                
+                        // Resize and save 500x500 image
+                        $image500 = $image->scale(width: 500);
+                        $image500->toPng()->save($path500);
+                
+                        // Resize and save 1500x1500 image
+                        $image->move(public_path('assets/images/products/1500x1500/'), $imageName);
+                
+                        // Save the original image name in the database (for reference)
                         $ProductImage = new ProductImage();
-                        $ProductImage->products_id   = $product->id;
-                        $ProductImage->image = $imageName;
+                        $ProductImage->products_id = $product->id;
                         $ProductImage->image = $imageName;
                         $ProductImage->status = 0;
                         $ProductImage->save();
@@ -78,11 +103,17 @@ class StaffProductController extends Controller
 
                 for ($i=1; $i<= $count; $i++) 
                 {
+                    $name = $request->input('variation_name_' . $i);
+                    $value = $request->input('variation_value_' . $i);
+                    
+                    $name = is_array($name) ? implode(',', $name) : $name;
+                    $value = is_array($value) ? implode(',', $value) : $value;
+                    
                     variation::create([
-                        'name' => implode(",", $request->input('variation_name_' . $i)),
-                        'value' => implode(",", $request->input('variation_value_' . $i)),
+                        'name' => $name, 
+                        'value' => $value, 
                         'products_id' => $product->id,
-                    ]); 
+                    ]);
                 }
                 
                 return redirect()->route('staff.product.index')->with('success', 'Product added successfully!');
@@ -99,7 +130,7 @@ class StaffProductController extends Controller
         $categories = category::where('status', 0)->get();
         $productsCategory = productsCategory::where('products_id', $id)->get();
         $productsSubcategory = productsSubcategory::where('products_id', $id)->get();
-        $product = Product::with('category')->findOrFail($id);
+        $product = Product::with(['category', 'Image'])->findOrFail($id);
         return view('staff.product.edit', compact('product', 'categories', 'variation', 'productsCategory', 'productsSubcategory'));
     }
     
@@ -126,22 +157,43 @@ class StaffProductController extends Controller
             $product = product::findOrFail($id);
             ProductImage::where('products_id',$id)->forceDelete();
 
-            if ($request->hasFile('images')) 
-            {
-                foreach ($request->file('images') as $image) 
-                {
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    
+                    // Generate a unique name for the image
                     $imageName = time() . '_' . $image->getClientOriginalName();
-                    $image->move(public_path('assets/images/products/'), $imageName);
+            
+                    // Define paths for each size
+                    $path150 = public_path('assets/images/products/150x150/'.$imageName);
+                    $path500 = public_path('assets/images/products/500x500/'.$imageName);
+                    $path1500 = public_path('assets/images/products/1500x1500/'.$imageName);
+            
+                    // create image manager with desired driver
+                    $manager = new ImageManager(new Driver());
 
+                    // open an image file
+                    $image1 = $manager->read($image);
+
+                    // Resize and save 150x150 image
+                    $image150 = $image->scale(width: 150);
+                    $image150->toPng()->save($path150);
+            
+                    // Resize and save 500x500 image
+                    $image500 = $image->scale(width: 500);
+                    $image500->toPng()->save($path500);
+            
+                    // Resize and save 1500x1500 image
+                     $image->move(public_path('assets/images/products/1500x1500/'), $imageName);
+            
+                    // Save the original image name in the database (for reference)
                     $ProductImage = new ProductImage();
-                    $ProductImage->products_id   = $id;
-                    $ProductImage->image = $imageName;
+                    $ProductImage->products_id = $id;
                     $ProductImage->image = $imageName;
                     $ProductImage->status = 0;
                     $ProductImage->save();
                 }
             }
-
+            $validatedData['slug'] = str_replace(' ', '-', $request->name);
             $product->update($validatedData);
             $product->productsCategory()->attach($request->input('categories_id'));
             $product->productsSubcategory()->attach($request->input('subcategories_id'));
@@ -150,9 +202,15 @@ class StaffProductController extends Controller
             $productsData = [];
 
             for ($i = 1; $i <= $count; $i++) {
+                $name = $request->input('variation_name_' . $i);
+                $value = $request->input('variation_value_' . $i);
+                
+                $name = is_array($name) ? implode(',', $name) : $name;
+                $value = is_array($value) ? implode(',', $value) : $value;
+                
                 variation::create([
-                    'name' => $request->input('variation_name_' . $i), 
-                    'value' => $request->input('variation_value_' . $i), 
+                    'name' => $name, 
+                    'value' => $value, 
                     'products_id' => $product->id,
                 ]);
             }

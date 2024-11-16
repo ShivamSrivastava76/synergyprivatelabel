@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\HearAboutOption;
+use App\Models\category;
 
 class RegisteredUserController extends Controller
 {
@@ -19,7 +21,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $category  = category::orderBy('id', 'asc')->where('status',0)->take(5)->get();
+        $categories = category::with('subcategories')->get();
+        $HearAboutOption = HearAboutOption::where('status',0)->get();
+        return view('auth.register', compact('HearAboutOption', 'category', 'categories'));
     }
 
     /**

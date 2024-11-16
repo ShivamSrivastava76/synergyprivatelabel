@@ -1,10 +1,16 @@
 <div class="row">
-    <div class="col-md-6" style="position: relative; min-height: 100vh;">
+    <div class="col" style="position: relative; min-height: 100vh;">
         <div class="sender-details">
-            <div class="details">
-                <p>
-                    <strong>Remarks:</strong>
-                </p>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="details">
+                    <p>
+                        <strong>Remarks:</strong>
+                    </p>
+                </div>
+                <div class="flex">
+                    <span class="fc-day-grid-event fc-h-event fc-event fc-not-start fc-end fc-draggable fc-resizable fc-allow-mouse-resize" id="show"> Hide </span>
+                    
+                </div>
             </div>
         </div>
         <div class="sender-details" >
@@ -135,7 +141,7 @@
             </form>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col" id="hide">
         <!-- Enquiry Details -->
         <div class="message-body">
             <div class="sender-details">
@@ -309,6 +315,22 @@ $(document).ready(function() {
     //     $('#summernoteExample1').summernote('reset'); // Reset Summernote content
     //     $('#email_content').val('');
     // });
+
+    var c = 1;
+
+    $('#show').on('click', function() {
+        c++;
+       if(c % 2 == 0)
+       {
+            $('#hide').addClass('d-none');
+            $('#show').html('Show');
+       }
+       else
+       {
+            $('#hide').removeClass('d-none');
+            $('#show').html('hide');
+       }
+    });
 
 });
 </script>

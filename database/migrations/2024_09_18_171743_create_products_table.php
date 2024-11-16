@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->tinyInteger('features')->comment("0 => Yes, 1 => No");
             $table->tinyInteger('status')->comment("0 => active, 1 => inactive");
+            $table->string('slug');
             $table->timestamps();
             $table->softDeletes();
         });
