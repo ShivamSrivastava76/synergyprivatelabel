@@ -21,15 +21,18 @@ class StaffProductController extends Controller
 
     public function index()
     {
-        $products = product::with(['category', 'Image'])->whereNull('deleted_at')->get();
-        return view('staff.product.index', compact('products'));
-    }
+        $products = product::with(['category','Image'])->whereNull('deleted_at')->get();
 
+        // return  $products[0]->image[0];
+       
+        return view('admin.product.index', compact('products'));
+    }
+    
     public function create()
     {
         $categories = category::where('status',0)->get();
         
-        return view('staff.product.create', compact('categories'));
+        return view('admin.product.create', compact('categories'));
     }
     public function store(Request $request)
     {
@@ -72,6 +75,7 @@ class StaffProductController extends Controller
                     $path150 = public_path('assets/images/products/150x150/'.$imageName);
                     $path500 = public_path('assets/images/products/500x500/'.$imageName);
                     $path1500 = public_path('assets/images/products/1500x1500/'.$imageName);
+                    $path3000 = public_path('assets/images/products/3000x3000/'.$imageName);
                     
                     // create image manager with desired driver
                     $manager = new ImageManager(new Driver());
@@ -79,14 +83,17 @@ class StaffProductController extends Controller
                     
                     // open an image file
                     $image1 = $manager->read($image);
-                  $image1 = $manager->read($image);
 
-                    // Resize and save 1500x1500 image
-                    $image1500 = $image1->resize(1500, 1500);
-                    $image1500->save($path1500);
+                    // Resize and save 3000x3000 image
+                    $path3000 = $image1->resize(3000, 3000);
+                    $path3000->save($path3000);
             
+                    // Resize and save 1500x1500 image
+                    $image150 = $image1->resize(150, 150);
+                    $image150->save($path150);
+
                     // Resize and save 500x500 image
-                    $image500 = $image1->resize(500, 500);
+                    $image500 = $image1->resize(650, 650);
                     $image500->save($path500);
             
                     // Resize and save 150x150 image
@@ -125,9 +132,9 @@ class StaffProductController extends Controller
                 return redirect()->route('admin.product.index')->with('success', 'Product added successfully!');
             
         }catch (\Exception $e) {
-            Log::error('Image upload error: ' . $e->getMessage());
-            return response()->json(['error' => 'Image upload failed.'], 500);
-        }
+    Log::error('Image upload error: ' . $e->getMessage());
+    return response()->json(['error' => 'Image upload failed.'], 500);
+}
     }
    
     public function edit($id)
@@ -137,8 +144,8 @@ class StaffProductController extends Controller
         $categories = category::where('status', 0)->get();
         $productsCategory = productsCategory::where('products_id', $id)->get();
         $productsSubcategory = productsSubcategory::where('products_id', $id)->get();
-        $product = Product::with(['category', 'Image'])->findOrFail($id);
-        return view('staff.product.edit', compact('product', 'categories', 'variation', 'productsCategory', 'productsSubcategory'));
+        $product = product::with(['category','Image'])->findOrFail($id);
+        return view('admin.product.edit', compact('product', 'categories', 'variation', 'productsCategory', 'productsSubcategory'));
     }
     
     public function update(Request $request, $id)
@@ -195,14 +202,19 @@ class StaffProductController extends Controller
                     $path150 = public_path('assets/images/products/150x150/'.$imageName);
                     $path500 = public_path('assets/images/products/500x500/'.$imageName);
                     $path1500 = public_path('assets/images/products/1500x1500/'.$imageName);
+                    $path3000 = public_path('assets/images/products/3000x3000/'.$imageName);
                     
                     // create image manager with desired driver
                     $manager = new ImageManager(new Driver());
 
-                    
                     // open an image file
                     $image1 = $manager->read($image);
-                  $image1 = $manager->read($image);
+
+
+                    // Resize and save3000x3000 image
+                    $image3000 = $image1->resize(1800, 3000);
+                    $image3000->save($path3000);
+            
 
                     // Resize and save 1500x1500 image
                     $image1500 = $image1->resize(1500, 1500);
@@ -210,7 +222,7 @@ class StaffProductController extends Controller
             
                     // Resize and save 500x500 image
                     // $image500 = $image1->scale(width: 500);
-                    $image500 = $image1->resize(500, 500);
+                    $image500 = $image1->resize(650, 650);
                     $image500->save($path500);
             
                     // Resize and save 150x150 image
@@ -254,9 +266,9 @@ class StaffProductController extends Controller
     
             $product->delete();
     
-            return redirect()->route('staff.product.index')->with('success', 'Product deleted successfully!');
+            return redirect()->route('admin.product.index')->with('success', 'Product deleted successfully!');
         } catch (\Exception $e) {
-            return redirect()->route('staff.product.index')->with('error', 'Failed to delete the product. Please try again.');
+            return redirect()->route('admin.product.index')->with('error', 'Failed to delete the product. Please try again.');
         }
     }
     
@@ -278,7 +290,7 @@ class StaffProductController extends Controller
         $id = explode(',', $request->id);
         $subcategory = Subcategory::whereIn('categories_id',$id)->get();
        
-        return view('staff.product.subcategory', compact('subcategory'));  
+        return view('admin.product.subcategory', compact('subcategory'));  
     }
 
     public function subcategory(Request $request)
@@ -287,6 +299,7 @@ class StaffProductController extends Controller
         $subcategory = Subcategory::whereIn('categories_id',$id)->get();
         $productsSubcategory = productsSubcategory::where('products_id',$request->product_id)->get();
        
-        return view('staff.product.subcategorywithcategory', compact('subcategory', 'productsSubcategory'));  
+        return view('admin.product.subcategorywithcategory', compact('subcategory', 'productsSubcategory'));  
     }
 }
+

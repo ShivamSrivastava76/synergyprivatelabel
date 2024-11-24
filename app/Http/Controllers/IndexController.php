@@ -170,20 +170,27 @@ class IndexController extends Controller
                 break;
         }
 
-        
         $category = Category::where('status', 0)
         ->where('name', $name)
         ->first();
     
-    if ($category) {
-        $products = $category->products()
-            ->where('status', 0)
-            ->with('Image')
-            ->orderBy($sortBy, $sortDirection)
-            ->paginate(10);
-    } else {
-        $products = collect();
-    }
+        if ($category)
+        {
+            $products = $category->products()
+                ->where('status', 0)
+                ->with('Image')
+                ->orderBy($sortBy, $sortDirection)
+                ->paginate(10);
+        } 
+        else 
+        {
+            $products = collect();
+        }
+    
+        $products = Category::with(['products' => function ($query) use ($sortBy, $sortDirection) {
+            $query->orderBy($sortBy, $sortDirection)->where('status', 0);
+        }, 'products.Image'])->where('status', 0)->where('name', $name)->first();
+
         
         return view('categorysortproduct', compact('products'));
     }
@@ -211,19 +218,27 @@ class IndexController extends Controller
                 $sortDirection = 'desc';
                 break;
         }
+
         $subcategory = Subcategory::where('name', 0)
             ->where('slug', $name)
             ->first();
 
-        if ($subcategory) {
+        if ($subcategory) 
+        {
             $products = $subcategory->products()
                 ->where('status', 0)
                 ->orderBy($sortBy, $sortDirection)
                 ->with('Image')
                 ->paginate(10); // Adjust the number of items per page as needed
-        } else {
+        } 
+        else 
+        {
             $products = collect(); // Return an empty collection if the subcategory is not found
         }
+
+        $products = Subcategory::with(['products' => function ($query) use ($sortBy, $sortDirection) {
+            $query->orderBy($sortBy, $sortDirection)->where('status', 0);
+        }, 'products.Image'])->where('status', 0)->where('name', $name)->first();
         
         return view('categorysortproduct', compact('products'));
     }
@@ -283,7 +298,6 @@ class IndexController extends Controller
 
             $variation = Variation::where('products_id', $products->id)->get();
 
-
             return view('product_details', compact('products', 'variation' , 'category', 'subcategories', 'categories', 'HearAboutOption'));
         }
         else
@@ -320,6 +334,12 @@ class IndexController extends Controller
         
         $products = $subcategory->products()->with('image')->paginate(10);
 
+          $subcategory = Subcategory::where('status', 0)
+        ->where('slug', $name)
+        ->first();
+        
+        $products = $subcategory->products()->with('image')->paginate(10);
+
         return view('subcategoryproducts', compact('products', 'category', 'categories', 'name', 'HearAboutOption'));
     }
 
@@ -334,19 +354,32 @@ class IndexController extends Controller
 
         // Loop through the command output to find the first valid MAC address
         $ip = null;
-        foreach ($output as $line) {
+        foreach ($output as $line) 
+        {
             // Use regex to find a MAC address pattern
-            if (preg_match('/([0-9A-F]{2}(-[0-9A-F]{2}){5})/i', $line, $matches)) {
+            if (preg_match('/([0-9A-F]{2}(-[0-9A-F]{2}){5})/i', $line, $matches)) 
+            {
                 $ip = $matches[0]; // Extract the MAC address
                 break;
             }
         }
 
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            // Check if the IP is from shared internet
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            // Check if the IP is passed from a proxy
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            // Default to REMOTE_ADDR
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+
         $ipCount = enquiry::where('ip_address', $ip)->where('status', 1)->count();
         if($ipCount > 0)
             return redirect()->back()->with('error', 'You IP Address Blocked By Admin Please contact to Admin!');
-        
-         $count = enquiry::where('ip_address', $ip)->where('created_at', '>=', Carbon::today()->subDay())->where('created_at', '<', Carbon::now())->count();
+    
+        $count = enquiry::where('ip_address', $ip)->where('created_at', '>=', Carbon::today()->subDay())->where('created_at', '<', Carbon::now())->count();
 
         if($count <= 10)
         {
@@ -357,7 +390,7 @@ class IndexController extends Controller
             $enquiry->save();
 
             $productIds = AddToCard::where('ip_address', $ip)->get();
-           
+        
             foreach ($productIds as $key => $productId) 
             {
                 $enquiryproduct = new EnquiryProduct();
@@ -475,21 +508,37 @@ class IndexController extends Controller
         $category = $this->category;
         $categories = $this->categories;
         $HearAboutOption = $this->HearAboutOption;
+
         $output = [];
         exec('getmac', $output);
 
         // Loop through the command output to find the first valid MAC address
         $ip = null;
-        foreach ($output as $line) {
+        foreach ($output as $line) 
+        {
             // Use regex to find a MAC address pattern
-            if (preg_match('/([0-9A-F]{2}(-[0-9A-F]{2}){5})/i', $line, $matches)) {
+            if (preg_match('/([0-9A-F]{2}(-[0-9A-F]{2}){5})/i', $line, $matches)) 
+            {
                 $ip = $matches[0]; // Extract the MAC address
                 break;
             }
         }
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))
+        {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } 
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+        {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else 
+        {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
         
-        $addtocard =  AddToCard::with(['products' => function ($query) {
-        $query->with('Image'); 
+        $addtocard =  AddToCard::with(['products' => function ($query) 
+        {
+            $query->with('Image'); 
         }])->where('ip_address', $ip)->where('status', 0)->get();
       
         return view('checkout', compact('addtocard', 'category', 'categories', 'HearAboutOption'));
@@ -546,6 +595,17 @@ class IndexController extends Controller
                 $ip = $matches[0]; // Extract the MAC address
                 break;
             }
+        }
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))
+        {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } 
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+        {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else 
+        {
+            $ip = $_SERVER['REMOTE_ADDR'];
         }
     
         AddToCard::where('ip_address', $ip)->where('id', $request->id)->forceDelete();
