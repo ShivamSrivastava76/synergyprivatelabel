@@ -1,10 +1,9 @@
 @include('layouts.app')
 @include('layouts.navBar')
     <!-- breadcrumb start -->
-    <div class="breadcrumb innerpagebanner" style="background-image: url({{url('asset/img/banner1.jpg')}});">
+    <div class="innerpagebanner py-4">
         <div class="container">
-            <h2 class="text-white">How does it work</h2>
-            <ul class="list-unstyled d-flex align-items-center m-0">
+            <ul class="list-unstyled d-flex m-0">
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li>
                     <svg class="icon icon-breadcrumb" width="64" height="64" viewBox="0 0 64 64" fill="none"

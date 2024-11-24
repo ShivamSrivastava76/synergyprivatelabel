@@ -39,6 +39,7 @@ class AdminSubategoryController extends Controller
             $subcategory->description = $request['description'];
             $subcategory->status = 0;
             $subcategory->in_group = 1;
+            $subcategory->slug = str_replace(' ', '-', $request->subcategoryName);
             $subcategory->save();
         
             return redirect()->route('admin.subcategory.index')->with('success', 'Subcategory added successfully!');
@@ -69,6 +70,7 @@ class AdminSubategoryController extends Controller
 
         try {
             $subcategory = Subcategory::findOrFail($id);
+            $validatedData['slug'] = str_replace(' ', '-', $request->name);
             $subcategory->update($validatedData);
     
             return redirect()->route('admin.subcategory.index')->with('success', 'Subcategory updated successfully!');

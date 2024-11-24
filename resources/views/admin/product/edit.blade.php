@@ -98,7 +98,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             @if($product->image)
-                                <img src="{{ asset('assets/images/products/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px; margin-top: 10px;">
+                                @foreach($product->image as $val)
+                                    <img src="{{ asset('assets/images/products/150x150/' . $val->image) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px; margin-top: 10px;">
+                                @endforeach
                             @endif
                         </div>
                     </div>

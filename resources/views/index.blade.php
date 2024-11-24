@@ -18,8 +18,8 @@
                 ]
             }'>
                 <div class="slide-item slide-item-bag position-relative">
-                    <img class="slide-img d-none d-md-block" src="{{url('asset/img/banner1.jpg')}}" alt="slide-1">
-                    <img class="slide-img d-md-none" src="{{url('asset/img/banner1.jpg')}}" alt="slide-1">
+                    <!--<img class="slide-img" src="{{url('asset/img/banner1.jpg')}}" alt="slide-1">-->
+                    <img class="" src="{{url('asset/img/1320x6002.jpg')}}" alt="slide-1">
                     <div class="content-absolute content-slide">
                         <div class="container height-inherit d-flex align-items-center justify-content-start">
                             <div class="content-box slide-content slide-content-3 py-4 text-left">
@@ -38,8 +38,7 @@
                     </div>
                 </div>
                 <div class="slide-item slide-item-bag position-relative">
-                    <img class="slide-img d-none d-md-block" src="{{url('asset/img/banner2.jpg')}}" alt="slide-2">
-                    <img class="slide-img d-md-none" src="{{url('asset/img/banner2.jpg')}}" alt="slide-2">
+                    <img class="" src="{{url('asset/img/1320x6002.jpg')}}" alt="slide-2">
                     <div class="content-absolute content-slide">
                         <div class="container height-inherit d-flex align-items-center justify-content-start">
                             <div class="content-box slide-content slide-content-3 py-4 text-left">
@@ -59,8 +58,7 @@
                     </div>
                 </div>
                 <div class="slide-item slide-item-bag position-relative">
-                    <img class="slide-img d-none d-md-block" src="{{url('asset/img/banner3.jpg')}}" alt="slide-3">
-                    <img class="slide-img d-md-none" src="{{url('asset/img/banner3.jpg')}}" alt="slide-3">
+                    <img class="" src="{{url('asset/img/1320x6002.jpg')}}" alt="slide-3">
                     <div class="content-absolute content-slide">
                         <div class="container height-inherit d-flex align-items-center justify-content-start">
                             <div class="content-box slide-content slide-content-1 py-4 text-left">
@@ -96,7 +94,7 @@
                                     <img class="icon-trusted" src="{{url('asset/img/trusted/4.png')}}" alt="icon-1">
                                 </div>
                                 <div class="trusted-content">
-                                    <h2 class="heading_18 trusted-heading text-white">Free Shipping &amp; Return </h2>
+                                    <h2 class="heading_18 trusted-heading text-white">Quick &amp;  Timely delivery Guaranteed </h2>
                                     <p class="text_16 trusted-subheading trusted-subheading-3">On all order </p>
                                 </div>
                             </div>
@@ -162,7 +160,7 @@
                             <div class="article-slick-item" data-aos="fade-up" data-aos-duration="700">
                                 <div class="article-card bg-transparent p-0 shadow-none">
                                     <a class="article-card-img-wrapper" href="javascript:void(0)">
-                                        <img src="{{url('asset/img/ser1.avif')}}" alt="img" class="article-card-img rounded">
+                                        <img src="{{url('asset/img/1320x6003.jpg')}}" alt="img" class="article-card-img rounded">
                                     </a>
                                     <h2 class="article-card-heading heading_18">
                                         <a class="heading_18" href="javascript:void(0)">
@@ -181,7 +179,7 @@
                             <div class="article-slick-item" data-aos="fade-up" data-aos-duration="700">
                                 <div class="article-card bg-transparent p-0 shadow-none">
                                     <a class="article-card-img-wrapper" href="javascript:void(0)">
-                                        <img src="{{url('asset/img/ser2.avif')}}" alt="img" class="article-card-img rounded">
+                                        <img src="{{url('asset/img/1320x6004.jpg')}}" alt="img" class="article-card-img rounded">
                                     </a>
                                     <h2 class="article-card-heading heading_18">
                                         <a class="heading_18" href="javascript:void(0)">
@@ -199,7 +197,7 @@
                             <div class="article-slick-item" data-aos="fade-up" data-aos-duration="700">
                                 <div class="article-card bg-transparent p-0 shadow-none">
                                     <a class="article-card-img-wrapper" href="javascript:void(0)">
-                                        <img src="{{url('asset/img/ser3.avif')}}" alt="img" class="article-card-img rounded">
+                                        <img src="{{url('asset/img/1320x6006.jpg')}}" alt="img" class="article-card-img rounded">
                                     </a>
                                     <h2 class="article-card-heading heading_18">
                                         <a class="heading_18" href="javascript:void(0)">
@@ -227,7 +225,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="section-header text-center pb-4">
-                            <h2 class="">Moxxpharma: One-Stop Solution To All Your
+                            <h2>Moxxpharma: One-Stop Solution To All Your
                                 Supplements Business Needs</h2>
                             <p class="section-subheading">
                                 Moxxpharma is empowering entrepreneurs by helping them launch successful
@@ -242,36 +240,102 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="about-hero mt-100">
+            <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="about-hero-content">
-                            <h3 class="">Steps to follow</h3>
-                            <ul class="about-hero-action mt-5 p-0">
+                            <h3>Our USP's</h3>
+                            <ul class="about-hero-action mt-3 p-0">
                                 <li class="action-item d-flex">
-                                    <div class="action-count">01</div>
+                                    <div class="action-count"> 
+                                        <i class="las la-angle-right"></i>
+                                    </div>
                                     <div class="action-content">
-                                        <h4 class="action-title"><a href="javascript:void(0)">Select a program</a></h4>
-                                        <p class="action-subtitle">Choose from our huge range of products available for private label by selecting the sizes, flavors and quantity of the preferred choice.</p>
+                                        <h4 class="action-title">Fast and reliable shipping/delivery </h4>
                                     </div>
                                 </li>
                                 <li class="action-item d-flex">
-                                    <div class="action-count">02</div>
+                                    <div class="action-count"> 
+                                        <i class="las la-angle-right"></i>    
+                                    </div>
                                     <div class="action-content">
-                                        <h4 class="action-title"><a href="javascript:void(0)">Design your labels (or let us do it for you)</a></h4>
-                                        <p class="action-subtitle">Designing brings lots of dedication when it comes to placing, designing, choosing the
-                                            color and more. Our graphic designers work closely with you to make your custom label
-                                            picture perfect for you. You can either send us your label to use, we provide both
-                                            opportunities.
-                                            </p>
+                                        <h4 class="action-title"> 100% genuine & authentic products . </h4>
                                     </div>
                                 </li>
                                 <li class="action-item d-flex">
-                                    <div class="action-count">03</div>
+                                    <div class="action-count"> 
+                                        <i class="las la-angle-right"></i>
+                                    </div>
                                     <div class="action-content">
-                                        <h4 class="action-title"><a href="javascript:void(0)">We manufacture and ship directly to you</a></h4>
-                                        <p class="action-subtitle">After selecting the shape, size, choosing the required logo with brand specific layout.
-                                            We manufacture the products, pack it and ship it directly to you. Our shelf-ready
-                                            products make us the best custom label company.</p>
+                                        <h4 class="action-title"> Customized formulations </h4>
+                                    </div>
+                                </li>
+                                <li class="action-item d-flex">
+                                    <div class="action-count"> 
+                                        <i class="las la-angle-right"></i>
+                                    </div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"> Dedicated R & D team </h4>
+                                    </div>
+                                </li>
+                                <li class="action-item d-flex">
+                                    <div class="action-count"> 
+                                        <i class="las la-angle-right"></i>
+                                    </div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"> No MOQ required. </h4>
+                                    </div>
+                                </li>
+                                <li class="action-item d-flex">
+                                    <div class="action-count"> 
+                                        <i class="las la-check"></i>    
+                                    </div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"> Label  designing services </h4>
+                                    </div>
+                                </li>
+                                <li class="action-item d-flex">
+                                    <div class="action-count"> 
+                                        <i class="las la-check"></i>
+                                    </div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"> One stop solution to develop products. </h4>
+                                    </div>
+                                </li>
+                                <li class="action-item d-flex">
+                                    <div class="action-count">
+                                        <i class="las la-check"></i>
+                                    </div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"> Unique & wide variety of flavours. </h4>
+                                    </div>
+                                </li>
+                                <li class="action-item d-flex">
+                                    <div class="action-count"> 
+                                        <i class="las la-check"></i>
+                                    </div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"> Quick processing of orders/ less lead time. </h4>
+                                    </div>
+                                </li>
+                                <li class="action-item d-flex">
+                                    <div class="action-count"> 
+                                        <i class="las la-check"></i>
+                                    </div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"> Competitive pricing </h4>
+                                    </div>
+                                </li>                                
+                                <li class="action-item d-flex">
+                                    <div class="action-count"> 
+                                        <i class="las la-check"></i>
+                                    </div>
+                                    <div class="action-content">
+                                        <h4 class="action-title"> Fast quotes </h4>
                                     </div>
                                 </li>
                             </ul>
@@ -309,7 +373,7 @@
                     <div class="grid-container-2">
                         @foreach($group_categories as $key => $group_category)
                             @if($key == 0 )
-                                <a class="grid-item grid-item-1 position-relative rounded mt-0 d-flex" href="{{ url('/subcategory/' . $group_category->name) }}" data-aos="fade-right" data-aos-duration="700">
+                                <a class="grid-item grid-item-1 position-relative rounded mt-0 d-flex" href="{{ url('/collections/' . $group_category->slug) }}" data-aos="fade-right" data-aos-duration="700">
                                     <img class="banner-img rounded h-270" src="{{url('asset/img/banner/f1.jpg')}}" alt="banner-1">
                                     <div class="content-absolute content-slide">
                                         <div class="container height-inherit d-flex">
@@ -324,7 +388,7 @@
                                 </a>
                             @endif
                             @if($key == 1 )
-                            <a class="grid-item grid-item-2 position-relative rounded mt-0 d-flex" href="{{ url('/subcategory/' . $group_category->name) }}"
+                            <a class="grid-item grid-item-2 position-relative rounded mt-0 d-flex" href="{{ url('/collections/' . $group_category->slug) }}"
                             data-aos="fade-right" data-aos-duration="700">
                                 <img class="banner-img rounded h-270" src="{{url('asset/img/banner/f3.jpg')}}" alt="banner-1">
                                 <div class="content-absolute content-slide">
@@ -340,9 +404,9 @@
                             </a>
                             @endif
                             @if($key == 2 )
-                                <a class="grid-item grid-item-3 position-relative rounded mt-0 d-flex" href="{{ url('/subcategory/' . $group_category->name) }}"
+                                <a class="grid-item grid-item-3 position-relative rounded mt-0 d-flex" href="{{ url('/collections/' . $group_category->slug) }}"
                                 data-aos="fade-left" data-aos-duration="700">
-                                    <img class="banner-img rounded" src="{{url('asset/img/banner/f2.jpg')}}" alt="banner-1">
+                                    <img class="banner-img rounded" src="{{url('asset/img/banner/f2.png')}}" alt="banner-1">
                                     <div class="content-absolute content-slide">
                                         <div class="container height-inherit d-flex">
                                             <div class="content-box banner-content p-4">
@@ -365,27 +429,99 @@
         @endif
         
         <!-- banner end -->
+        
 
-        <!-- collection start -->
-        <div class="featured-collection mt-100 overflow-hidden">
-            <div class="collection-tab-inner">
-                <div class="container">
-                    <div class="section-header text-center">
-                        <h2 class="section-heading primary-color">Featured Products</h2>
+        <!-- CTA (call to action ) start -->
+
+        <div class="about-hero mt-100">
+            <div class="container">
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
                     </div>
-                    @if(isset($product) != null && count($product) > 0)
-                        <div class="row">
-                            @include('product')
+                @endif
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="section-header text-center pb-4">
+                            <h2 class="mb-5">
+                               Get Free Quote
+                            </h2>
+                            <p>
+                                Please contact Moxxpharma with any questions regarding our products and services. 
+                                We look forward to helping grow your company and brand!
+                            </p>
+                            <p>
+                                With our support, over 500 individuals have successfully established and scaled their
+                                businesses, ensuring they have everything needed for success.
+                            </p>
                         </div>
-                        <div class="view-all text-center" data-aos="fade-up" data-aos-duration="700">
-                            <a class="btn-primary" href="{{url('products')}}">VIEW ALL</a>
-                        </div>
-                    
-                    @endif
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <form id="quote_from" class="contact-form row">
+                            @csrf
+                            <div class="col-md-6 col-6">
+                                <fieldset>
+                                    <input type="text" placeholder="Full name" name="name" value="{{ old('name') }}" required/>
+                                    @error('name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-6">
+                                <fieldset>
+                                    <input type="email" placeholder="Email Address" name="email" value="{{ old('email') }}" required/>
+                                    @error('email')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-6">
+                                <fieldset>
+                                    <input type="text" placeholder="Type a subject" name="subject" value="{{ old('subject') }}" required/>
+                                    @error('subject')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-6">
+                                <fieldset>
+                                    <input type="number" placeholder="Phone Number" name="phone" value="{{ old('phone') }}" maxlength="10" minlength="10" required pattern="\d{10}"/>
+                                    @error('phone')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12 col-12 mt-3">
+                                <fieldset>
+                                    <select class="form-control" name="hearAbout" value="{{ old('hearAbout') }}" >
+                                        <option value="" disabled selected> How did you hear about us: </option>
+                                        @foreach($HearAboutOption as $val)
+                                            <option value="{{$val->id}}"> {{$val->name}} </option>
+                                        @endforeach
+                                    </select>
+                                    @error('hearAbout')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12 col-12">
+                                <fieldset>
+                                    <textarea cols="20" rows="6" placeholder="Write your message here" name="description" required>{{ old('description') }}</textarea>
+                                    @error('description')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </fieldset>
+                                <button type="submit" class="position-relative review-submit-btn contact-submit-btn">SEND MESSAGE</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- collection end -->
+        <!-- CTA (call to action ) end -->
 
+
+       
         <!-- video start -->
         <div class="video-section mt-100 overflow-hidden">
             <div class="overlay-furniture section-spacing"
@@ -480,12 +616,12 @@
                                         </p>
                                         <div class="testimonial-reviewer d-flex align-items-center">
                                             <div class="reviewer-img">
-                                                <img src="{{url('asset/img/testimonial/john.jpg')}}" alt="img">
+                                                <img src="{{url('asset/img/icon/Customer80.png')}}" alt="img">
                                             </div>
                                             <div class="reviewer-info ms-4">
-                                                <h4 class="reviewer-name heading_18 mb-2 primary-color">Sarah L.
+                                                <h4 class="reviewer-name heading_18 mb-2 primary-color">
+                                                    Sarah L.
                                                 </h4>
-                                                <p class="reviewer-desig text_14 m-0">Executive, Hypebeast</p>
                                             </div>
                                         </div>
                                     </div>
@@ -516,12 +652,12 @@
                                         </p>
                                         <div class="testimonial-reviewer d-flex align-items-center">
                                             <div class="reviewer-img">
-                                                <img src="{{url('asset/img/testimonial/john.jpg')}}" alt="img">
+                                                <img src="{{url('asset/img/icon/Customer80.png')}}" alt="img">
                                             </div>
                                             <div class="reviewer-info ms-4">
-                                                <h4 class="reviewer-name heading_18 mb-2 primary-color">Jason M.
+                                                <h4 class="reviewer-name heading_18 mb-2 primary-color">
+                                                    Jason M.
                                                 </h4>
-                                                <p class="reviewer-desig text_14 m-0">CEO Founder</p>
                                             </div>
                                         </div>
                                     </div>
@@ -554,10 +690,11 @@
                                         </p>
                                         <div class="testimonial-reviewer d-flex align-items-center">
                                             <div class="reviewer-img">
-                                                <img src="{{url('asset/img/testimonial/john.jpg')}}" alt="img">
+                                                <img src="{{url('asset/img/icon/Customer80.png')}}" alt="img">
                                             </div>
                                             <div class="reviewer-info ms-4">
-                                                <h4 class="reviewer-name heading_18 mb-2 primary-color">Linda K.
+                                                <h4 class="reviewer-name heading_18 mb-2 primary-color">
+                                                    Linda K.
                                                 </h4>
                                             </div>
                                         </div>
@@ -591,10 +728,11 @@
                                         </p>
                                         <div class="testimonial-reviewer d-flex align-items-center">
                                             <div class="reviewer-img">
-                                                <img src="{{url('asset/img/testimonial/john.jpg')}}" alt="img">
+                                                <img src="{{url('asset/img/icon/Customer80.png')}}" alt="img">
                                             </div>
                                             <div class="reviewer-info ms-4">
-                                                <h4 class="reviewer-name heading_18 mb-2 primary-color">Rajender T.
+                                                <h4 class="reviewer-name heading_18 mb-2 primary-color">
+                                                    Rajender T.
                                                 </h4>
                                             </div>
                                         </div>
@@ -628,10 +766,11 @@
                                         </p>
                                         <div class="testimonial-reviewer d-flex align-items-center">
                                             <div class="reviewer-img">
-                                                <img src="{{url('asset/img/testimonial/john.jpg')}}" alt="img">
+                                                <img src="{{url('asset/img/icon/Customer80.png')}}" alt="img">
                                             </div>
                                             <div class="reviewer-info ms-4">
-                                                <h4 class="reviewer-name heading_18 mb-2 primary-color">Salu M.
+                                                <h4 class="reviewer-name heading_18 mb-2 primary-color">
+                                                    Salu M.
                                                 </h4>
                                             </div>
                                         </div>
@@ -650,42 +789,33 @@
         <div class="brand-logo-section mt-100">
             <div class="brand-logo-inner">
                 <div class="container">
+                     <div class="section-header text-center my-5">
+                        <h2 class="section-heading primary-color">OUR CERTIFICATIONS</h2>
+                    </div>
                     <div class="brand-logo-container overflow-hidden">
                         <div class="scroll-horizontal row align-items-center flex-nowrap">
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up"
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 mx-0 mx-lg-5" data-aos="fade-up"
                                 data-aos-duration="700">
                                 <a href="javascript:void(0)" class="brand-logo d-flex align-items-center justify-content-center">
-                                    <img src="{{url('asset/img/brand/1.png')}}" alt="img">
+                                    <img src="{{url('asset/img/brand/Certificates1.jpg')}}" class="brand-logo-img" alt="img">
                                 </a>
                             </div>
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up"
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 mx-0 mx-lg-5" data-aos="fade-up"
                                 data-aos-duration="700">
                                 <a href="javascript:void(0)" class="brand-logo d-flex align-items-center justify-content-center">
-                                    <img src="{{url('asset/img/brand/2.png')}}" alt="img">
+                                    <img src="{{url('asset/img/brand/Certificates2.jpg')}}" class="brand-logo-img" alt="img">
                                 </a>
                             </div>
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up"
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 mx-0 mx-lg-5" data-aos="fade-up"
                                 data-aos-duration="700">
                                 <a href="javascript:void(0)" class="brand-logo d-flex align-items-center justify-content-center">
-                                    <img src="{{url('asset/img/brand/3.png')}}" alt="img">
+                                    <img src="{{url('asset/img/brand/Certificates3.jpg')}}" class="brand-logo-img" alt="img">
                                 </a>
                             </div>
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up"
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 mx-0 mx-lg-5" data-aos="fade-up"
                                 data-aos-duration="700">
                                 <a href="javascript:void(0)" class="brand-logo d-flex align-items-center justify-content-center">
-                                    <img src="{{url('asset/img/brand/4.png')}}" alt="img">
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up"
-                                data-aos-duration="700">
-                                <a href="javascript:void(0)" class="brand-logo d-flex align-items-center justify-content-center">
-                                    <img src="{{url('asset/img/brand/5.png')}}" alt="img">
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up"
-                                data-aos-duration="700">
-                                <a href="javascript:void(0)" class="brand-logo d-flex align-items-center justify-content-center">
-                                    <img src="{{url('asset/img/brand/6.png')}}" alt="img">
+                                    <img src="{{url('asset/img/brand/Certificates4.jpg')}}" class="brand-logo-img" alt="img">
                                 </a>
                             </div>
                         </div>

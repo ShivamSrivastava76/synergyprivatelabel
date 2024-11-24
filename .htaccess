@@ -9,4 +9,5 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ public/index.php [L]
+    php_value error_reporting E_ALL
 </IfModule>

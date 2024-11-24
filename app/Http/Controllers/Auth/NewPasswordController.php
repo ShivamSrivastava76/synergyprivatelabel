@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\HearAboutOption;
+use App\Models\category;
 
 class NewPasswordController extends Controller
 {
@@ -19,7 +21,10 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request): View
     {
-        return view('auth.reset-password', ['request' => $request]);
+        $category  = category::orderBy('id', 'asc')->where('status',0)->take(5)->get();
+        $categories = category::with('subcategories')->get();
+        $HearAboutOption = HearAboutOption::where('status',0)->get();
+        return view('auth.reset-password', ['request' => $request, 'HearAboutOption' => $HearAboutOption, 'category'=> $category, 'categories'=> $category]);
     }
 
     /**

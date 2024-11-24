@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('ip_address', 45);
             $table->unsignedBigInteger('products_id');
             $table->foreign('products_id')->references('id')->on('products');
-            $table->string('Key');
-            $table->string('value');
+            $table->string('Key')->nullable();
+            $table->string('value')->nullable();
             $table->string('indices')->nullable();
             $table->string('custom')->nullable();
             $table->tinyInteger('status')->comment("0 => active, 1 => inactive");

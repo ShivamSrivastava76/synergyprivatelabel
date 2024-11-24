@@ -3,6 +3,11 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\Auth;
+use App\Http\Middleware\StaffAuth;
+use App\Http\Middleware\UserAuth;
+
+use App\Http\Controllers\Admin\AdminDashboardController;
 
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Staff\StaffCategoryController;
@@ -31,6 +36,10 @@ use App\Http\Controllers\Staff\StaffStaffController;
 
 use App\Http\Controllers\Admin\AdminContactUsController;
 use App\Http\Controllers\Staff\StaffContactUsController;
+
+use App\Http\Controllers\Admin\AdminQuoteController;
+use App\Http\Controllers\Staff\StaffQuoteController;
+
 use App\Http\Controllers\SubscriberController;
 
 Route::get('/', [IndexController::class, 'index']);
@@ -39,9 +48,9 @@ Route::get('/what-we-do', [IndexController::class, 'what_we_do']);
 Route::get('/faq', [IndexController::class, 'faq']);
 Route::get('/our-team', [IndexController::class, 'our_team']);
 Route::get('/search', [IndexController::class, 'search']);
-// Route::get('/searchproductlist/{key?}', [IndexController::class, 'searchproductlist']);
 Route::get('/searchproductlist', [IndexController::class, 'searchproductlist'])->name('searchproductlist');
 Route::get('/contact', [IndexController::class, 'contact']);
+Route::get('/quote', [IndexController::class, 'quote']);
 Route::get('/products', [IndexController::class, 'products']);
 Route::get('/sortproduct/{key}', [IndexController::class, 'sortproduct']);
 Route::get('/collections/sortproduct/{key}/{name}', [IndexController::class, 'subcategorysortproduct']);
@@ -50,14 +59,16 @@ Route::get('/custom-formulations', [IndexController::class, 'custom_formulations
 Route::get('/label-design-how-does-it-work', [IndexController::class, 'label_design_how_does_it_work']);
 Route::get('/privacy-policy', [IndexController::class, 'privacy_policy']);
 Route::get('/term-and-conditions', [IndexController::class, 'term_and_conditions']);
-Route::get('/product_details/{name}', [IndexController::class, 'product_details']);
+Route::get('/product-details/{name}', [IndexController::class, 'product_details']);
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 Route::get('/collection/{name}', [IndexController::class, 'category']);
 Route::get('/collections/{name}', [IndexController::class, 'subcategory']);
 Route::post('/enquiry', [IndexController::class, 'enquiry']);
 Route::post('/contact', [IndexController::class, 'contactUs']);
+Route::post('/quote', [IndexController::class, 'quoteInfo']);
 Route::get('/checkout', [IndexController::class, 'checkout']);
 Route::get('/addtocart', [IndexController::class, 'addtocartview']);
+Route::get('/addtocartdel', [IndexController::class, 'addtocartdel']);
 Route::post('/addtocart', [IndexController::class, 'addtocart']);
 Route::post('/subscribe', [SubscriberController::class, 'subscribe'])->name('subscribe');
 
@@ -74,12 +85,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 //  Admin routes 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    })->name('index');
+Route::prefix('admin')->name('admin.')->middleware(Auth::class)->group(function () {
+
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
     
-    // Admin Category Routes
+    // Admin Category Routesz
     Route::get('/category', [AdminCategoryController::class, 'index'])->name('category.index');
     Route::get('/category/create', [AdminCategoryController::class, 'create'])->name('category.create');
     Route::post('/category', [AdminCategoryController::class, 'store'])->name('category.store');
@@ -140,11 +150,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/contact-enquiries/{id}/view', [AdminContactUsController::class, 'view'])->name('contact-enquiry.view');
     Route::delete('/contact-enquiries/{id}', [AdminContactUsController::class, 'destroy'])->name('contact-enquiry.destroy');
 
+    //quote
+    Route::get('/quote', [AdminQuoteController::class, 'index'])->name('quote.index');
+    Route::get('/quote/{id}/view', [AdminQuoteController::class, 'view'])->name('quote.view');
+    Route::delete('/quote/{id}', [AdminQuoteController::class, 'destroy'])->name('quote.destroy');
+
 });
 //  Admin routes end
 
 //  Staff routes 
-Route::prefix('staff')->name('staff.')->group(function () {
+Route::prefix('staff')->name('staff.')->middleware(StaffAuth::class)->group(function () {
     Route::get('/', [StaffStaffController::class, 'dashboard'])->name('index');
 
      // Staff Category Routes
@@ -206,12 +221,17 @@ Route::prefix('staff')->name('staff.')->group(function () {
      Route::get('/contact-enquiries', [StaffContactUsController::class, 'index'])->name('contact-enquiry.index');
      Route::get('/contact-enquiries/{id}/view', [StaffContactUsController::class, 'view'])->name('contact-enquiry.view');
      Route::delete('/contact-enquiries/{id}', [StaffContactUsController::class, 'destroy'])->name('contact-enquiry.destroy');
+
+         //quote
+    Route::get('/quote', [StaffQuoteController::class, 'index'])->name('quote.index');
+    Route::get('/quote/{id}/view', [StaffQuoteController::class, 'view'])->name('quote.view');
+    Route::delete('/quote/{id}', [StaffQuoteController::class, 'destroy'])->name('quote.destroy');
     
 });
 //  Staff routes end
 
 //  User routes 
-Route::prefix('user')->name('user.')->group(function () {
+Route::prefix('user')->name('user.')->middleware(UserAuth::class)->group(function () {
     Route::get('/', function () {
         return view('user.index');
     })->name('index');

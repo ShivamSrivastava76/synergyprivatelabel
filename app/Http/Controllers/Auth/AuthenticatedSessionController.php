@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\HearAboutOption;
+use App\Models\category;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -16,7 +18,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        $category  = category::orderBy('id', 'asc')->where('status',0)->take(5)->get();
+
+        $categories = category::with('subcategories')->get();
+        $HearAboutOption = HearAboutOption::where('status',0)->get();
+        return view('auth.login', compact('HearAboutOption', 'category', 'categories'));
     }
 
     /**

@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\HearAboutOption;
+use App\Models\category;
+use App\Models\AddToCard;
 
 class RegisteredUserController extends Controller
 {
@@ -19,7 +22,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $category  = category::orderBy('id', 'asc')->where('status',0)->take(5)->get();
+        $categories = category::with('subcategories')->get();
+        $HearAboutOption = HearAboutOption::where('status',0)->get();
+        return view('auth.register', compact('HearAboutOption', 'category', 'categories'));
     }
 
     /**
@@ -47,7 +53,24 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+        
+        $output = [];
+        exec('getmac', $output);
 
-        return redirect()->route('user.index');
+        // Loop through the command output to find the first valid MAC address
+        $ip = null;
+        foreach ($output as $line) {
+            // Use regex to find a MAC address pattern
+            if (preg_match('/([0-9A-F]{2}(-[0-9A-F]{2}){5})/i', $line, $matches)) {
+                $ip = $matches[0]; // Extract the MAC address
+                break;
+            }
+        }
+        
+        $count = AddToCard::where('ip_address', $ip)->count();
+        if($count > 0)
+            return redirect('checkout');
+        else
+            return redirect()->route('user.index');
     }
 }

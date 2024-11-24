@@ -17,7 +17,8 @@ class Product extends Model
         'price',
         'description',
         'status',
-        'features'
+        'features',
+        'slug',
     ];
 
     // Define the default values for attributes
@@ -29,13 +30,14 @@ class Product extends Model
     // Relationship with Category model
     public function category()
     {
-        return $this->belongsTo(category::class, 'categories_id');
+        return $this->belongsTo(category::class, 'category_id', 'id');
     }
 
-    public function subcategories()
+     public function categories()
     {
-        return $this->belongsToMany(Subcategory::class, 'products_subcategories', 'products_id', 'subcategories_id');
+        return $this->belongsToMany(category::class, 'products_categories', 'products_id', 'categories_id');
     }
+
 
     public function productsCategory()
     {
@@ -56,4 +58,6 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class, 'products_id', 'id');
     }
+    
+    
 }

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use App\Models\HearAboutOption;
+use App\Models\category;
 
 class ConfirmablePasswordController extends Controller
 {
@@ -16,7 +18,11 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(): View
     {
-        return view('auth.confirm-password');
+        $category  = category::orderBy('id', 'asc')->where('status',0)->take(5)->get();
+
+        $categories = category::with('subcategories')->get();
+        $HearAboutOption = HearAboutOption::where('status',0)->get();
+        return view('auth.confirm-password', compact('HearAboutOption', 'category', 'categories'));
     }
 
     /**
