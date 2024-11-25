@@ -27,7 +27,7 @@
             <div class="announcement-bar bg-1 py-1 py-lg-2">
                 <div class="container">
                     <div class="row align-items-center justify-content-between">
-                        <div class="col-lg-3 d-lg-block d-none">
+                        <div class="col-lg-3 d-lg-block">
                             <div class="announcement-call-wrapper">
                                 <div class="announcement-call">
                                     <a class="announcement-text text-white" href="tel:+6494461709">Call: +91 000 000 0000</a>
@@ -62,7 +62,6 @@
                                     </div>
                                 </div>
                             </div>
-                       
                     </div>
                 </div>
             </div>

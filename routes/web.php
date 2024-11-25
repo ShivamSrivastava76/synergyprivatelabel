@@ -75,9 +75,7 @@ Route::post('/subscribe', [SubscriberController::class, 'subscribe'])->name('sub
 // upload email image and pdf
 Route::post('save-mail-details',[AdminEnquiryMailController::class,'saveMailDetails']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -124,6 +122,7 @@ Route::prefix('admin')->name('admin.')->middleware(Auth::class)->group(function 
     // Enquiry routes
     Route::get('enquiries', [AdminEnquiryController::class, 'index'])->name('enquiries.index');
     Route::get('enquiries/{id}', [AdminEnquiryController::class, 'showEnquiryDetails'])->name('enquiries.details');
+    Route::post('search-enquiries', [AdminEnquiryController::class, 'searchEnquiries'])->name('searchEnquiries');
     Route::post('iplock', [AdminEnquiryController::class, 'iplock'])->name('enquiries.iplock');
 
     // Route::get('enquiries/create', [AdminEnquiryController::class, 'create'])->name('enquiries.create');

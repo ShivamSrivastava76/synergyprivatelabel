@@ -19,15 +19,15 @@
             }'>
                 <div class="slide-item slide-item-bag position-relative">
                     <!--<img class="slide-img" src="{{url('asset/img/banner1.jpg')}}" alt="slide-1">-->
-                    <img class="" src="{{url('asset/img/1320x6002.jpg')}}" alt="slide-1">
+                    <img class="" src="{{url('asset/img/1320x600.jpg')}}" alt="slide-1">
                     <div class="content-absolute content-slide">
                         <div class="container height-inherit d-flex align-items-center justify-content-start">
                             <div class="content-box slide-content slide-content-3 py-4 text-left">
-                                <h2 class="slide-heading heading_72 animate__animated animate__fadeInUp"
+                                <h2 class="slide-heading heading_72 animate__animated animate__fadeInUp text-white"
                                     data-animation="animate__animated animate__fadeInUp">
                                     Supplement Private Labeling
                                 </h2>
-                                <p class="slide-subheading heading_24 animate__animated animate__fadeInUp"
+                                <p class="slide-subheading heading_24 animate__animated animate__fadeInUp text-white"
                                     data-animation="animate__animated animate__fadeInUp">
                                     Made Easy Products
                                 </p>
@@ -38,15 +38,15 @@
                     </div>
                 </div>
                 <div class="slide-item slide-item-bag position-relative">
-                    <img class="" src="{{url('asset/img/1320x6002.jpg')}}" alt="slide-2">
+                    <img class="" src="{{url('asset/img/1320x6008.jpg')}}" alt="slide-2">
                     <div class="content-absolute content-slide">
                         <div class="container height-inherit d-flex align-items-center justify-content-start">
                             <div class="content-box slide-content slide-content-3 py-4 text-left">
-                                <h2 class="slide-heading heading_72 animate__animated animate__fadeInUp"
+                                <h2 class="slide-heading heading_72 animate__animated animate__fadeInUp text-white"
                                     data-animation="animate__animated animate__fadeInUp">
                                     Supplement Private Labeling
                                 </h2>
-                                <p class="slide-subheading heading_24 animate__animated animate__fadeInUp"
+                                <p class="slide-subheading heading_24 animate__animated animate__fadeInUp text-white"
                                     data-animation="animate__animated animate__fadeInUp">
                                     Made Easy Products
                                 </p>
@@ -58,15 +58,15 @@
                     </div>
                 </div>
                 <div class="slide-item slide-item-bag position-relative">
-                    <img class="" src="{{url('asset/img/1320x6002.jpg')}}" alt="slide-3">
+                    <img class="" src="{{url('asset/img/1320x6009.jpg')}}" alt="slide-3">
                     <div class="content-absolute content-slide">
                         <div class="container height-inherit d-flex align-items-center justify-content-start">
                             <div class="content-box slide-content slide-content-1 py-4 text-left">
-                                <h2 class="slide-heading heading_72 animate__animated animate__fadeInUp"
+                                <h2 class="slide-heading heading_72 animate__animated animate__fadeInUp text-white"
                                     data-animation="animate__animated animate__fadeInUp">
                                     Supplement Private Labeling
                                 </h2>
-                                <p class="slide-subheading heading_24 animate__animated animate__fadeInUp"
+                                <p class="slide-subheading heading_24 animate__animated animate__fadeInUp text-white"
                                     data-animation="animate__animated animate__fadeInUp">
                                     Made Easy Products
                                 </p>
@@ -135,85 +135,62 @@
                     <div class="section-header text-center">
                         <h2 class="section-heading primary-color">Our Services</h2>
                     </div>
-                    <div class="article-card-container position-relative">
-                        <div class="common-slider" data-slick='{
-                            "slidesToShow": 3, 
-                            "slidesToScroll": 1,
-                            "dots": false,
-                            "arrows": true,
-                            "responsive": [
-                                {
-                                "breakpoint": 1281,
-                                "settings": {
-                                    "slidesToShow": 2
-                                }
-                                },
-                                {
-                                "breakpoint": 602,
-                                "settings": {
-                                    "slidesToShow": 1
-                                }
-                                }
-                            ]
-                        }'>
-
-                            <div class="article-slick-item" data-aos="fade-up" data-aos-duration="700">
-                                <div class="article-card bg-transparent p-0 shadow-none">
-                                    <a class="article-card-img-wrapper" href="javascript:void(0)">
-                                        <img src="{{url('asset/img/1320x6003.jpg')}}" alt="img" class="article-card-img rounded">
+                    <div class="row justify-content-center trusted-row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="article-card bg-transparent p-0 shadow-none">
+                                <a class="article-card-img-wrapper" href="javascript:void(0)">
+                                    <img src="{{url('asset/img/1320x6003.jpg')}}" alt="img" class="article-card-img rounded">
+                                </a>
+                                <h2 class="article-card-heading heading_18">
+                                    <a class="heading_18" href="javascript:void(0)">
+                                        Private Labeling
                                     </a>
-                                    <h2 class="article-card-heading heading_18">
-                                        <a class="heading_18" href="javascript:void(0)">
-                                            Private Labeling
-                                        </a>
-                                    </h2>
-                                    <p>We have a huge range of products, over 100 products we design and print the
-                                        labels.
-                                        We do the best label designing, packaging and ship the products carefully-
-                                        so your
-                                        items arrive shelf-ready, so you can freely focus on sales.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="article-slick-item" data-aos="fade-up" data-aos-duration="700">
-                                <div class="article-card bg-transparent p-0 shadow-none">
-                                    <a class="article-card-img-wrapper" href="javascript:void(0)">
-                                        <img src="{{url('asset/img/1320x6004.jpg')}}" alt="img" class="article-card-img rounded">
-                                    </a>
-                                    <h2 class="article-card-heading heading_18">
-                                        <a class="heading_18" href="javascript:void(0)">
-                                            Bulk Purchase
-                                        </a>
-                                    </h2>
-                                    <p>Looking to launch a new supplement product and worried about the packaging,
-                                        labeling.
-                                        You are at the right place, make a move and choose from our selection of
-                                        products
-                                        available in bulk in minutes.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="article-slick-item" data-aos="fade-up" data-aos-duration="700">
-                                <div class="article-card bg-transparent p-0 shadow-none">
-                                    <a class="article-card-img-wrapper" href="javascript:void(0)">
-                                        <img src="{{url('asset/img/1320x6006.jpg')}}" alt="img" class="article-card-img rounded">
-                                    </a>
-                                    <h2 class="article-card-heading heading_18">
-                                        <a class="heading_18" href="javascript:void(0)">
-                                            Custom Product Development
-                                        </a>
-                                    </h2>
-                                    <p>We offer customization services, our team of experts schedule a consultation
-                                        with you
-                                        to create your ideas into reality in our huge laboratory space, tailored to
-                                        meet your
-                                        specific needs and requirements.
-                                    </p>
-                                </div>
+                                </h2>
+                                <p>We have a huge range of products, over 100 products we design and print the
+                                    labels.
+                                    We do the best label designing, packaging and ship the products carefully-
+                                    so your
+                                    items arrive shelf-ready, so you can freely focus on sales.
+                                </p>
                             </div>
                         </div>
-                        <div class="activate-arrows show-arrows-always article-arrows arrows-white"></div>
+
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="article-card bg-transparent p-0 shadow-none">
+                                <a class="article-card-img-wrapper" href="javascript:void(0)">
+                                    <img src="{{url('asset/img/1320x6004.jpg')}}" alt="img" class="article-card-img rounded">
+                                </a>
+                                <h2 class="article-card-heading heading_18">
+                                    <a class="heading_18" href="javascript:void(0)">
+                                        Bulk Purchase
+                                    </a>
+                                </h2>
+                                <p>Looking to launch a new supplement product and worried about the packaging,
+                                    labeling.
+                                    You are at the right place, make a move and choose from our selection of
+                                    products
+                                    available in bulk in minutes.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="article-card bg-transparent p-0 shadow-none">
+                                <a class="article-card-img-wrapper" href="javascript:void(0)">
+                                    <img src="{{url('asset/img/1320x6006.jpg')}}" alt="img" class="article-card-img rounded">
+                                </a>
+                                <h2 class="article-card-heading heading_18">
+                                    <a class="heading_18" href="javascript:void(0)">
+                                        Custom Product Development
+                                    </a>
+                                </h2>
+                                <p>We offer customization services, our team of experts schedule a consultation
+                                    with you
+                                    to create your ideas into reality in our huge laboratory space, tailored to
+                                    meet your
+                                    specific needs and requirements.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -374,7 +351,7 @@
                         @foreach($group_categories as $key => $group_category)
                             @if($key == 0 )
                                 <a class="grid-item grid-item-1 position-relative rounded mt-0 d-flex" href="{{ url('/collections/' . $group_category->slug) }}" data-aos="fade-right" data-aos-duration="700">
-                                    <img class="banner-img rounded h-270" src="{{url('asset/img/banner/f1.jpg')}}" alt="banner-1">
+                                    <img class="banner-img rounded h-270" src="{{url('asset/img/banner/550x250/1320x600121.jpg')}}" alt="banner-1">
                                     <div class="content-absolute content-slide">
                                         <div class="container height-inherit d-flex">
                                             <div class="content-box banner-content p-4">
@@ -390,7 +367,7 @@
                             @if($key == 1 )
                             <a class="grid-item grid-item-2 position-relative rounded mt-0 d-flex" href="{{ url('/collections/' . $group_category->slug) }}"
                             data-aos="fade-right" data-aos-duration="700">
-                                <img class="banner-img rounded h-270" src="{{url('asset/img/banner/f3.jpg')}}" alt="banner-1">
+                                <img class="banner-img rounded h-270" src="{{url('asset/img/banner/550x250/1320x600121.jpg')}}" alt="banner-1">
                                 <div class="content-absolute content-slide">
                                     <div class="container height-inherit d-flex">
                                         <div class="content-box banner-content p-4">
@@ -406,7 +383,7 @@
                             @if($key == 2 )
                                 <a class="grid-item grid-item-3 position-relative rounded mt-0 d-flex" href="{{ url('/collections/' . $group_category->slug) }}"
                                 data-aos="fade-left" data-aos-duration="700">
-                                    <img class="banner-img rounded" src="{{url('asset/img/banner/f2.png')}}" alt="banner-1">
+                                    <img class="banner-img rounded" src="{{url('asset/img/banner/600x274/1320x600121.jpg')}}" alt="banner-1">
                                     <div class="content-absolute content-slide">
                                         <div class="container height-inherit d-flex">
                                             <div class="content-box banner-content p-4">

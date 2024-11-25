@@ -1398,8 +1398,8 @@ button,
 
 .grid-item img {
   width: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
+  -o-object-fit: fill;
+  object-fit: fill;
   -o-object-position: bottom;
   object-position: bottom; }
 
@@ -3780,8 +3780,8 @@ blockquote {
   .utilty-menu-item .icon-phone {
     width: 21px;
     height: 21px; }
-  .video-tools {
-    min-height: 500px; }
+  /* .video-tools {
+    min-height: 500px; } */
   .newsltter-content-1 {
     padding: 80px; }
   .grid-container-2 {
@@ -3883,7 +3883,7 @@ blockquote {
   .slide-text {
     font-size: 24px; }
   .slide-heading {
-    font-size: 48px; }
+    font-size: 20px; }
   .section-heading {
     font-size: 32px; }
   .product-card-title,
@@ -3946,7 +3946,7 @@ blockquote {
   .heading_34 {
     font-size: 28px; }
   .heading_24 {
-    font-size: 22px; }
+    font-size: 15px; }
   .video-tools {
     min-height: auto;
     -webkit-box-pack: center;
@@ -4511,7 +4511,7 @@ blockquote {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  z-index: 1;
+  z-index: 100;
 }
 
 /* Popup Styles */
@@ -4578,3 +4578,76 @@ blockquote {
   width: 200px;
   height: 200px;
 }
+
+@media (max-width: 1400px) {
+  .slide-heading {
+      font-size: 44px;
+  }
+  
+}
+@media (max-width: 980px) {
+  .slide-heading {
+      font-size: 27px;
+  }
+  
+}
+@media (max-width: 1160px) {
+  .slide-heading {
+      font-size: 36px;
+  }
+  
+}
+@media (max-width: 980px) {
+  .slide-heading {
+      font-size: 27px;
+  }
+  
+}
+@media (max-width: 980px) {
+  .slide-heading {
+      font-size: 27px;
+  }
+  
+}
+@media (max-width: 529px) {
+  .slide-heading {
+      font-size: 15px;
+  }
+  .heading_24  {
+      font-size: 12px;
+  }
+}
+@media (max-width: 400px) {
+  .slide-heading {
+      font-size: 12px;
+  }
+  .heading_24  {
+    font-size: 10px;
+  }
+}
+@media (max-width: 330px) {
+  .slide-heading {
+      font-size: 10px;
+  }
+  .heading_24  {
+    font-size: 8px;
+  }
+ 
+}
+@media (max-width: 340px) {
+  
+  .btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-member,
+.btn-member:hover,
+.btn-member:focus 
+  {
+    font-size: 7px;
+    height:29px;
+  }
+}
+

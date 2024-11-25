@@ -35,7 +35,7 @@
                             <div class="d-flex flex-wrap justify-content-end">
                                 <div class="filter-sort-wrapper">
                                     <div class="filter-sorting d-flex">
-                                        <div class="collection-sorting position-relative d-none d-lg-block">
+                                        <div class="collection-sorting position-relative d-lg-block">
                                             <div class="sorting-header text_16 d-flex align-items-center justify-content-end mt-2 me-4">
                                                 <span class="sorting-title">View
                                                 <sapn id="pdisplay"> List </sapn>
@@ -57,7 +57,7 @@
                                 
                                 <div class="filter-sort-wrapper">
                                     <div class="filter-sorting d-flex">
-                                        <div class="collection-sorting position-relative d-none d-lg-block">
+                                        <div class="collection-sorting position-relative d-lg-block">
                                             <div class="sorting-header text_16 d-flex align-items-center justify-content-end mt-2">
                                                 <span class="sorting-title me-2">Fiter by</span>
                                                 <span class="active-sorting"></span>

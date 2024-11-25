@@ -8,13 +8,13 @@
                     </p>
                 </div>
                 <div class="flex">
-                    <span class="fc-day-grid-event fc-h-event fc-event fc-not-start fc-end fc-draggable fc-resizable fc-allow-mouse-resize" id="show"> Hide </span>
+                    <span class="fc-day-grid-event fc-h-event fc-event fc-not-start fc-end fc-draggable fc-resizable fc-allow-mouse-resize" id="show"> Show </span>
                     
                 </div>
             </div>
         </div>
         <div class="sender-details" >
-            <div class="sender-details" style="display:block;">
+            <div class="sender-details d-none">
                 @forelse($enquiry->remarks as $remark)
                     @if(Auth::user()->role == $remark->user_type)
                     
@@ -141,16 +141,24 @@
             </form>
         </div>
     </div>
-    <div class="col" id="hide">
+    <div class="col d-none" id="hide">
         <!-- Enquiry Details -->
         <div class="message-body">
-            <div class="sender-details">
+            <div class="sender-details d-flex">
                 <img class="img-sm rounded-circle mr-3" src="{{ asset('assets/admin/images/faces/user.jpg') }}" alt="">
                 <div class="details">
                     <p class="msg-subject">Enquiry Details - #{{ $enquiry->id }}</p>
                     <p class="sender-email">{{ $enquiry->user->name }} 
                         <a>{{ $enquiry->user->email }}</a>
                     </p>
+                    
+                </div>
+                <div class="text-rigth">
+                    @if($enquiry->status == 0)
+                        <i class="fa fa-unlock" onclick="ipaddresslock('{{$enquiry->ip_address}}')" ></i>
+                    @else
+                        <i class="fa fa-lock" onclick="ipaddressunlock('{{$enquiry->ip_address}}')"></i>
+                    @endif
                 </div>
             </div>
             <!-- Additional Enquiry Information -->
@@ -320,7 +328,7 @@ $(document).ready(function() {
 
     $('#show').on('click', function() {
         c++;
-       if(c % 2 == 0)
+       if(c % 2 != 0)
        {
             $('#hide').addClass('d-none');
             $('#show').html('Show');
@@ -328,7 +336,7 @@ $(document).ready(function() {
        else
        {
             $('#hide').removeClass('d-none');
-            $('#show').html('hide');
+            $('#show').html('Hide');
        }
     });
 

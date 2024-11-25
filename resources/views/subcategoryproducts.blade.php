@@ -27,84 +27,71 @@
                 <div class="row">
                     <!-- product area start -->
                     <div class="col-lg-12 col-md-12 col-12">
-                        <div class="filter-sort-wrapper">
-                            <div class="collection-title-wrap d-flex">
-                                <h2 class="collection-title heading_24 mb-0">All products</h2>
-                                <p class="collection-counter text_16 mb-0 ms-2">({{$products->total()}} items)</p>
-                            </div>
-                            <div class="d-flex flex-wrap justify-content-end">
-                                <div class="filter-sorting">
-                                    <div class="collection-sorting position-relative d-none d-lg-block">
-                                        <div class="sorting-header text_16 d-flex align-items-center justify-content-end me-4">
-                                            <span class="sorting-title">View:
-                                                <sapn id="subcdisplay"> List </sapn>
-                                            </span>
-                                            <span class="sorting-icon">
-                                                <svg class="icon icon-down" xmlns="http://www.w3.org/2000/svg"
-                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round" class="feather feather-chevron-down">
-                                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                                </svg>
-                                            </span>
+                            <div class="filter-sort-wrapper">
+                                <div class="collection-title-wrap d-flex">
+                                    <h2 class="collection-title heading_24 mb-0">All products</h2>
+                                    <p class="collection-counter text_16 mb-0 ms-2">({{$products->total()}} items)</p>
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-end">
+                                    <div class="filter-sort-wrapper">
+                                        <div class="filter-sorting d-flex">
+                                            <div class="collection-sorting position-relative d-lg-block">
+                                                <div class="sorting-header text_16 d-flex align-items-center justify-content-end mt-2 me-4">
+                                                    <span class="sorting-title">View
+                                                    <sapn id="pdisplay"> List </sapn>
+                                                    </span>
+                                                    <span class="active-sorting"></span>
+                                                    <span class="sorting-icon">
+                                                        <svg class="icon icon-down" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <ul class="sorting-lists1 list-unstyled m-0">
+                                                    <li><a href="#!" class="text_14 mx-3" onclick="subctoggleVisibility('subcMenu1','subcMenu11');" id="subcMenu11"><img src="{{url('asset/img/icon/grid_view.png')}}" class="icon"> Grid view</a></li>
+                                                    <li><a href="#!" class="text_14 mx-3 d-none" onclick="subctoggleVisibility('subcMenu2','subcMenu21');" id="subcMenu21"><img src="{{url('asset/img/icon/list_view.png')}}" class="icon"> List View</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                        <ul class="sorting-lists1 list-unstyled m-0">
-                                            <li><a href="#!" class="text_14 mx-3" onclick="subctoggleVisibility('subcMenu1','subcMenu11');" id="subcMenu11"><img src="{{url('asset/img/icon/grid_view.png')}}" class="icon"> Grid view</a></li>
-                                            <li><a href="#!" class="text_14 mx-3 d-none" onclick="subctoggleVisibility('subcMenu2','subcMenu21');" id="subcMenu21"><img src="{{url('asset/img/icon/list_view.png')}}" class="icon"> List View</a></li>
-                                        </ul>
                                     </div>
-                                    <div class="filter-drawer-trigger1 mobile-filter d-flex align-items-center d-lg-none">
-                                        <span class="mobile-filter-icon">
-                                        </span>
-                                        <span class="mobile-filter-heading">View</span>
+                                    
+                                    <div class="filter-sort-wrapper">
+                                        <div class="filter-sorting d-flex">
+                                            <div class="collection-sorting position-relative d-lg-block">
+                                                <div class="sorting-header text_16 d-flex align-items-center justify-content-end mt-2">
+                                                    <span class="sorting-title me-2">Fiter by</span>
+                                                    <span class="active-sorting"></span>
+                                                    <span class="sorting-icon">
+                                                        <svg class="icon icon-down" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <ul class="sorting-lists list-unstyled m-0">
+                                                    <li><a onclick="sortproduct('asc')" class="text_14">Alphabetically, A-Z </a></li>
+                                                    <li><a onclick="sortproduct('desc')" class="text_14">Alphabetically, Z-A</a></li>
+                                                    <li><a onclick="sortproduct('old')" class="text_14">Date, old to new</a></li>
+                                                    <li><a onclick="sortproduct('new')" class="text_14">Date, new to old</a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- <div class="filter-drawer-trigger mobile-filter d-flex align-items-center d-lg-none">
+                                                <span class="mobile-filter-icon me-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-filter">
+                                                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                                                    </svg>
+                                                </span>
+                                                <span class="mobile-filter-heading">Sorting</span>
+                                            </div> -->
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="filter-sorting">
-                                    <div class="collection-sorting position-relative d-none d-lg-block">
-                                        <div class="sorting-header text_16 d-flex align-items-center justify-content-end">
-                                            <span class="sorting-title me-2">Sort by:</span>
-                                            <span class="active-sorting">Featured</span>
-                                            <span class="sorting-icon">
-                                                <svg class="icon icon-down" xmlns="http://www.w3.org/2000/svg"
-                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round" class="feather feather-chevron-down">
-                                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <ul class="sorting-lists list-unstyled m-0">
-                                            <li><a onclick="sortproduct('asc')" class="text_14">Alphabetically, A-Z </a></li>
-                                            <li><a onclick="sortproduct('desc')" class="text_14">Alphabetically, Z-A</a></li>
-                                            <li><a onclick="sortproduct('old')" class="text_14">Date, old to new</a></li>
-                                            <li><a onclick="sortproduct('new')" class="text_14">Date, new to old</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="filter-drawer-trigger mobile-filter d-flex align-items-center d-lg-none">
-                                        <span class="mobile-filter-icon me-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" class="icon icon-filter">
-                                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                                            </svg>
-                                        </span>
-                                        <span class="mobile-filter-heading">Sorting</span>
-                                    </div>
+                            </div>
+                            <div class="collection-product-container">
+                                <div id="sortproductlist">
+                                    @include('subcategorysortproduct')
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="collection-product-container">
-                            
-                                
-                                    <div id="sortproductlist">
-                                        @include('subcategorysortproduct')
-                                        
-
-                                    </div>
-                               
-                            </div>
-                    </div>
                     <!-- product area end -->
                     
                     

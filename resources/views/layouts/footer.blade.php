@@ -334,6 +334,13 @@
                                 <a class="nav-link" href="{{url('custom-formulations')}}">
                                     Custom Formulations</a>
                             </li>
+                            <li class="menu-list-item nav-item has-dropdown">
+                                <div class="mega-menu-header">
+                                    <a class="nav-link " href="{{url('quote')}}">
+                                        Get Free Quote
+                                    </a>
+                                </div>
+                            </li>
                             <li class="menu-list-item nav-item">
                                 <a class="nav-link" href="{{url('contact')}}"> Contact Us</a>
                             </li>
@@ -355,17 +362,25 @@
                             </a>
                         </li>
                         <li class="utilty-menu-item">
-                            <a class="announcement-login announcement-text" href="{{url('login')}}">
-                                <span class="utilty-icon-wrapper">
-                                    <svg class="icon icon-user" width="24" height="24" viewBox="0 0 10 11" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M5 0C3.07227 0 1.5 1.57227 1.5 3.5C1.5 4.70508 2.11523 5.77539 3.04688 6.40625C1.26367 7.17188 0 8.94141 0 11H1C1 8.78516 2.78516 7 5 7C7.21484 7 9 8.78516 9 11H10C10 8.94141 8.73633 7.17188 6.95312 6.40625C7.88477 5.77539 8.5 4.70508 8.5 3.5C8.5 1.57227 6.92773 0 5 0ZM5 1C6.38672 1 7.5 2.11328 7.5 3.5C7.5 4.88672 6.38672 6 5 6C3.61328 6 2.5 4.88672 2.5 3.5C2.5 2.11328 3.61328 1 5 1Z"
-                                            fill="#000" />
-                                    </svg>
-                                </span>
-                                <span>Login</span>
-                            </a>
+                            @if(Auth::user() === null)
+                                <a class="announcement-login announcement-text" href="{{url('login')}}">
+                                    <span class="utilty-icon-wrapper">
+                                        <svg class="icon icon-user" width="24" height="24" viewBox="0 0 10 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M5 0C3.07227 0 1.5 1.57227 1.5 3.5C1.5 4.70508 2.11523 5.77539 3.04688 6.40625C1.26367 7.17188 0 8.94141 0 11H1C1 8.78516 2.78516 7 5 7C7.21484 7 9 8.78516 9 11H10C10 8.94141 8.73633 7.17188 6.95312 6.40625C7.88477 5.77539 8.5 4.70508 8.5 3.5C8.5 1.57227 6.92773 0 5 0ZM5 1C6.38672 1 7.5 2.11328 7.5 3.5C7.5 4.88672 6.38672 6 5 6C3.61328 6 2.5 4.88672 2.5 3.5C2.5 2.11328 3.61328 1 5 1Z"
+                                                fill="#000" />
+                                        </svg>
+                                    </span>
+                                    <span>Login</span>
+                                </a>
+                            @elseif(Auth::user()->role == 0)
+                                <a class="announcement-login announcement-text" href="{{url('admin')}}"> Dashboard </a>
+                            @elseif(Auth::user()->role == 1)
+                                <a class="announcement-login announcement-text" href="{{url('staff')}}"> Dashboard
+                            @else 
+                                <a class="announcement-login announcement-text" href="{{url('user')}}"> Dashboard </a>
+                            @endif
                         </li>
                         <!-- <li class="utilty-menu-item">
                             <a class="header-action-item header-wishlist" href="javascript:void(0)">

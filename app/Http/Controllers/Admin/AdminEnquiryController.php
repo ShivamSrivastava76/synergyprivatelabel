@@ -15,7 +15,7 @@ class AdminEnquiryController extends Controller
         //             ->where('status', 0)
         //             ->get();
 
-        $enquiries = enquiry::with(['user'])->orderBy('last_message', 'ASC')->orderBy('updated_at', 'DESC')->get();
+        $enquiries = enquiry::with(['user'])->orderBy('last_message', 'ASC')->orderBy('updated_at', 'DESC')->paginate(10);
 
         // Return the view with the enquiries data
         return view('admin.enquries.index', compact('enquiries'));
@@ -35,6 +35,26 @@ class AdminEnquiryController extends Controller
     public  function iplock(Request $request)
     {
         enquiry::where('ip_address', $request->ip)->update(['status'=> $request->status]);
+
+    }
+
+    public  function searchEnquiries(Request $request)
+    {
+        $searchValue = $request->input('searchValue', '');
+
+        $enquiries = enquiry::with(['user'])
+        ->when($searchValue, function ($query, $searchValue) {
+            $query->whereHas('user', function ($userQuery) use ($searchValue) {
+                $userQuery->where('email', 'LIKE', '%' . $searchValue . '%')
+                    ->orWhere('first_name', 'LIKE', '%' . $searchValue . '%')
+                    ->orWhere('last_name', 'LIKE', '%' . $searchValue . '%');
+            });
+        })
+        ->orderBy('last_message', 'ASC')
+        ->orderBy('updated_at', 'DESC')
+        ->paginate(10);
+
+            return view('admin.compment.enquiriesList', compact('enquiries'));
 
     }
 }
