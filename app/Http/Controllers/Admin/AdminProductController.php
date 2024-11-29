@@ -75,7 +75,6 @@ class AdminProductController extends Controller
                     $path150 = public_path('assets/images/products/150x150/'.$imageName);
                     $path500 = public_path('assets/images/products/500x500/'.$imageName);
                     $path1500 = public_path('assets/images/products/1500x1500/'.$imageName);
-                    $path3000 = public_path('assets/images/products/3000x3000/'.$imageName);
                     
                     // create image manager with desired driver
                     $manager = new ImageManager(new Driver());
@@ -83,14 +82,10 @@ class AdminProductController extends Controller
                     
                     // open an image file
                     $image1 = $manager->read($image);
-
-                    // Resize and save 3000x3000 image
-                    $path3000 = $image1->resize(3000, 3000);
-                    $path3000->save($path3000);
             
                     // Resize and save 1500x1500 image
-                    $image150 = $image1->resize(150, 150);
-                    $image150->save($path150);
+                    $image1500 = $image1->resize(1500, 1500);
+                    $image1500->save($path1500);
 
                     // Resize and save 500x500 image
                     $image500 = $image1->resize(650, 650);

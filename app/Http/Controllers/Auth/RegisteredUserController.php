@@ -55,10 +55,10 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         
         $output = [];
-        exec('getmac', $output);
+        
 
         // Loop through the command output to find the first valid MAC address
-        $ip = null;
+        $ip = exec('getmac', $output);;
         foreach ($output as $line) {
             // Use regex to find a MAC address pattern
             if (preg_match('/([0-9A-F]{2}(-[0-9A-F]{2}){5})/i', $line, $matches)) {

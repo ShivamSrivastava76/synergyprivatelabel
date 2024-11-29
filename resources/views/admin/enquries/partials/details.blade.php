@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col" style="position: relative; min-height: 100vh;">
+    <div class="col" style="position: relative; max-height: 100vh;">
         <div class="sender-details">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="details">
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="sender-details" >
-            <div class="sender-details d-none">
+            <div class="sender-details">
                 @forelse($enquiry->remarks as $remark)
                     @if(Auth::user()->role == $remark->user_type)
                     
@@ -110,7 +110,8 @@
                 @endforelse
             </div>
         </div>
-        <div style=" bottom: 0; width: 100%;">
+    </div>
+    <div style="width: 100%;">
             <form action="{{ route('admin.remarks.store') }}" method="POST" id="remarkForm">
                 @csrf
                 <input type="hidden" name="enquiry_id" value="{{ $enquiry->id }}"> <!-- Enquiry ID -->
@@ -140,7 +141,6 @@
                 </div>
             </form>
         </div>
-    </div>
     <div class="col d-none" id="hide">
         <!-- Enquiry Details -->
         <div class="message-body">

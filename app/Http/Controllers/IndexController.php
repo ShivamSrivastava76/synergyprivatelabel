@@ -330,10 +330,10 @@ class IndexController extends Controller
 
 
         $output = [];
-        exec('getmac', $output);
+        
 
         // Loop through the command output to find the first valid MAC address
-        $ip = null;
+        $ip = exec('getmac', $output);;
         foreach ($output as $line) {
             // Use regex to find a MAC address pattern
             if (preg_match('/([0-9A-F]{2}(-[0-9A-F]{2}){5})/i', $line, $matches)) {
@@ -476,10 +476,9 @@ class IndexController extends Controller
         $categories = $this->categories;
         $HearAboutOption = $this->HearAboutOption;
         $output = [];
-        exec('getmac', $output);
 
         // Loop through the command output to find the first valid MAC address
-        $ip = null;
+        $ip = exec('getmac', $output);;
         foreach ($output as $line) {
             // Use regex to find a MAC address pattern
             if (preg_match('/([0-9A-F]{2}(-[0-9A-F]{2}){5})/i', $line, $matches)) {
@@ -498,10 +497,9 @@ class IndexController extends Controller
     public function addtocart(Request $request)
     {
         $output = [];
-        exec('getmac', $output);
 
         // Loop through the command output to find the first valid MAC address
-        $ip = null;
+        $ip = exec('getmac', $output);;
         foreach ($output as $line) {
             // Use regex to find a MAC address pattern
             if (preg_match('/([0-9A-F]{2}(-[0-9A-F]{2}){5})/i', $line, $matches)) {
@@ -536,10 +534,9 @@ class IndexController extends Controller
     public function addtocartdel(Request $request)
     {
         $output = [];
-        exec('getmac', $output);
 
         // Loop through the command output to find the first valid MAC address
-        $ip = null;
+        $ip = exec('getmac', $output);;
         foreach ($output as $line) {
             // Use regex to find a MAC address pattern
             if (preg_match('/([0-9A-F]{2}(-[0-9A-F]{2}){5})/i', $line, $matches)) {
@@ -557,10 +554,9 @@ class IndexController extends Controller
     public function addtocartview(Request  $request)
     {
         $output = [];
-        exec('getmac', $output);
 
         // Loop through the command output to find the first valid MAC address
-        $ip = null;
+        $ip = exec('getmac', $output);;
         foreach ($output as $line) {
             // Use regex to find a MAC address pattern
             if (preg_match('/([0-9A-F]{2}(-[0-9A-F]{2}){5})/i', $line, $matches)) {
